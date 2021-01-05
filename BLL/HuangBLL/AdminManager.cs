@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace DAL
+using Model;
+using DAL;
+using DAL.HuangDAL;
+namespace BLL.HuangBLL
 {
-    public class Class1
+   public  class AdminManager
     {
-         int p;
-        int q = 1;
+        
     }
 }
