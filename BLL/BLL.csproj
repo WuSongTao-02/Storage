@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="HuangBLL\AdminManager.cs" />
     <Compile Include="HuangBLL\DeptManager.cs" />
     <Compile Include="LiuJIeBLL\Class1.cs" />
