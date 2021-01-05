@@ -41,11 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="HuangBLL\Class1.cs" />
+    <Compile Include="HuangBLL\AdminManager.cs" />
+    <Compile Include="HuangBLL\DeptManager.cs" />
     <Compile Include="LiuJIeBLL\Class1.cs" />
     <Compile Include="LiuMingBLL\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShuaiBLL\BaoSunManager.cs" />
     <Compile Include="ShuaiBLL\Class1.cs" />
     <Compile Include="WstBLL\WSTBLL.cs" />
   </ItemGroup>

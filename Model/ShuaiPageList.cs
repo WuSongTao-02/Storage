@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Class1
+    public class ShuaiPageList
     {
+        public int PageCoun { get; set; }
+        public IQueryable DataList { get; set; }
     }
 }
