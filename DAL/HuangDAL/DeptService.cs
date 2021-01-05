@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Model;
 namespace DAL.HuangDAL
 {
-   public  class AdminService
+   public  class DeptService
     {
 
     }

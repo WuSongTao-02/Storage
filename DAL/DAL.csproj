@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="HuangDAL\AdminService.cs" />
+    <Compile Include="HuangDAL\DeptService.cs" />
     <Compile Include="LiuJIeDAL\Class1.cs" />
     <Compile Include="LiuMingDAL\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

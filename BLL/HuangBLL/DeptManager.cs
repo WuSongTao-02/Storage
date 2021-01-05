@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
-namespace DAL.HuangDAL
+using DAL;
+namespace BLL.HuangBLL
 {
-   public  class AdminService
+   public  class DeptManager
     {
 
     }
