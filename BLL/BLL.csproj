@@ -47,7 +47,7 @@
     <Compile Include="LiuMingBLL\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShuaiBLL\Class1.cs" />
-    <Compile Include="WstBLL\Class1.cs" />
+    <Compile Include="WstBLL\WSTBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

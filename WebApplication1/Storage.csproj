@@ -124,6 +124,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\WSTController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,6 +139,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="layer\layer.js" />
+    <Content Include="layer\mobile\layer.js" />
+    <Content Include="layer\mobile\need\layer.css" />
+    <Content Include="layer\theme\default\icon-ext.png" />
+    <Content Include="layer\theme\default\icon.png" />
+    <Content Include="layer\theme\default\layer.css" />
+    <Content Include="layer\theme\default\loading-0.gif" />
+    <Content Include="layer\theme\default\loading-1.gif" />
+    <Content Include="layer\theme\default\loading-2.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="X-admin\admin-add.html" />
@@ -309,6 +319,7 @@
     <Content Include="X-admin\lib\layui\font\iconfont.ttf" />
     <Content Include="X-admin\lib\layui\font\iconfont.woff" />
     <Content Include="X-admin\user.json" />
+    <Content Include="Views\WST\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
