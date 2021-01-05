@@ -9,5 +9,6 @@ namespace DAL
     public class Class1
     {
          int p;
+        int q = 1;
     }
 }
