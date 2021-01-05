@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.HuangBLL
 {
-    class Class1
+    class AdminManager
     {
     }
 }
