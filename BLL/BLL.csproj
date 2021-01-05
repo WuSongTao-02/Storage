@@ -46,6 +46,7 @@
     <Compile Include="LiuJIeBLL\Class1.cs" />
     <Compile Include="LiuMingBLL\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShuaiBLL\BaoSunManager.cs" />
     <Compile Include="ShuaiBLL\Class1.cs" />
     <Compile Include="WstBLL\Class1.cs" />
   </ItemGroup>

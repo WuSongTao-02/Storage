@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL;
 
-namespace DAL.ShuaiDAL
+namespace BLL.ShuaiBLL
 {
-    class Class1
+   public  class BaoSunManager
     {
-    }
+       
+        }
 }
