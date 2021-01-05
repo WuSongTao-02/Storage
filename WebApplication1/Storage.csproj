@@ -311,11 +311,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\HaungCan\" />
-    <Folder Include="Controllers\LiuJie\" />
-    <Folder Include="Controllers\LiuM\" />
-    <Folder Include="Controllers\Shuai\" />
-    <Folder Include="Controllers\WuST\" />
+    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
