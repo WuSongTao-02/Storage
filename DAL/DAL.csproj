@@ -55,11 +55,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Huang\" />
-    <Folder Include="LiuJIe\" />
-    <Folder Include="LiuMing\" />
-    <Folder Include="Shuai\" />
-    <Folder Include="Wst\" />
+    <Folder Include="HuangDAL\" />
+    <Folder Include="LiuJIeDAL\" />
+    <Folder Include="LiuMingDAL\" />
+    <Folder Include="ShuaiDAL\" />
+    <Folder Include="WstDAL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
