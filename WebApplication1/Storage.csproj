@@ -320,6 +320,7 @@
     <Content Include="X-admin\lib\layui\font\iconfont.woff" />
     <Content Include="X-admin\user.json" />
     <Content Include="Views\WST\Login.cshtml" />
+    <Content Include="Views\WST\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
