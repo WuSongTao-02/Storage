@@ -31,11 +31,28 @@ namespace DAL.ShuaiDAL
             return hh.Damage.Count();
         }
 
+
+        public static int edit(Damage d) {
+            CangChuEntities hh = new CangChuEntities();
+            var obj = hh.Damage.Where(p => p.IsDelete == d.IsDelete).FirstOrDefault();
+            if (obj!=null) {
+                obj.Damid = d.Damid;
+                obj.DamType = d.DamType;
+                obj.DamOrder = d.DamOrder;
+                obj.DamPerson = d.DamPerson;
+                obj.AudiId = d.AudiId;
+                obj.CreateTime = d.CreateTime;
+                obj.IsDelete = d.IsDelete;
+                obj.Remake = d.Remake;
+            }
+            return hh.SaveChanges();
+        }
         public static ShuaiPageList GetPageList(int PageIndex,int PageSize) {
             CangChuEntities hh = new CangChuEntities();
             ShuaiPageList list = new ShuaiPageList();
             var obj = from p in hh.Damage
-                      orderby p.Damid
+                      where p.IsDelete==0
+                      orderby p.Damid 
                       select new {
                           Damid = p.Damid,
                           DamType = p.DamType,
