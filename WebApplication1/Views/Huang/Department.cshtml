@@ -9,6 +9,10 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Department</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/X-admin/lib/layui/css/layui.css" rel="stylesheet" />
+    
 
 </head>
 <body>
@@ -21,13 +25,12 @@
                         <td>部门编号</td>
                         <td>部门名称</td>
                         <td>创建时间</td>
-                        <td>备注</td>
                         <td>操作</td>
                     </tr>
                 </thead>
                 <tbody id="tb1"></tbody>
             </table>
-
+            <div id="demoPageList"></div>
         </div>
     </div>
 </body>
@@ -37,10 +40,15 @@
 
 <script>
 
+
     var pageIndex = 1;
     var pageSize = 10;
     var pageCount = 0;
     var rows = 0;
+    function ConverTime(op) {
+        var date = new Date(parseInt(op.substr(6)));
+        return date.toLocaleDateString();
+    }
 
     $(function () {
         PageRows();
@@ -54,7 +62,6 @@
             type: "POST",
             url: "/Huang/GetRows",
             data: "{}",
-
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
@@ -98,8 +105,8 @@
                 pageCount = result.PageCount;
                 //console.log(result);
                 $("#tb1 tr").remove();
-                $.each(result.DataList, function (index, data) {
-                    $("#tb1").append("<tr><td>" + data.DeptId + "</td><td>" + data.DeptName + "</td><td>" + data.CreateTime + "</td><td>" + data.IsDelete + "</td><td>" + data.Remake + "</td><td><a href='#' class='layui-btn layui-btn-danger' onclick='return Del(" + data.DeptId + ")'>删除</a><a href='/DemoAJAX/Update?id=" + data.DeptId + "' class='layui-btn layui-btn-normal'>修改</a></td></tr>");
+                $.each(result.DataList, function (index, data) {                                                         
+                    $("#tb1").append("<tr><td>" + data.DeptId + "</td><td>" + data.DeptName + "</td><td>" + ConverTime(data.CreateTime) + "</td><td> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='return Del("+data.DeptId+ ")'></i></button><button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon'></i></button></td></tr>");
                 });
             },
             error: function (ex) {
@@ -109,19 +116,19 @@
 
     }
 
-    function Del(id) {
+    function Del(DeptId) {
         if (confirm('确定删除?')) {
 
             $.ajax({
                 type: "POST",
-                url: "/DemoAJAX/Del",
-                data: "{id:" + id + "}",
+                url: "/Huang/Del",
+                data: "{DeptId:" + DeptId + "}",
                 dataType: "json",
                 contentType: "application/json",
                 success: function (result) {
                     if (result > 0) {
                         alert("删除成功！");
-                        PageList();
+                        PageList(1,10);
                     }
                     else {
                         alert("删除失败！");
