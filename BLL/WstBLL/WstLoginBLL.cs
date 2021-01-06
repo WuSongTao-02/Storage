@@ -21,5 +21,15 @@ namespace BLL.WstBLL
             return DAL.WstDAL.WstLoginDAl.Login(name, pwd);
         }
 
+        /// <summary>
+        /// 查询登录的人信息
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <returns>数据集合</returns>
+        public static IQueryable GetUserName(string UserName)
+        {
+            return DAL.WstDAL.WstLoginDAl.GetUserName(UserName);
+        }
+
         }
 }

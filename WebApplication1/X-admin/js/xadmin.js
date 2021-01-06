@@ -1,4 +1,5 @@
-;!function (win) {
+
+; !function (win) {
 	"use strict";
 	var doc = document
 
