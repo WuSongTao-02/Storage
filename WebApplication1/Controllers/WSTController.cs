@@ -27,7 +27,8 @@ namespace WebApplication1.Controllers
 
         //首页
         public ActionResult Index() {
-         
+            string UserName = Session["name"].ToString();
+            ViewBag.UserNames = UserName; 
             return View();
         }
     }

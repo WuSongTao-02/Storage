@@ -323,6 +323,7 @@
     <Content Include="X-admin\user.json" />
     <Content Include="Views\WST\Login.cshtml" />
     <Content Include="Views\Huang\Department.cshtml" />
+    <Content Include="Views\WST\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
