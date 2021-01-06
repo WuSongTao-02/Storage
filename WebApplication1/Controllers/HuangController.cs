@@ -16,6 +16,11 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         public ActionResult Department()
         {
             return View();
