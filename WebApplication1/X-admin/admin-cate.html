@@ -37,10 +37,10 @@
                         <form class="layui-form layui-col-space5">
 
                             <div class="layui-inline layui-show-xs-block">
-                                <input type="text" name="username" placeholder="分类名" autocomplete="off" class="layui-input">
+                                <input type="text" name="username" placeholder="报损类型" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-inline layui-show-xs-block">
-                                <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i>增加</button>
+                                <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i>查询</button>
                             </div>
                         </form>
                     </div>
@@ -120,7 +120,7 @@
         });
     }
 
-
+     
 
     function delAll(argument) {
 
@@ -135,11 +135,99 @@
 </script>
 
 </html>
-
+ 
 <script src="lib/layui/layui.all.js"></script>
 <script src="../Scripts/jquery-3.4.1.min.js"></script>
 <script>
+    var PageIndex = 1;
+    var PageSize = 3;
+    var PageCount = 0;
+    var rows = 0;
+    $(function () {
+        GetRows();
+        PageList(pindex, psize);
 
+    });
 
+    function PageList(pindex, psize) {
+        $.ajax({
+            type: "post",
+            url: "/shuaikm/GetPageList",
+            data: "{PageIndex:" + pindex + ",PageSize:" + psize + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res) {
+                $("#tab tr").remove();
+                $.each(res.DataList, function (index, data) {
+                    $("#tab").append("<tr><td>" + data.Damid + "</td><td>" + data.DamType + "</td><td>" + data.DamOrder + "</td><td>" + data.DamPerson + "</td><td>" + data.AudiId + "</td><td>" + data.CreateTime + "</td><td><a onclick='return edit(" + data.IsDelete + ")'>删除</a></td></tr>");
 
+                });
+            }
+        });
+    }
+
+    function edit(id) {
+        if (confirm('确定删除?')) {
+            $.ajax({
+                type: "POST",
+                url: "/shuaikm/edit",
+                data: "{id:" + 1 + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (res) {
+                    if (res > 0) {
+                        alert("删除成功");
+                        PageList(PageIndex, PageSize);
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                },
+                error: function (ex) {
+                    alert("Error:" + ex.responseText);
+                }
+            });
+        }
+        return false;
+    }
+    function GetRows() {
+        $.ajax({
+            type: "POST",
+            url: "/shuaikm/GetRows",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                //获取总条数
+                rows = result;
+                layui.use(['laypage', 'layer'], function () {
+                    var laypage = layui.laypage
+                        , layer = layui.layer;
+                    //完整功能
+                    laypage.render({
+                        elem: 'zwb'
+                        //设置总条数
+                        , count: rows
+                        , limit: 4
+                        , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                        , jump: function (obj, first) {
+                            if (!first) {
+                                //调用我们自己分页的方法
+                                //obj.curr 当前页码
+                                //obj.limit 每页显示条数
+                                PageList(obj.curr, obj.limit);
+                            }
+                            console.log(obj)
+                        }
+                    });
+
+                });
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
 </script>
