@@ -1,0 +1,139 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Department</title>
+
+</head>
+<body>
+    <div>
+        <div>
+            <a href="/DemoAJAX/Create">新增</a>
+            <table border="1" width="100%" class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <td>部门编号</td>
+                        <td>部门名称</td>
+                        <td>创建时间</td>
+                        <td>备注</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody id="tb1"></tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/X-admin/lib/layui/layui.js"></script>
+
+<script>
+
+    var pageIndex = 1;
+    var pageSize = 10;
+    var pageCount = 0;
+    var rows = 0;
+
+    $(function () {
+        PageRows();
+        PageList(pageIndex, pageSize);
+
+    });
+
+
+    function PageRows() {
+        $.ajax({
+            type: "POST",
+            url: "/Huang/GetRows",
+            data: "{}",
+
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                //获取总条数
+                rows = result;
+
+                layui.use(['laypage', 'layer'], function () {
+                    var laypage = layui.laypage
+                        , layer = layui.layer;
+                    //完整功能
+                    laypage.render({
+                        elem: 'demoPageList'//分页容器的id
+                        , count: rows//总条数
+                        , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                        , jump: function (obj, first) {
+                            if (!first) {
+                                //调用分页的方法
+                                PageList(obj.curr, obj.limit);
+                            }
+                            console.log(obj)
+                        }
+                    });
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+    function PageList(pindex, psize) {
+        $.ajax({
+            type: "POST",
+            url: "/Huang/DemoPageList",
+            data: "{pageIndex:" + pindex + ",pageSize:" + psize + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                //获取总页数
+                pageCount = result.PageCount;
+                //console.log(result);
+                $("#tb1 tr").remove();
+                $.each(result.DataList, function (index, data) {
+                    $("#tb1").append("<tr><td>" + data.DeptId + "</td><td>" + data.DeptName + "</td><td>" + data.CreateTime + "</td><td>" + data.IsDelete + "</td><td>" + data.Remake + "</td><td><a href='#' class='layui-btn layui-btn-danger' onclick='return Del(" + data.DeptId + ")'>删除</a><a href='/DemoAJAX/Update?id=" + data.DeptId + "' class='layui-btn layui-btn-normal'>修改</a></td></tr>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+    function Del(id) {
+        if (confirm('确定删除?')) {
+
+            $.ajax({
+                type: "POST",
+                url: "/DemoAJAX/Del",
+                data: "{id:" + id + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("删除成功！");
+                        PageList();
+                    }
+                    else {
+                        alert("删除失败！");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+        }
+        return false;
+    }
+
+
+</script>
