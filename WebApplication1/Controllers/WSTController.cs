@@ -18,7 +18,17 @@ namespace WebApplication1.Controllers
         }
         //登录
         public ActionResult Logins(string name, string pwd) {
-            return Json(BLL.WstBLL.WSTBLL.Login(name, pwd), JsonRequestBehavior.AllowGet);
+            if (BLL.WstBLL.WstLoginBLL.Login(name, pwd) > 0) {
+                Session["name"] =name;
+            }
+            return Json(BLL.WstBLL.WstLoginBLL.Login(name, pwd), JsonRequestBehavior.AllowGet);
+            
+        }
+
+        //首页
+        public ActionResult Index() {
+         
+            return View();
         }
     }
 }
