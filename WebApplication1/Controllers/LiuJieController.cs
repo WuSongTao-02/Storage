@@ -22,11 +22,5 @@ namespace WebApplication1.Controllers
         public ActionResult GetRows() {
             return Json(ProbaictManager.GetRows(),JsonRequestBehavior.AllowGet);
         }
-
-        public ActionResult add()
-        {
-            return Json(ProbaictManager.GetRows(), JsonRequestBehavior.AllowGet);
-        }
-
     }
 }
