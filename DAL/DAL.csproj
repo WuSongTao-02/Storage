@@ -48,10 +48,14 @@
     <Compile Include="HuangDAL\AdminService.cs" />
     <Compile Include="HuangDAL\DeptService.cs" />
     <Compile Include="LiuJIeDAL\Class1.cs" />
+    <Compile Include="LiuJIeDAL\ProbaictCatagorySerivce.cs" />
+    <Compile Include="LiuJIeDAL\ProbaictSerivce.cs" />
+    <Compile Include="LiuJIeDAL\ProbaictStorageSerivce.cs" />
+    <Compile Include="LiuJIeDAL\UnitSerivce.cs" />
     <Compile Include="LiuMingDAL\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShuaiDAL\BaoSunService.cs" />
-    <Compile Include="WstDAL\Class1.cs" />
+    <Compile Include="WstDAL\WstLoginDAl.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">

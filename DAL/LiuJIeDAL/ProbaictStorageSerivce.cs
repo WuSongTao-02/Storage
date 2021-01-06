@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.WstBLL
+namespace DAL.LiuJIeDAL
 {
-    class Class1
+    class ProbaictStorageSerivce
     {
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.WstDAL
+namespace DAL.LiuJIeDAL
 {
-    class Class1
+    class ProbaictCatagorySerivce
     {
     }
 }
