@@ -40,12 +40,25 @@ namespace WebApplication1.Controllers
         }
 
         
+
         public ActionResult Users(string UserName) {
             return Json(BLL.WstBLL.WstLoginBLL.GetUserName(UserName), JsonRequestBehavior.AllowGet);
         }
 
+        //修改密码
         public ActionResult UpdataPwd(int id, string pwd) {
             return Json(BLL.WstBLL.WstLoginBLL.UpdatePwd(id, pwd), JsonRequestBehavior.AllowGet);
+        }
+
+        //个人信息
+        public ActionResult UserMsessage()
+        {
+            return View();
+        }
+        //修改个人信息
+        public ActionResult UserMessages(Admin admin)
+        {
+            return Json(BLL.WstBLL.WstLoginBLL.UpdataUser(admin), JsonRequestBehavior.AllowGet);
         }
     }
 }
