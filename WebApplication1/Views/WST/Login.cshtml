@@ -35,6 +35,7 @@
 <script src="~/layer/layer.js"></script>
 <script>
     $(function () {
+       
         $("#login").click(function () {
             var name = $("#username").val();
             var pwd = $("#password").val();
@@ -42,7 +43,7 @@
                 type: "POST", //提交方式
                 url: "/WST/Logins",//请求URL路径
                 data: "{name:'" + name + "',pwd:'"+ pwd +"'}",//向服务器传递的参数
-                dataType: "json",//预期服务器返回的数据类型     
+                dataType: "json",//预期服务器返回的数据类型
                contentType: "application/json",//发送信息至服务器时内容编码类型
                 success: function (result) {
                     if (result > 0) {
@@ -50,10 +51,10 @@
                             icon: 6,
                             time: 1000 //2秒关闭（如果不配置，默认是3秒）
                         }, function () {
-                                  
+
                                     location.href = "/WST/Index";
-                                
-                        }); 
+
+                        });
                     } else
                     {
                         layer.msg('登录失败,请重新输入', {
@@ -62,8 +63,8 @@
                         }, function () {
                                $("#username").val("");
                                $("#password").val("");
-                        }); 
-                       
+                        });
+
                     }
                 },
                 //请求失败的回调函数

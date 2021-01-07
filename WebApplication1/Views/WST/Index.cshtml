@@ -29,10 +29,10 @@
                 <dl class="layui-nav-child">
                     <!-- 二级菜单 -->
                     <dd>
-                        <a onclick="xadmin.open('个人信息','/WST/password',500,380)">个人信息</a>
+                        <a onclick="xadmin.open('个人信息','/WST/password',380,380)">个人信息</a>
                     </dd>
                     <dd>
-                        <a onclick="xadmin.open('修改密码','/WST/password?name=@ViewBag.UserNames',500,350)">修改密码</a>
+                        <a onclick="xadmin.open('修改密码','/WST/password?name=@ViewBag.UserNames',450,350)">修改密码</a>
                     </dd>
                 </dl>
             </li>
@@ -230,7 +230,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="login.html">
+                    <a href="javascript:;" onclick="logout()">
                         <i class="iconfont left-nav-li" lay-tips="退出系统">&#xe6b4;</i>
                         <cite>退出系统</cite>
                     </a>
@@ -276,5 +276,8 @@
 <script src="~/X-admin/js/xadmin.js"></script>
 
 <script>
+    function logout() {
 
+        location.href = "/WST/Login";
+    }
 </script>
