@@ -38,6 +38,7 @@ namespace DAL.WstDAL
                 Email= p.Email,
                 RealName= p.RealName,
                 RoleName=  p.Role.RoleName,
+                DeptName=p.Dept.DeptName,
             };
             return obj;
         }
@@ -51,6 +52,20 @@ namespace DAL.WstDAL
             CangChuEntities entity = new CangChuEntities();
             var count = (from p in entity.Admin where p.Id ==id select p).First();
             count.PassWord = pwd;
+            return entity.SaveChanges();
+        }
+
+        /// <summary>
+        /// 修改个人信息
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns></returns>
+        public static int UpdataUser(Admin admin) {
+            CangChuEntities entity = new CangChuEntities();
+            var count = (from p in entity.Admin where p.UserName == admin.UserName select p).First();
+            count.phone = admin.phone;
+            count.RealName = admin.RealName;
+            count.Email = admin.Email;
             return entity.SaveChanges();
         }
     }

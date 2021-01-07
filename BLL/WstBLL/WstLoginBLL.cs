@@ -43,5 +43,16 @@ namespace BLL.WstBLL
             return DAL.WstDAL.WstLoginDAl.UpdatePwd(id,pwd);
         }
 
+        /// <summary>
+        /// 修改个人信息
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns></returns>
+        public static int UpdataUser(Admin admin)
+        {
+            return DAL.WstDAL.WstLoginDAl.UpdataUser(admin);
+        }
+
+
         }
 }
