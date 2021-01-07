@@ -318,6 +318,8 @@
     <Content Include="Views\WST\Login.cshtml" />
     <Content Include="Views\Huang\Create.cshtml" />
     <Content Include="Views\Huang\Update.cshtml" />
+    <Content Include="Views\WST\password.cshtml" />
+    <Content Include="Views\WST\UserMsessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
