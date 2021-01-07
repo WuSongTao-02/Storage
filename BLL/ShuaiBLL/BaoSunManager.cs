@@ -23,9 +23,16 @@ namespace BLL.ShuaiBLL
         {
             return DAL.ShuaiDAL.BaoSunService.GetRows();
         }
-        public static int edit(Damage d)
+        public static int edit(int id)
         {
-            return DAL.ShuaiDAL.BaoSunService.edit(d);
+            return DAL.ShuaiDAL.BaoSunService.edit(id);
+        }
+        public static ShuaiPageList GetPageList1(int PageIndex, int PageSize, string name) {
+
+            return DAL.ShuaiDAL.BaoSunService.GetPageList1(PageIndex,PageSize,name);
+        }
+        public static IQueryable ChaXun2(string name) {
+            return DAL.ShuaiDAL.BaoSunService.ChaXun2(name);
         }
         }
 }
