@@ -317,6 +317,7 @@
     <Content Include="Views\WST\Index.cshtml" />
     <Content Include="Views\WST\Login.cshtml" />
     <Content Include="Views\Huang\Create.cshtml" />
+    <Content Include="Views\Huang\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

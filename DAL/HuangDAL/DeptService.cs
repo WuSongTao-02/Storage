@@ -73,6 +73,7 @@ namespace DAL.HuangDAL
         public static int Add(Dept de)
         {
             CangChuEntities entities = new CangChuEntities();
+            
             entities.Dept.Add(de);
             return entities.SaveChanges();
         }
