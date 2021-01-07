@@ -26,13 +26,23 @@ namespace WebApplication1.Controllers
 
 
         }
-        public ActionResult edit(Damage d)
+        public ActionResult edit(int id)
         {
-            return Json(BLL.ShuaiBLL.BaoSunManager.edit(d),JsonRequestBehavior.AllowGet);
+            return Json(BLL.ShuaiBLL.BaoSunManager.edit(id),JsonRequestBehavior.AllowGet);
         }
             public ActionResult GetPageList(int PageIndex, int PageSize){
 
             return Json(BLL.ShuaiBLL.BaoSunManager.GetPageList(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
             }
-    }
+
+        public ActionResult GetPageList1(int PageIndex, int PageSize, string name) {
+            return Json(BLL.ShuaiBLL.BaoSunManager.GetPageList1(PageIndex,PageSize,name),JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ChaXun2(string name)
+        {
+            return Json(BLL.ShuaiBLL.BaoSunManager.ChaXun2(name),JsonRequestBehavior.AllowGet);
+        
+        }
+        }
 }

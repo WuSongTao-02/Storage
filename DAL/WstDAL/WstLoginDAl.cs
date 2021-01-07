@@ -31,6 +31,7 @@ namespace DAL.WstDAL
         public static IQueryable GetUserName(string UserName) {
             CangChuEntities entity = new CangChuEntities();
             var obj = from p in entity.Admin where p.UserName == UserName select new {
+                Id = p.Id,
                 UserName=  p.UserName,
                 PassWord= p.PassWord,
                 phone=p.phone,
@@ -39,6 +40,18 @@ namespace DAL.WstDAL
                 RoleName=  p.Role.RoleName,
             };
             return obj;
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="admin">对象</param>
+        /// <returns>受影响行数</returns>
+        public static int UpdatePwd(int id ,string pwd) {
+            CangChuEntities entity = new CangChuEntities();
+            var count = (from p in entity.Admin where p.Id ==id select p).First();
+            count.PassWord = pwd;
+            return entity.SaveChanges();
         }
     }
 }

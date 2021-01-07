@@ -34,22 +34,21 @@
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-body ">
-                        <form class="layui-form layui-col-space5">
+                       
 
                             <div class="layui-inline layui-show-xs-block">
-                                <input type="text" name="username" placeholder="报损类型" autocomplete="off" class="layui-input">
+                                <input type="text" id="username" placeholder="报损类型" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-inline layui-show-xs-block">
-                                <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i>查询</button>
+                                <button id="chaxun" class="layui-btn" onclick="ChaXun2(this)" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i>查询</button>
                             </div>
-                        </form>
+                        
                     </div>
 
                     <div class="layui-card-body ">
                         <table class="layui-table layui-form">
                             <thead>
                                 <tr>
-
                                     <td>ID</td>
                                     <td>报损类型</td>
                                     <td>关联订单编号</td>
@@ -71,68 +70,7 @@
         </div>
     </div>
 </body>
-<script>
 
-    layui.use(['laydate', 'form'], function () {
-        var laydate = layui.laydate;
-        var form = layui.form;
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#end' //指定元素
-        });
-    });
-
-    /*用户-停用*/
-    function member_stop(obj, id) {
-        layer.confirm('确认要停用吗？', function (index) {
-
-            if ($(obj).attr('title') == '启用') {
-                //发异步把用户状态进行更改
-                $(obj).attr('title', '停用')
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!', { icon: 5, time: 1000 });
-
-            } else {
-                $(obj).attr('title', '启用')
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!', { icon: 5, time: 1000 });
-            }
-
-        });
-    }
-
-    /*用户-删除*/
-    function member_del(obj, id) {
-        layer.confirm('确认要删除吗？', function (index) {
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', { icon: 1, time: 1000 });
-        });
-    }
-
-     
-
-    function delAll(argument) {
-
-        var data = tableCheck.getData();
-
-        layer.confirm('确认要删除吗？' + data, function (index) {
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', { icon: 1 });
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
-    }
-</script>
 
 </html>
  
@@ -145,10 +83,13 @@
     var rows = 0;
     $(function () {
         GetRows();
-        PageList(pindex, psize);
+        PageList(PageIndex, PageSize);
 
     });
-
+    function time(m) {
+        var dd = new Date(parseInt(m.substr(6)));
+        return dd.toLocaleDateString();
+    }
     function PageList(pindex, psize) {
         $.ajax({
             type: "post",
@@ -159,19 +100,39 @@
             success: function (res) {
                 $("#tab tr").remove();
                 $.each(res.DataList, function (index, data) {
-                    $("#tab").append("<tr><td>" + data.Damid + "</td><td>" + data.DamType + "</td><td>" + data.DamOrder + "</td><td>" + data.DamPerson + "</td><td>" + data.AudiId + "</td><td>" + data.CreateTime + "</td><td><a onclick='return edit(" + data.IsDelete + ")'>删除</a></td></tr>");
+                    $("#tab").append("<tr><td>" + data.Damid + "</td><td>" + data.DamType + "</td><td>" + data.DamOrder + "</td><td>" + data.DamPerson + "</td><td>" + data.AudiId + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.Damid + ")'>删除</a></td></tr>");
 
                 });
             }
         });
-    }
-
+    }  
+        function ChaXun2() {
+            var name = $("#username").val();
+            alert(name);
+            $.ajax({
+               
+                type: "post",
+                url: "/shuaikm/GetPageList1",
+                data: "{PageIndex:" + PageIndex + ",PageSize:" + PageSize + ",name:'" + name + "'}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (res) {
+                    $("#tab tr").remove();
+                    $.each(res.DataList, function (index, data) {
+                        $("#tab").append("<tr><td>" + data.Damid + "</td><td>" + data.DamType + "</td><td>" + data.DamOrder + "</td><td>" + data.DamPerson + "</td><td>" + data.AudiId + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.Damid + ")'>删除</a></td></tr>");
+                    });
+                }
+            });
+        }
+     
+   
     function edit(id) {
+        alert(id);
         if (confirm('确定删除?')) {
             $.ajax({
                 type: "POST",
                 url: "/shuaikm/edit",
-                data: "{id:" + 1 + "}",
+                data: "{id:" + id + "}",
                 dataType: "json",
                 contentType: "application/json",
                 success: function (res) {

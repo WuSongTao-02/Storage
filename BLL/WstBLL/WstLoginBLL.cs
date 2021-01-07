@@ -31,5 +31,17 @@ namespace BLL.WstBLL
             return DAL.WstDAL.WstLoginDAl.GetUserName(UserName);
         }
 
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="admin">对象</param>
+        /// <returns>受影响行数</returns>
+        public static int UpdatePwd(int id, string pwd)
+        {
+           
+            return DAL.WstDAL.WstLoginDAl.UpdatePwd(id,pwd);
+        }
+
         }
 }
