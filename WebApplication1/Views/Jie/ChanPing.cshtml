@@ -29,9 +29,7 @@
     </div>
     <div class="layui-fluid">
         <div class="layui-row layui-col-space15">
-
             <div class="layui-col-md12">
-
                 <div class="layui-card">
                     <div class="layui-card-body ">
                         <div class="layui-collapse" lay-filter="test">
@@ -41,9 +39,7 @@
                         </div>
                     </div>
                     <div class="layui-card-header">
-                        <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                            <i class="layui-icon"></i>批量删除
-                        </button>
+                        <input type="button" id="" value="批量删除" class="layui-btn"/>
                         <a href="/Jie/ChanPingAdd" class="layui-btn">添加</a>
                     </div>
                     <div class="layui-card-body ">
@@ -58,10 +54,6 @@
                                     <td>产品类别</td>
                                     <td>单位</td>
                                     <td>创建时间</td>
-                                    <td>产品数量</td>
-                                    <td>进货数量</td>
-                                    <td>出货数量</td>
-                                    <td>报损数量</td>
                                     <td>备注</td>
                                     <td>操作</td>
                                 </tr>
@@ -71,7 +63,7 @@
                         </table>
                     </div>
                     <!--定义分页的容器-->
-                    <div id="PageList">
+                    <div id="DemoPageList">
 
                     </div>
                 </div>
@@ -105,7 +97,7 @@
                 pageCount = result.pageCount;
                 $("#tbl tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.ProNumber + "</td><td>" + data.ProJinhuo + "</td><td>" + data.ProChuhuo + "</td><td>" + data.ProBaosun + "</td><td>" + data.Remake + "</td><td><a href='#' onclick='return Del(" + data.ProId + ")'>删除</a><a href='/Jie/ChanPingUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
+                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a href='#' onclick='return Del(" + data.ProId + ")'>删除</a><a href='/Jie/ChanPingUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
                 })
             },
             error: function (ex) {
@@ -136,9 +128,9 @@
                         , layer = layui.layer;
                     //完整功能
                     laypage.render({
-                        elem: 'PageList'
+                        elem: 'DemoPageList'
                         //设置总条数
-                        , count: result
+                        , count: rows
                         , limit: 3
                         , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
                         , jump: function (obj, first) {

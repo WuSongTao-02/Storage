@@ -61,5 +61,45 @@ namespace WebApplication1.Controllers
         public ActionResult ChanPingUpdate() {
             return View();
         }
+
+        /// <summary>
+        /// 查询Unit表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetUnit() {
+            return Json(UnitManager.GetUnit(),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 查询ProbaitCatagory表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetProbaitCatagory() {
+            return Json(ProbaictCatagoryManager.GetProbaictCatagory(),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Add(Probaict pr) {
+            return Json(ProbaictManager.Add(pr),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据id查询
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetById(string id) {
+            return Json(ProbaictManager.GetById(id),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Update(Probaict pr) {
+            return Json(ProbaictManager.Update(pr),JsonRequestBehavior.AllowGet);
+        }
     }
 }
