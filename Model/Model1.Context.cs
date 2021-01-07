@@ -13,10 +13,10 @@ namespace Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CangChuEntities : DbContext
+    public partial class CangChuEntities1 : DbContext
     {
-        public CangChuEntities()
-            : base("name=CangChuEntities")
+        public CangChuEntities1()
+            : base("name=CangChuEntities1")
         {
         }
     

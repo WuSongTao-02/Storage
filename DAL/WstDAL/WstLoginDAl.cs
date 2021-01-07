@@ -17,7 +17,7 @@ namespace DAL.WstDAL
         /// <returns></returns>
         public static int Login(string name, string pwd) {
 
-            CangChuEntities entity = new CangChuEntities();
+            CangChuEntities1 entity = new CangChuEntities1();
             int count = (from p in entity.Admin where p.UserName == name && p.PassWord == pwd && p.IsDelete == 0 && p.RoleId == 1 || p.RoleId == 2 select p).Count();
             return count;
         }
@@ -29,7 +29,7 @@ namespace DAL.WstDAL
         /// <param name="UserName">用户名</param>
         /// <returns>数据集合</returns>
         public static IQueryable GetUserName(string UserName) {
-            CangChuEntities entity = new CangChuEntities();
+            CangChuEntities1 entity = new CangChuEntities1();
             var obj = from p in entity.Admin where p.UserName == UserName select new {
                 Id = p.Id,
                 UserName=  p.UserName,
@@ -49,7 +49,7 @@ namespace DAL.WstDAL
         /// <param name="admin">对象</param>
         /// <returns>受影响行数</returns>
         public static int UpdatePwd(int id ,string pwd) {
-            CangChuEntities entity = new CangChuEntities();
+            CangChuEntities1 entity = new CangChuEntities1();
             var count = (from p in entity.Admin where p.Id ==id select p).First();
             count.PassWord = pwd;
             return entity.SaveChanges();
@@ -61,7 +61,7 @@ namespace DAL.WstDAL
         /// <param name="admin"></param>
         /// <returns></returns>
         public static int UpdataUser(Admin admin) {
-            CangChuEntities entity = new CangChuEntities();
+            CangChuEntities1 entity = new CangChuEntities1();
             var count = (from p in entity.Admin where p.UserName == admin.UserName select p).First();
             count.phone = admin.phone;
             count.RealName = admin.RealName;

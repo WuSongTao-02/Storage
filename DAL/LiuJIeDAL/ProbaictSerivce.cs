@@ -10,7 +10,7 @@ namespace DAL.LiuJIeDAL
 {
     public class ProbaictSerivce
     {
-        static CangChuEntities entity = new CangChuEntities();
+        static CangChuEntities1 entity = new CangChuEntities1();
 
         /// <summary>
         /// 数据分页

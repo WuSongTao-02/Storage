@@ -15,7 +15,7 @@
           <Property Name="RealName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="DeptId" Type="int" Nullable="false" />
-          <Property Name="Email" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="phone" Type="char" MaxLength="11" Nullable="false" />
           <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="IsDelete" Type="int" Nullable="false" />
@@ -1461,7 +1461,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CangChuEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CangChuEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="Auditing" EntityType="Self.Auditing" />
           <EntitySet Name="CombackStorage" EntityType="Self.CombackStorage" />
@@ -1605,7 +1605,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CangChuModelStoreContainer" CdmEntityContainer="CangChuEntities">
+        <EntityContainerMapping StorageEntityContainer="CangChuModelStoreContainer" CdmEntityContainer="CangChuEntities1">
           <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="CangChuModel.Admin">
               <MappingFragment StoreEntitySet="Admin">

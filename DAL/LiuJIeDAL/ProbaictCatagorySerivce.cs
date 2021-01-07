@@ -9,7 +9,7 @@ namespace DAL.LiuJIeDAL
 {
     public class ProbaictCatagorySerivce
     {
-        static CangChuEntities entity = new CangChuEntities();
+        static CangChuEntities1 entity = new CangChuEntities1();
 
         public static IQueryable GetProbaictCatagory() {
             var obj = from p in entity.ProbaictCatagory
