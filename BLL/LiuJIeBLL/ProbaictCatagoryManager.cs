@@ -11,6 +11,9 @@ namespace BLL.LiuJIeBLL
 {
     public class ProbaictCatagoryManager
     {
-        
+        public static IQueryable GetProbaictCatagory()
+        {
+            return ProbaictCatagorySerivce.GetProbaictCatagory();
+        }
         }
 }
