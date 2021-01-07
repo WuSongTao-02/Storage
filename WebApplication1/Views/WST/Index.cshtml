@@ -11,15 +11,7 @@
     <title>Index</title>
     <link href="~/X-admin/css/font.css" rel="stylesheet" />
     <link href="~/X-admin/css/xadmin.css" rel="stylesheet" />
-    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <script>
-        // 是否开启刷新记忆tab功能
-        // var is_remember = false;
-    </script>
+
 </head>
 <body class="index">
     <!-- 顶部开始 -->
@@ -30,49 +22,17 @@
         <div class="left_open">
             <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
         </div>
-        <ul class="layui-nav left fast-add" lay-filter="">
-            <li class="layui-nav-item">
-                <a href="javascript:;">+新增</a>
-                <dl class="layui-nav-child">
-                    <!-- 二级菜单 -->
-                    <dd>
-                        <a onclick="xadmin.open('最大化','http://www.baidu.com','','',true)">
-                            <i class="iconfont">&#xe6a2;</i>弹出最大化
-                        </a>
-                    </dd>
-                    <dd>
-                        <a onclick="xadmin.open('弹出自动宽高','http://www.baidu.com')">
-                            <i class="iconfont">&#xe6a8;</i>弹出自动宽高
-                        </a>
-                    </dd>
-                    <dd>
-                        <a onclick="xadmin.open('弹出指定宽高','http://www.baidu.com',500,300)">
-                            <i class="iconfont">&#xe6a8;</i>弹出指定宽高
-                        </a>
-                    </dd>
-                    <dd>
-                        <a onclick="xadmin.add_tab('在tab打开','member-list.html')">
-                            <i class="iconfont">&#xe6b8;</i>在tab打开
-                        </a>
-                    </dd>
-                    <dd>
-                        <a onclick="xadmin.add_tab('在tab打开刷新','member-del.html',true)">
-                            <i class="iconfont">&#xe6b8;</i>在tab打开刷新
-                        </a>
-                    </dd>
-                </dl>
-            </li>
-        </ul>
+
         <ul class="layui-nav right" lay-filter="">
             <li class="layui-nav-item">
                 <a href="javascript:;">@ViewBag.UserNames</a>
                 <dl class="layui-nav-child">
                     <!-- 二级菜单 -->
                     <dd>
-                        <a onclick="xadmin.open('个人信息','member-password.html',500,380)">个人信息</a>
+                        <a onclick="xadmin.open('个人信息','/WST/UserMsessage?name=@ViewBag.UserNames',700,320)">个人信息</a>
                     </dd>
                     <dd>
-                        <a onclick="xadmin.open('修改密码','member-password.html',500,350)">修改密码</a>
+                        <a onclick="xadmin.open('修改密码','/WST/password?name=@ViewBag.UserNames',450,350)">修改密码</a>
                     </dd>
                 </dl>
             </li>
@@ -81,6 +41,7 @@
             </li>
         </ul>
     </div>
+  
     <!-- 顶部结束 -->
     <!-- 中部开始 -->
     <!-- 左侧菜单开始 -->
@@ -98,6 +59,7 @@
                             <a onclick="xadmin.add_tab('员工管理','welcome1.html')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>员工管理</cite>
+                             
                             </a>
                         </li>
                         <li>
@@ -268,7 +230,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="login.html">
+                    <a href="javascript:;" onclick="logout()">
                         <i class="iconfont left-nav-li" lay-tips="退出系统">&#xe6b4;</i>
                         <cite>退出系统</cite>
                     </a>
@@ -309,8 +271,13 @@
     <!-- 中部结束 -->
 </body>
 </html>
-<script src="~/X-admin/js/xadmin.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
-<script>
+<script src="~/X-admin/js/xadmin.js"></script>
 
+<script>
+    function logout() {
+
+        location.href = "/WST/Login";
+    }
 </script>
