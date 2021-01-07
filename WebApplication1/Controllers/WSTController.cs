@@ -20,16 +20,29 @@ namespace WebApplication1.Controllers
         public ActionResult Logins(string name, string pwd) {
             if (BLL.WstBLL.WstLoginBLL.Login(name, pwd) > 0) {
                 Session["name"] =name;
+
             }
             return Json(BLL.WstBLL.WstLoginBLL.Login(name, pwd), JsonRequestBehavior.AllowGet);
             
         }
 
         //首页
-        public ActionResult Index() {
+         public ActionResult Index() {
             string UserName = Session["name"].ToString();
-            ViewBag.UserNames = UserName; 
+
+            ViewBag.UserNames = UserName;
+         
             return View();
+        }
+
+
+        public ActionResult password() {
+
+            return View();
+        }
+
+        public ActionResult Users(string UserName) {
+            return Json(BLL.WstBLL.WstLoginBLL.GetUserName(UserName), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -21,5 +21,24 @@ namespace DAL.WstDAL
             int count = (from p in entity.Admin where p.UserName == name && p.PassWord == pwd && p.IsDelete == 0 && p.RoleId == 1 || p.RoleId == 2 select p).Count();
             return count;
         }
+
+
+        /// <summary>
+        /// 查询登录的人信息
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <returns>数据集合</returns>
+        public static IQueryable GetUserName(string UserName) {
+            CangChuEntities entity = new CangChuEntities();
+            var obj = from p in entity.Admin where p.UserName == UserName select new {
+                UserName=  p.UserName,
+                PassWord= p.PassWord,
+                phone=p.phone,
+                Email= p.Email,
+                RealName= p.RealName,
+                RoleName=  p.Role.RoleName,
+            };
+            return obj;
+        }
     }
 }

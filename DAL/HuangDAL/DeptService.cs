@@ -30,14 +30,60 @@ namespace DAL.HuangDAL
                           IsDelete = p. IsDelete,
                           Remake=p.Remake
                       };
-            //设置分页数据
             list.DataList = obj.Skip((pageindex - 1) * pagesize).Take(pagesize);
-
             int rows = entities.Dept.Count();
-            //设置总页数
             list.PageCount = rows % pagesize == 0 ? rows / pagesize : rows / pagesize + 1;
             return list;
+        }
+
+        public static IQueryable GetById(int DeptId)
+        {
+            CangChuEntities entity = new CangChuEntities();
+            var obj = from p in entity.Dept
+                      where p.DeptId == DeptId
+                      select new
+                      {
+                          DeptId = p.DeptId,
+                          DeptName = p.DeptName,
+                          CreateTime = p.CreateTime,
+                          Remake = p.Remake
+                      };
+            return obj;
 
         }
+
+        public static int Edit(Dept de)
+        {
+            CangChuEntities entity = new CangChuEntities();
+            var obj = (from p in entity.Dept where p.DeptId == de.DeptId select p).First();
+            obj.DeptName = de.DeptName;
+            obj.CreateTime = de.CreateTime;
+            obj.Remake = de.Remake;
+            return entity.SaveChanges();
+        }
+
+        public static int Del(int DeptId)
+        {
+            CangChuEntities entities = new CangChuEntities();
+            var obj = (from p in entities.Dept where p.DeptId == DeptId select p).First();
+            entities.Dept.Remove(obj);
+            return entities.SaveChanges();
+        }
+
+        public static int Add(Dept de)
+        {
+            CangChuEntities entities = new CangChuEntities();
+            entities.Dept.Add(de);
+            return entities.SaveChanges();
+        }
+
+        
+
+
+
+
+
+
+
     }
 }

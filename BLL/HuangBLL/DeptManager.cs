@@ -21,5 +21,26 @@ namespace BLL.HuangBLL
         {
             return DeptService.GetRows();
         }
+
+
+        public static int Del(int DeptId)
+        {
+            return DeptService.Del(DeptId);
+        }
+
+        public static int Add(Dept de)
+        {
+            return DeptService.Add(de);
+        }
+
+        public static IQueryable GetById(int id)
+        {
+            return DeptService.GetById(id);
+        }
+
+        public static int Edit(Dept de)
+        {
+            return DeptService.Edit(de);
+        }
     }
 }
