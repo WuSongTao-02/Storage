@@ -321,6 +321,9 @@
     <Content Include="Views\WST\password.cshtml" />
     <Content Include="Views\WST\UserMsessage.cshtml" />
     <Content Include="Views\shuaikm\Index.cshtml" />
+    <Content Include="Views\shuaikm\cate.cshtml" />
+    <Content Include="Views\shuaikm\pandian.cshtml" />
+    <Content Include="Views\shuaikm\yiku.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
