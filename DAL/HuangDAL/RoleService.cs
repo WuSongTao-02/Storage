@@ -12,13 +12,13 @@ namespace DAL.HuangDAL
         public static int GetRows()
         {
 
-            CangChuEntities1 entities = new CangChuEntities1();
+            CangChuEntities entities = new CangChuEntities();
             return entities.Role.Count();
         }
 
         public static PageList PageListDemo(int pageindex, int pagesize)
         {
-            CangChuEntities1 entities = new CangChuEntities1();
+            CangChuEntities entities = new CangChuEntities();
             PageList list = new PageList();
             var obj = from p in entities.Role
                       orderby p.RoleId
@@ -38,7 +38,7 @@ namespace DAL.HuangDAL
 
         public static IQueryable GetById(int RoleId)
         {
-            CangChuEntities1 entity = new CangChuEntities1();
+            CangChuEntities entity = new CangChuEntities();
             var obj = from p in entity.Role
                       where p.RoleId == RoleId
                       select new
@@ -54,7 +54,7 @@ namespace DAL.HuangDAL
 
         public static int Edit(Role r)
         {
-            CangChuEntities1 entity = new CangChuEntities1();
+            CangChuEntities entity = new CangChuEntities();
             var obj = (from p in entity.Role where p.RoleId == r.RoleId select p).First();
             obj.RoleName = r.RoleName;
             obj.CreateTime = r.CreateTime;
@@ -64,7 +64,7 @@ namespace DAL.HuangDAL
 
         public static int Del(int RoleId)
         {
-            CangChuEntities1 entities = new CangChuEntities1();
+            CangChuEntities entities = new CangChuEntities();
             var obj = (from p in entities.Role where p.RoleId == RoleId select p).First();
             entities.Role.Remove(obj);
             return entities.SaveChanges();
@@ -72,7 +72,7 @@ namespace DAL.HuangDAL
 
         public static int Add(Role r)
         {
-            CangChuEntities1 entities = new CangChuEntities1();
+            CangChuEntities entities = new CangChuEntities();
 
             entities.Role.Add(r);
             return entities.SaveChanges();
