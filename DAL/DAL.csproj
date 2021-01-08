@@ -60,5 +60,11 @@
   <ItemGroup>
     <Folder Include="LiuMingDAL\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{afd39a7f-1987-4d30-b369-99d5581e3632}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
