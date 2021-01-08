@@ -320,12 +320,12 @@
     <Content Include="Views\Huang\Update.cshtml" />
     <Content Include="Views\WST\password.cshtml" />
     <Content Include="Views\WST\UserMsessage.cshtml" />
+    <Content Include="Views\shuaikm\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\shuaikm\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
