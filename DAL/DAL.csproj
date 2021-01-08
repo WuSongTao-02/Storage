@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="HuangDAL\AdminService.cs" />
     <Compile Include="HuangDAL\DeptService.cs" />
+    <Compile Include="HuangDAL\RoleService.cs" />
     <Compile Include="LiuJIeDAL\Class1.cs" />
     <Compile Include="LiuJIeDAL\ProbaictCatagorySerivce.cs" />
     <Compile Include="LiuJIeDAL\ProbaictSerivce.cs" />
