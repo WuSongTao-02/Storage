@@ -17,7 +17,7 @@ namespace BLL.LiuJIeBLL
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static PageList PageListProbaict(int pageIndex, int pageSize)
+        public static Model.PageList PageListProbaict(int pageIndex, int pageSize)
         {
             return ProbaictSerivce.PageListProbaict(pageIndex, pageSize);
         }
