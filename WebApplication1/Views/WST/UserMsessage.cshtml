@@ -111,7 +111,12 @@
             //请求成功后的回调函数
             success: function (result) {
                 if (result > 0) {
-                    parent.layer.close(1);
+                    layer.msg('修改成功', {
+                        icon: 6,
+                        time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function () {
+                      
+                    }); 
                 }
 
             },
