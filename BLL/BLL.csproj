@@ -44,7 +44,9 @@
     <Compile Include="Class1.cs" />
     <Compile Include="HuangBLL\Class1.cs" />
     <Compile Include="LiuJIeBLL\Class1.cs" />
-    <Compile Include="LiuMingBLL\Class1.cs" />
+    <Compile Include="LiuMingBLL\CustomerBLL.cs" />
+    <Compile Include="LiuMingBLL\StorehouseBLL.cs" />
+    <Compile Include="LiuMingBLL\VendorBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShuaiBLL\Class1.cs" />
     <Compile Include="WstBLL\Class1.cs" />

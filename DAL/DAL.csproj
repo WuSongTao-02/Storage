@@ -48,7 +48,9 @@
     <Compile Include="Class1.cs" />
     <Compile Include="HuangDAL\Class1.cs" />
     <Compile Include="LiuJIeDAL\Class1.cs" />
-    <Compile Include="LiuMingDAL\Class1.cs" />
+    <Compile Include="LiuMingDAL\CustomerDAL.cs" />
+    <Compile Include="LiuMingDAL\StorehouseDAL.cs" />
+    <Compile Include="LiuMingDAL\VendorDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShuaiDAL\Class1.cs" />
     <Compile Include="WstDAL\Class1.cs" />
