@@ -96,7 +96,12 @@
             return false;
         }
         var emali = $("#Email").val();
-
+        var reg = /^(\w)+(\.\w+)*@@(\w)+((\.\w+)+)$/;
+        if (!reg.test(emali)) {
+            layer.msg('请输入正确的邮箱', function () {
+            });
+            return false;
+        }
         $.ajax({
             type: "POST",//提交方式
             url: "/WST/UserMessages",//请求的URL路径
@@ -106,7 +111,12 @@
             //请求成功后的回调函数
             success: function (result) {
                 if (result > 0) {
-                    parent.layer.close(0);
+                    layer.msg('修改成功', {
+                        icon: 6,
+                        time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function () {
+                      
+                    }); 
                 }
 
             },

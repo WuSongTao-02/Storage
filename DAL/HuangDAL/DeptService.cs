@@ -12,13 +12,13 @@ namespace DAL.HuangDAL
         public static int GetRows()
         {
             
-            CangChuEntities entities = new CangChuEntities();
+            CangChuEntities1 entities = new CangChuEntities1();
             return entities.Dept.Count();
         }
 
         public static PageList PageListDemo(int pageindex, int pagesize)
         {
-            CangChuEntities entities = new CangChuEntities();
+            CangChuEntities1 entities = new CangChuEntities1();
             PageList list = new PageList();
             var obj = from p in entities.Dept
                       orderby p.DeptId
@@ -38,7 +38,7 @@ namespace DAL.HuangDAL
 
         public static IQueryable GetById(int DeptId)
         {
-            CangChuEntities entity = new CangChuEntities();
+            CangChuEntities1 entity = new CangChuEntities1();
             var obj = from p in entity.Dept
                       where p.DeptId == DeptId
                       select new
@@ -54,7 +54,7 @@ namespace DAL.HuangDAL
 
         public static int Edit(Dept de)
         {
-            CangChuEntities entity = new CangChuEntities();
+            CangChuEntities1 entity = new CangChuEntities1();
             var obj = (from p in entity.Dept where p.DeptId == de.DeptId select p).First();
             obj.DeptName = de.DeptName;
             obj.CreateTime = de.CreateTime;
@@ -64,7 +64,7 @@ namespace DAL.HuangDAL
 
         public static int Del(int DeptId)
         {
-            CangChuEntities entities = new CangChuEntities();
+            CangChuEntities1 entities = new CangChuEntities1();
             var obj = (from p in entities.Dept where p.DeptId == DeptId select p).First();
             entities.Dept.Remove(obj);
             return entities.SaveChanges();
@@ -72,7 +72,7 @@ namespace DAL.HuangDAL
 
         public static int Add(Dept de)
         {
-            CangChuEntities entities = new CangChuEntities();
+            CangChuEntities1 entities = new CangChuEntities1();
             
             entities.Dept.Add(de);
             return entities.SaveChanges();
