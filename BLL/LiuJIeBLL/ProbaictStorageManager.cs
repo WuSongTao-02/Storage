@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace BLL.LiuJIeBLL
 {
-    public class Class1
+    class ProbaictStorageManager
     {
-         int p;
-        int q = 1;
     }
 }

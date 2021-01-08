@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace BLL.HuangBLL
+using Model;
+namespace DAL.HuangDAL
 {
-    class Class1
+   public  class AdminService
     {
+
     }
 }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
@@ -34,15 +35,15 @@
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-body ">
-                       
 
-                            <div class="layui-inline layui-show-xs-block">
-                                <input type="text" id="username" placeholder="报损类型" autocomplete="off" class="layui-input">
-                            </div>
-                            <div class="layui-inline layui-show-xs-block">
-                                <button id="chaxun" class="layui-btn" onclick="ChaXun2(this)" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i>查询</button>
-                            </div>
-                        
+
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" id="username" placeholder="报损类型" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <button id="chaxun" class="layui-btn" onclick="ChaXun2(this)" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i>查询</button>
+                        </div>
+
                     </div>
 
                     <div class="layui-card-body ">
@@ -73,7 +74,7 @@
 
 
 </html>
- 
+
 <script src="lib/layui/layui.all.js"></script>
 <script src="../Scripts/jquery-3.4.1.min.js"></script>
 <script>
@@ -105,12 +106,12 @@
                 });
             }
         });
-    }  
+    }
         function ChaXun2() {
             var name = $("#username").val();
             alert(name);
             $.ajax({
-               
+
                 type: "post",
                 url: "/shuaikm/GetPageList1",
                 data: "{PageIndex:" + PageIndex + ",PageSize:" + PageSize + ",name:'" + name + "'}",
@@ -124,8 +125,8 @@
                 }
             });
         }
-     
-   
+
+
     function edit(id) {
         alert(id);
         if (confirm('确定删除?')) {
