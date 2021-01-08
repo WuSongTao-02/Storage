@@ -44,7 +44,6 @@
     <Compile Include="HuangBLL\AdminManager.cs" />
     <Compile Include="HuangBLL\DeptManager.cs" />
     <Compile Include="HuangBLL\RoleManager.cs" />
-    <Compile Include="LiuJIeBLL\Class1.cs" />
     <Compile Include="LiuJIeBLL\ProbaictCatagoryManager.cs" />
     <Compile Include="LiuJIeBLL\ProbaictManager.cs" />
     <Compile Include="LiuJIeBLL\ProbaictStorageManager.cs" />
@@ -70,6 +69,10 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{4bd56883-ad59-41eb-8a3e-75713f0bf098}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{afd39a7f-1987-4d30-b369-99d5581e3632}</Project>
       <Name>Model</Name>
