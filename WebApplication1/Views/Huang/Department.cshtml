@@ -10,32 +10,37 @@
     <meta name="viewport" content="width=device-width" />
     <title>Department</title>
 
-
+    <link href="~/X-admin/css/font.css" rel="stylesheet" />
+    <link href="~/X-admin/js/xadmin.js" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/X-admin/lib/layui/css/layui.css" rel="stylesheet" />
     <link rel="stylesheet" href="X-admin/css/xadmin.css">
+    <link rel="stylesheet" href="~/X-admin/css/xadmin.css">
     <script src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="~/X-admin/js/xadmin.js"></script>
 
 
+
 </head>
 <body>
-        <button class="layui-btn" onclick="xadmin.open('添加部门','/Huang/Create',800,240)"><i class="layui-icon"></i>添加</button>
+    <button class="layui-btn" onclick="xadmin.open('添加部门','/Huang/Create',500,240)"><i class="layui-icon"></i>添加</button>
 
-        <div>
-            <table border="1" width="50%" class="table table-bordered table table-hover">
-                <thead>
-                    <tr>
-                        <td>部门编号</td>
-                        <td>部门名称</td>
-                        <td>创建时间</td>
-                        <td>操作</td>
-                    </tr>
-                </thead>
-                <tbody id="tb1"></tbody>
-            </table>
-            <div id="demoPageList"></div>
-        </div>
+
+    
+            <div class="layui-card-body layui-table-body layui-table-main">
+                <table  class="layui-table layui-form">
+                    <thead>
+                        <tr>
+                            <th>部门编号</th>
+                            <th>部门名称</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tb1"></tbody>
+                </table>
+                <div class="layui-card-body " id="demoPageList"></div>
+            </div>
 </body>
 </html>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
@@ -109,7 +114,7 @@
                 //console.log(result);
                 $("#tb1 tr").remove();
                 $.each(result.DataList, function (index, data) {                                                         
-                    $("#tb1").append("<tr><td>" + data.DeptId + "</td><td>" + data.DeptName + "</td><td>" + ConverTime(data.CreateTime) + "</td><td> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='return Del("+data.DeptId+ ")'></i></button><button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon'></i></button></td></tr>");
+                    $("#tb1").append("<tr><th>" + data.DeptId + "</th><th>" + data.DeptName + "</th><th>" + ConverTime(data.CreateTime) + "</th><th> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='return Del(" + data.DeptId + ")'></i></button><button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon'></i></button></th></tr>");
                 });
             },
             error: function (ex) {
