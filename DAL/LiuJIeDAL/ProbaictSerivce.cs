@@ -18,9 +18,44 @@ namespace DAL.LiuJIeDAL
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static PageList PageListProbaict(int pageIndex, int pageSize) {
-            PageList list = new PageList();
+        public static Model.Jie.PageList PageListProbaict(int pageIndex, int pageSize) {
+            Model.Jie.PageList list = new PageList();
             var obj = from p in entity.Probaict
+                      orderby p.ProId
+                      select new
+                      {
+                          ProId = p.ProId,
+                          ProName = p.ProName,
+                          ProPrice = p.ProPrice,
+                          PorGuiGe = p.PorGuiGe,
+                          ProCId = from pp in entity.ProbaictCatagory where p.ProCId == pp.ProCId select pp.ProCName,
+                          UnId = from ppp in entity.Unit where p.UnId == ppp.UnId select ppp.UnName,
+                          CreateTime = p.CreateTime,
+                          IsDelete = p.IsDelete,
+                          ProNumber = p.ProNumber,
+                          ProJinhuo = p.ProJinhuo,
+                          ProChuhuo = p.ProChuhuo,
+                          ProBaosun = p.ProBaosun,
+                          Remake = p.Remake
+                      };
+            list.DataList = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            int rows = entity.Probaict.Count();
+            list.PageCount = rows % pageSize == 0 ? rows / pageSize : rows / pageSize + 1;
+            return list;
+        }
+
+        /// <summary>
+        /// 根据条件分页
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="ProId"></param>
+        /// <returns></returns>
+        public static Model.Jie.PageList TiaoJianPageListProbaict(int pageIndex, int pageSize,string ProId)
+        {
+            Model.Jie.PageList list = new PageList();
+            var obj = from p in entity.Probaict
+                      where p.ProId == ProId 
                       orderby p.ProId
                       select new
                       {

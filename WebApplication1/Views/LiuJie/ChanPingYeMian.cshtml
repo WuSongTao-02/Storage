@@ -28,24 +28,24 @@
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12">
                 <div class="layui-card">
-                    <br />
+                    <div class="layui-card-body ">
+                        <div class="layui-collapse" lay-filter="test">
+                            <div class="layui-colla-item">
+
+                            </div>
+                        </div>
+                    </div>
                     <div>
-                        <p style="margin-left:30px"><span style="font-size:18px;font-weight:bold">产品编号</span><input type="text" style="padding:3px"/>&nbsp;&nbsp;<span style="        font-size: 18px;
-        font-weight: bold
-">产品名称</span><input type="text" style="padding:3px"/>&nbsp;<input type="button" value="搜索" style="padding:5px"/></p>
+                        <p style="margin-left:200px"><span style="font-size:18px;font-weight:bold">产品编号</span>&nbsp;&nbsp;<input type="text" id="ProId" style="padding:2px" />&nbsp;&nbsp;<input type="button" value="搜索" id="sosuo" style="padding:2px" /></p>
                     </div>
                     <br />
                     <div class="layui-card-header">
-                        <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                            <i class="layui-icon"></i>批量删除
-                        </button>
-                        <button class="layui-btn" onclick="xadmin.open('添加用户','./order-add.html',800,600)">
-                            <i class="layui-icon"></i>添加
-                        </button>
-                        <a href="/LiuJie/">添加</a>
+                        <input type="button" id="" value="批量删除" class="layui-btn" />
+                        <a href="/Jie/ChanPingAdd" class="layui-btn">添加</a>
                     </div>
+                    <br />
                     <div class="layui-card-body ">
-                        <table class="layui-table layui-form">
+                        <table border="1" width="100%" class="layui-table">
                             <thead>
                                 <tr>
                                     <td><input type="checkbox" name=""></td>
@@ -65,7 +65,7 @@
                         </table>
                     </div>
                     <!--定义分页的容器-->
-                    <div id="PageList">
+                    <div id="DemoPageList">
 
                     </div>
                 </div>
@@ -81,17 +81,43 @@
     var pageSize = 3;
     var pageCount = 0;
     var rows = 0;
-
     $(function () {
         GetRows();
-        GetPageList(pageIndex, pageSize);
-    })
-    //分页数据
-    function GetPageList(pageIndex, pageSize) {
+        PageList(pageIndex, pageSize);
+    });
+
+    //分页数据查询
+    function PageList(pageIndex, pageSize) {
         $.ajax({
             type: "POST",
             url: "/LiuJie/GetPageListProbaict",
             data: "{pageIndex:" + pageIndex + ",pageSize:" + pageSize + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                pageCount = result.pageCount;
+                $("#tbl tr").remove();
+                $.each(result.DataList, function (index, data) {
+                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a href='#' onclick='return Del(" + data.ProId + ")'>删除</a><a href='/Jie/ChanPingUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+            });
+    }
+
+    //根据条件分页数据查询
+    $("#sosuo").click(function () {
+        TiaoJian(ProId);
+    });
+
+    //根据条件分页数据查询
+    function TiaoJian(pageIndex, pageSize,ProId) {
+        $.ajax({
+            type: "POST",
+            url: "/LiuJie/GetTiaoJianPageListProbaict",
+            data: "{pageIndex:" + pageIndex + ",pageSize:" + pageSize + ",ProId:" + $("#ProId").val() + "}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
@@ -113,7 +139,7 @@
         return dd.toLocaleDateString();
     };
 
-    //条数
+    //总条数
     function GetRows() {
         $.ajax({
             type: "POST",
@@ -129,7 +155,7 @@
                         , layer = layui.layer;
                     //完整功能
                     laypage.render({
-                        elem: 'PageList'//分页容器的id
+                        elem: 'DemoPageList'//分页容器的id
                         , count: rows//总条数
                         , limit: 3
                         , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
