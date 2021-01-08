@@ -16,10 +16,10 @@ namespace DAL.HuangDAL
             return entities.Role.Count();
         }
 
-        public static PageList PageListDemo(int pageindex, int pagesize)
+        public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
         {
             CangChuEntities1 entities = new CangChuEntities1();
-            PageList list = new PageList();
+           Model.Huang.PageList list = new Model.Huang.PageList();
             var obj = from p in entities.Role
                       orderby p.RoleId
                       select new

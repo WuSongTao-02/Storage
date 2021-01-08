@@ -17,13 +17,13 @@ namespace DAL.LiuMingDAL
         /// <returns></returns>
         public static int GetRows()
         {
-            CangChuEntities contxt = new CangChuEntities();
+            CangChuEntities1 contxt = new CangChuEntities1();
             return contxt.Vendor.Count();
         }
 
         public static PageList PageListDemo(int pageIndex, int PageSize)
         {
-            CangChuEntities contxt = new CangChuEntities();
+            CangChuEntities1 contxt = new CangChuEntities1();
             //实例化分页类
             PageList list = new PageList();
             var obj = from p in contxt.Vendor
@@ -51,7 +51,7 @@ namespace DAL.LiuMingDAL
         #region 查询所有
         public static IQueryable GetAll()
         {
-            CangChuEntities contxt = new CangChuEntities();
+            CangChuEntities1 contxt = new CangChuEntities1();
             var obj = from p in contxt.Vendor
                       select new
                       {
@@ -74,7 +74,7 @@ namespace DAL.LiuMingDAL
         public static PageList ShowByName(int pageIndex, int pageSize, int VenId, string VenName)
         {
             PageList list = new PageList();
-            CangChuEntities contxt = new CangChuEntities();
+            CangChuEntities1 contxt = new CangChuEntities1();
             var obj = from p in contxt.Vendor
                       orderby p.VenId
                       where p.VenId == VenId || p.VenName == VenName
@@ -98,7 +98,7 @@ namespace DAL.LiuMingDAL
 
         public static IQueryable ShowByName1(int VenId)
         {
-            CangChuEntities contxt = new CangChuEntities();
+            CangChuEntities1 contxt = new CangChuEntities1();
             var obj = from p in contxt.Vendor
                       where p.VenId == VenId 
                       select new

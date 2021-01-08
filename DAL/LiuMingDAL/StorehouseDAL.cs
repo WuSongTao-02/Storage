@@ -17,7 +17,7 @@ namespace DAL.LiuMingDAL
         #region 查询所有
         public static IQueryable GetAll11()
         {
-            CangChuEntities contxt = new CangChuEntities();
+            CangChuEntities1 contxt = new CangChuEntities1();
             var obj = from p in contxt.Storehouse
                       select new
                       {
@@ -40,7 +40,7 @@ namespace DAL.LiuMingDAL
         public static PageList querid(int pageIndex, int pagesize,string SupName,string StName,string StoreNum) 
         {
             PageList list = new PageList();
-            CangChuEntities contxt = new CangChuEntities();
+            CangChuEntities1 contxt = new CangChuEntities1();
             var obj = from p in contxt.Storehouse
                       orderby p.StoreNum
                       where p.Supplier.SupName == SupName || p.Storehousetype.StName == StName || p.StoreNum == StoreNum
@@ -64,7 +64,7 @@ namespace DAL.LiuMingDAL
         #region 新增
         public static int Add(Storehouse stroe)
         {
-            CangChuEntities contxt = new CangChuEntities();
+            CangChuEntities1 contxt = new CangChuEntities1();
             contxt.Storehouse.Add(stroe);
             return contxt.SaveChanges();
         }

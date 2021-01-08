@@ -18,8 +18,8 @@ namespace DAL.LiuJIeDAL
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static PageList PageListProbaict(int pageIndex, int pageSize) {
-            PageList list = new PageList();
+        public static Model.PageList PageListProbaict(int pageIndex, int pageSize) {
+            Model.PageList list = new Model.PageList();
             var obj = from p in entity.Probaict
                       orderby p.ProId
                       select new

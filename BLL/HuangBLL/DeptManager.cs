@@ -11,7 +11,7 @@ namespace BLL.HuangBLL
 {
    public  class DeptManager
     {
-        public static PageList PageListDemo(int pageindex, int pagesize)
+        public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
         {
             return DeptService. PageListDemo(pageindex, pagesize);
         }

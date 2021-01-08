@@ -28,7 +28,7 @@ namespace WebApplication1.Controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult PageListProbaict(int pageIndex,int pageSize) {
-            return Json(ProbaictManager.PageListProbaict(pageIndex,pageIndex),JsonRequestBehavior.AllowGet) ;
+            return Json(BLL.LiuJIeBLL.ProbaictManager.PageListProbaict(pageIndex,pageIndex),JsonRequestBehavior.AllowGet) ;
         }
         /// <summary>
         /// 数据条数

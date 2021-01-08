@@ -14,7 +14,7 @@ namespace DAL.LiuMingDAL
         #region 查询所有
         public static IQueryable CustGetAll()
         {
-            CangChuEntities contxt = new CangChuEntities();
+            CangChuEntities1 contxt = new CangChuEntities1();
             var obj = from p in contxt.Customer
                       select new
                       {
