@@ -54,16 +54,6 @@
     <Compile Include="ShuaiBLL\Class1.cs" />
     <Compile Include="WstBLL\WstLoginBLL.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{4bd56883-ad59-41eb-8a3e-75713f0bf098}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{afd39a7f-1987-4d30-b369-99d5581e3632}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

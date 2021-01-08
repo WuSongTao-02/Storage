@@ -57,12 +57,6 @@
     <Compile Include="ShuaiDAL\BaoSunService.cs" />
     <Compile Include="WstDAL\WstLoginDAl.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{afd39a7f-1987-4d30-b369-99d5581e3632}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
