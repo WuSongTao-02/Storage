@@ -12,14 +12,14 @@ namespace DAL.HuangDAL
         public static int GetRows()
         {
 
-            CangChuEntities entities = new CangChuEntities();
+            CangChuEntities1 entities = new CangChuEntities1();
             return entities.Role.Count();
         }
 
-        public static PageList PageListDemo(int pageindex, int pagesize)
+        public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
         {
-            CangChuEntities entities = new CangChuEntities();
-            PageList list = new PageList();
+            CangChuEntities1 entities = new CangChuEntities1();
+           Model.Huang.PageList list = new Model.Huang.PageList();
             var obj = from p in entities.Role
                       orderby p.RoleId
                       select new
@@ -38,7 +38,7 @@ namespace DAL.HuangDAL
 
         public static IQueryable GetById(int RoleId)
         {
-            CangChuEntities entity = new CangChuEntities();
+            CangChuEntities1 entity = new CangChuEntities1();
             var obj = from p in entity.Role
                       where p.RoleId == RoleId
                       select new
@@ -54,7 +54,7 @@ namespace DAL.HuangDAL
 
         public static int Edit(Role r)
         {
-            CangChuEntities entity = new CangChuEntities();
+            CangChuEntities1 entity = new CangChuEntities1();
             var obj = (from p in entity.Role where p.RoleId == r.RoleId select p).First();
             obj.RoleName = r.RoleName;
             obj.CreateTime = r.CreateTime;
@@ -64,7 +64,7 @@ namespace DAL.HuangDAL
 
         public static int Del(int RoleId)
         {
-            CangChuEntities entities = new CangChuEntities();
+            CangChuEntities1 entities = new CangChuEntities1();
             var obj = (from p in entities.Role where p.RoleId == RoleId select p).First();
             entities.Role.Remove(obj);
             return entities.SaveChanges();
@@ -72,7 +72,7 @@ namespace DAL.HuangDAL
 
         public static int Add(Role r)
         {
-            CangChuEntities entities = new CangChuEntities();
+            CangChuEntities1 entities = new CangChuEntities1();
 
             entities.Role.Add(r);
             return entities.SaveChanges();

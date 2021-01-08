@@ -12,7 +12,7 @@ namespace BLL.HuangBLL
    public  class RoleManager
     {
 
-        public static PageList PageListDemo(int pageindex, int pagesize)
+        public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
         {
             return RoleService.PageListDemo(pageindex, pagesize);
         }
