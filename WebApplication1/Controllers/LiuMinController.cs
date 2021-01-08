@@ -81,6 +81,10 @@ namespace WebApplication1.Controllers
         {
             return Json(VendorBLL.ShowByName1(VenId), JsonRequestBehavior.AllowGet);
         }
+        public ActionResult aaaa(int VenId)
+        {
+            return Json(VendorBLL.ShowByName1(VenId), JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
     }
