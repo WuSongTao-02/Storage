@@ -49,7 +49,6 @@
     <Compile Include="LiuJIeBLL\ProbaictManager.cs" />
     <Compile Include="LiuJIeBLL\ProbaictStorageManager.cs" />
     <Compile Include="LiuJIeBLL\UnitManager.cs" />
-    <Compile Include="LiuMingBLL\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShuaiBLL\BaoSunManager.cs" />
     <Compile Include="ShuaiBLL\Class1.cs" />
@@ -65,6 +64,8 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="LiuMingBLL\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
