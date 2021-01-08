@@ -9,7 +9,7 @@ namespace DAL.LiuJIeDAL
 {
     public class UnitSerivce
     {
-        static CangChuEntities entity = new CangChuEntities();
+        static CangChuEntities1 entity = new CangChuEntities1();
 
         public static IQueryable GetUnit() {
             var obj = from p in entity.Unit

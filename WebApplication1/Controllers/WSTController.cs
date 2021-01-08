@@ -46,7 +46,7 @@ namespace WebApplication1.Controllers
         }
 
         //修改密码
-        public ActionResult UpdataPwd(int id, string pwd) {
+        public ActionResult UpdataPwds(int id, string pwd) {
             return Json(BLL.WstBLL.WstLoginBLL.UpdatePwd(id, pwd), JsonRequestBehavior.AllowGet);
         }
 

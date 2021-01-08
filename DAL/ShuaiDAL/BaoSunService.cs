@@ -10,7 +10,7 @@ namespace DAL.ShuaiDAL
    public  class BaoSunService
     {
         public static IQueryable ChaXun() {
-            CangChuEntities hh = new CangChuEntities();
+            CangChuEntities1 hh = new CangChuEntities1();
             var obj = from p in hh.Damage
                       orderby p.Damid
                       select new { 
@@ -27,7 +27,7 @@ namespace DAL.ShuaiDAL
         }
         public static IQueryable ChaXun2(string name)
         {
-            CangChuEntities hh = new CangChuEntities();
+            CangChuEntities1 hh = new CangChuEntities1();
             var obj = from p in hh.Damage
                       where p.DamType.Contains(name)
                       orderby p.Damid
@@ -46,13 +46,13 @@ namespace DAL.ShuaiDAL
         }
 
         public static int GetRows() {
-            CangChuEntities hh = new CangChuEntities();
+            CangChuEntities1 hh = new CangChuEntities1();
             return hh.Damage.Count();
         }
 
 
         public static int edit(int id) {
-            CangChuEntities hh = new CangChuEntities();
+            CangChuEntities1 hh = new CangChuEntities1();
             var obj = hh.Damage.Where(p =>p.Damid== id).FirstOrDefault();
             if (obj!=null) {
 
@@ -63,7 +63,7 @@ namespace DAL.ShuaiDAL
         }
         public static ShuaiPageList GetPageList1(int PageIndex, int PageSize,string name)
         {
-            CangChuEntities hh = new CangChuEntities();
+            CangChuEntities1 hh = new CangChuEntities1();
             ShuaiPageList list = new ShuaiPageList();
             var obj = from p in hh.Damage
                       where p.DamType.Contains(name)
@@ -85,7 +85,7 @@ namespace DAL.ShuaiDAL
             return list;
         }
         public static ShuaiPageList GetPageList(int PageIndex,int PageSize) {
-            CangChuEntities hh = new CangChuEntities();
+            CangChuEntities1 hh = new CangChuEntities1();
             ShuaiPageList list = new ShuaiPageList();
             var obj = from p in hh.Damage
                       where p.IsDelete==0
