@@ -43,6 +43,8 @@ namespace WebApplication1.Controllers
 
         public ActionResult Add(Dept d)
         {
+            
+            
             return Json(DeptManager.Add(d), JsonRequestBehavior.AllowGet);
         }
 

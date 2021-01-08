@@ -50,5 +50,25 @@ namespace BLL.LiuJIeBLL
         {
             return ProbaictSerivce.Add(p);
         }
+
+        /// <summary>
+        /// 根据id查询
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static IQueryable GetById(string id)
+        {
+            return ProbaictSerivce.GetById(id);
+        }
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="pr"></param>
+        /// <returns></returns>
+        public static int Update(Probaict pr)
+        {
+            return ProbaictSerivce.Update(pr);
+        }
         }
 }

@@ -125,7 +125,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HuangController.cs" />
-    <Compile Include="Controllers\JieController.cs" />
+    <Compile Include="Controllers\LiuJieController.cs" />
+    <Compile Include="Controllers\shuaikmController.cs" />
     <Compile Include="Controllers\WSTController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -141,15 +142,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="layer\layer.js" />
-    <Content Include="layer\mobile\layer.js" />
-    <Content Include="layer\mobile\need\layer.css" />
-    <Content Include="layer\theme\default\icon-ext.png" />
-    <Content Include="layer\theme\default\icon.png" />
-    <Content Include="layer\theme\default\layer.css" />
-    <Content Include="layer\theme\default\loading-0.gif" />
-    <Content Include="layer\theme\default\loading-1.gif" />
-    <Content Include="layer\theme\default\loading-2.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="X-admin\admin-add.html" />
@@ -321,18 +313,19 @@
     <Content Include="X-admin\lib\layui\font\iconfont.ttf" />
     <Content Include="X-admin\lib\layui\font\iconfont.woff" />
     <Content Include="X-admin\user.json" />
-    <Content Include="Views\WST\Login.cshtml" />
     <Content Include="Views\Huang\Department.cshtml" />
     <Content Include="Views\WST\Index.cshtml" />
+    <Content Include="Views\WST\Login.cshtml" />
+    <Content Include="Views\Huang\Create.cshtml" />
+    <Content Include="Views\Huang\Update.cshtml" />
     <Content Include="Views\WST\password.cshtml" />
-    <Content Include="Views\Jie\ChanPing.cshtml" />
-    <Content Include="Views\Jie\ChanPingAdd.cshtml" />
-    <Content Include="Views\Jie\ChanPingUpdate.cshtml" />
+    <Content Include="Views\WST\UserMsessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\shuaikm\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

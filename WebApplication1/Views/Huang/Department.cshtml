@@ -9,21 +9,21 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Department</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/X-admin/lib/layui/css/layui.css" rel="stylesheet" />
-    
+    <link rel="stylesheet" href="X-admin/css/xadmin.css">
+    <script src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="~/X-admin/js/xadmin.js"></script>
+
 
 </head>
 <body>
-    <div>
+        <button class="layui-btn" onclick="xadmin.open('添加部门','/Huang/Create',800,240)"><i class="layui-icon"></i>添加</button>
+
         <div>
-            <div style="width: 216px; margin: 0;">
-                <button type="button" class="layui-btn layui-btn-fluid" onclick="location.href='/Huang/add'">流体按钮</button>
-            </div>
-        </div>
-            
-            <table border="1" width="100%" class="table table-hover table-bordered">
+            <table border="1" width="50%" class="table table-bordered table table-hover">
                 <thead>
                     <tr>
                         <td>部门编号</td>
@@ -36,7 +36,6 @@
             </table>
             <div id="demoPageList"></div>
         </div>
-    </div>
 </body>
 </html>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
