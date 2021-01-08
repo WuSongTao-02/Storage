@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ChanPing</title>
+    <title>ChanPingYeMian</title>
     <link href="~/X-admin/css/font.css" rel="stylesheet" />
     <link href="~/X-admin/css/xadmin.css" rel="stylesheet" />
     <script src="~/X-admin/lib/layui/layui.js"></script>
@@ -23,9 +23,6 @@
                 <cite>导航元素</cite>
             </a>
         </span>
-        <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
-            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
-        </a>
     </div>
     <div class="layui-fluid">
         <div class="layui-row layui-col-space15">
@@ -34,14 +31,19 @@
                     <div class="layui-card-body ">
                         <div class="layui-collapse" lay-filter="test">
                             <div class="layui-colla-item">
-                               
+
                             </div>
                         </div>
                     </div>
-                    <div class="layui-card-header">
-                        <input type="button" id="" value="批量删除" class="layui-btn"/>
-                        <a href="/Jie/ChanPingAdd" class="layui-btn">添加</a>
+                    <div>
+                        <p style="margin-left:200px"><span style="font-size:18px;font-weight:bold">产品编号</span>&nbsp;&nbsp;<input type="text" id="id" style="padding:2px" />&nbsp;&nbsp;<input type="button" value="搜索" id="sosuo" style="padding:2px" /></p>
                     </div>
+                    <br />
+                    <div class="layui-card-header">
+                        <input type="button" id="PiLiangShanChu" value="批量删除" class="layui-btn" />
+                        <a href="/LiuJie/ChanPingYeMianAdd" class="layui-btn">添加</a>
+                    </div>
+                    <br />
                     <div class="layui-card-body ">
                         <table border="1" width="100%" class="layui-table">
                             <thead>
@@ -83,13 +85,14 @@
     $(function () {
         GetRows();
         PageList(pageIndex, pageSize);
+        
     });
 
-    //分页数据
+    //分页数据查询
     function PageList(pageIndex, pageSize) {
         $.ajax({
             type: "POST",
-            url: "/Jie/PageListProbaict",
+            url: "/LiuJie/GetPageListProbaict",
             data: "{pageIndex:" + pageIndex + ",pageSize:" + pageSize + "}",
             dataType: "json",
             contentType: "application/json",
@@ -97,7 +100,34 @@
                 pageCount = result.pageCount;
                 $("#tbl tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a href='#' onclick='return Del(" + data.ProId + ")'>删除</a><a href='/Jie/ChanPingUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
+                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a href='#' onclick='return Delete(" + data.ProId + ")'>删除</a><a href='/LiuJie/ChanPingYeMianUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+            });
+    }
+
+    //根据条件分页数据查询
+    $("#sosuo").click(function () {
+        TiaoJian();
+    });
+
+    //根据条件分页数据查询
+    function TiaoJian() {
+        var ProId = $("#id").val();
+        $.ajax({
+            type: "POST",
+            url: "/LiuJie/GetTiaoJianPageListProbaict",
+            data: "{pageIndex:" + pageIndex + ",pageSize:" + pageSize + ",ProId:'" + ProId+"'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                pageCount = result.pageCount;
+                $("#tbl tr").remove();
+                $.each(result.DataList, function (index, data) {
+                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a href='#' onclick='return Del(" + data.ProId + ")'>删除</a><a href='/LiuJie/ChanPingYeMianUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
                 })
             },
             error: function (ex) {
@@ -112,11 +142,11 @@
         return dd.toLocaleDateString();
     };
 
-    //条数
+    //总条数
     function GetRows() {
         $.ajax({
             type: "POST",
-            url: "/Jie/GetRows",
+            url: "/LiuJie/GetRowsProbaict",
             data: "{}",
             dataType: "json",
             contentType: "application/json",
@@ -128,16 +158,13 @@
                         , layer = layui.layer;
                     //完整功能
                     laypage.render({
-                        elem: 'DemoPageList'
-                        //设置总条数
-                        , count: rows
+                        elem: 'DemoPageList'//分页容器的id
+                        , count: rows//总条数
                         , limit: 3
                         , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
                         , jump: function (obj, first) {
                             if (!first) {
-                                //调用我们自己分页的方法
-                                //obj.curr 当前页码
-                                //obj.limit 每页显示条数
+                                //调用分页的方法
                                 PageList(obj.curr, obj.limit);
                             }
                             console.log(obj)
@@ -152,11 +179,11 @@
     }
 
     //删除
-    function Del(id) {
-        if (confirm('确定删除?')) {
+    function Delete(id) {
+        if (confirm('确认删除该产品吗？')) {
             $.ajax({
                 type: "POST",
-                url: "/Jie/GetDelete",
+                url: "/LiuJie/GetDeleteProbaict",
                 data: "{id:" + id + "}",
                 dataType: "json",
                 contentType: "application/json",
@@ -164,15 +191,51 @@
                     if (result > 0) {
                         alert("删除成功!");
                         PageList();
-                    }
-                    else {
+                    } else {
                         alert("删除失败!");
                     }
                 },
                 error: function (ex) {
-                    alert(ex.responseText);
+                    $("Error" + ex.responseText);
                 }
             });
         }
+        return;
     }
+
+    //复选框
+    $("#subcheck").click(function () {
+        var cf = $("#subcheck").prop("checked");
+        $("[name=subcheck]").prop("checked", cf);
+    });
+
+    //批量删除
+    $("#PiLiangShanChu").click(function () {
+        if (confirm('确定删除多个产品吗')) {
+            var count = 0;
+            $("input[name='subcheck']:checked").each(function () {
+                var n = $(this).parents("tr").index();//tr所在行
+                var name = document.getElementById("tabInfo").getElementsByTagName("tr")[n + 1].getElementsByTagName("td")[1].innerHTML;//获取id
+                alert(name);
+                $.ajax({
+                    type: "POST",
+                    url: "/LiuJie/GetDeleteProbaict",
+                    data: "{id:'" + name + "'}",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {
+                        GetRows();
+                    }, error: function (ex) {
+                        alert("Error:" + ex.responseText);
+                    }
+                });
+                count++;
+            });
+            if (count > 0) {
+                alert("有" + count + "项数据删除成功！");
+            } else {
+                alert("删除失败！");
+            }
+        }
+    });
 </script>
