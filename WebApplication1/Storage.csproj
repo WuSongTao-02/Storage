@@ -320,6 +320,12 @@
     <Content Include="Views\Huang\Update.cshtml" />
     <Content Include="Views\WST\password.cshtml" />
     <Content Include="Views\WST\UserMsessage.cshtml" />
+    <Content Include="Views\LiuJie\ChanPingYeMian.cshtml" />
+    <Content Include="Views\Jie\ChanPing.cshtml" />
+    <Content Include="Views\Jie\ChanPingAdd.cshtml" />
+    <Content Include="Views\Jie\ChanPingUpdate.cshtml" />
+    <Content Include="Views\LiuJie\ChanPingYeMianAdd.cshtml" />
+    <Content Include="Views\LiuJie\ChanPingYeMianUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
