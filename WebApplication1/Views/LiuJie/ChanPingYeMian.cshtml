@@ -36,12 +36,12 @@
                         </div>
                     </div>
                     <div>
-                        <p style="margin-left:200px"><span style="font-size:18px;font-weight:bold">产品编号</span>&nbsp;&nbsp;<input type="text" id="ProId" style="padding:2px" />&nbsp;&nbsp;<input type="button" value="搜索" id="sosuo" style="padding:2px" /></p>
+                        <p style="margin-left:200px"><span style="font-size:18px;font-weight:bold">产品编号</span>&nbsp;&nbsp;<input type="text" id="id" style="padding:2px" />&nbsp;&nbsp;<input type="button" value="搜索" id="sosuo" style="padding:2px" /></p>
                     </div>
                     <br />
                     <div class="layui-card-header">
-                        <input type="button" id="" value="批量删除" class="layui-btn" />
-                        <a href="/Jie/ChanPingAdd" class="layui-btn">添加</a>
+                        <input type="button" id="PiLiangShanChu" value="批量删除" class="layui-btn" />
+                        <a href="/LiuJie/ChanPingYeMianAdd" class="layui-btn">添加</a>
                     </div>
                     <br />
                     <div class="layui-card-body ">
@@ -81,9 +81,11 @@
     var pageSize = 3;
     var pageCount = 0;
     var rows = 0;
+
     $(function () {
         GetRows();
         PageList(pageIndex, pageSize);
+        
     });
 
     //分页数据查询
@@ -98,7 +100,7 @@
                 pageCount = result.pageCount;
                 $("#tbl tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a href='#' onclick='return Del(" + data.ProId + ")'>删除</a><a href='/Jie/ChanPingUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
+                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a href='#' onclick='return Delete(" + data.ProId + ")'>删除</a><a href='/LiuJie/ChanPingYeMianUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
                 })
             },
             error: function (ex) {
@@ -109,22 +111,23 @@
 
     //根据条件分页数据查询
     $("#sosuo").click(function () {
-        TiaoJian(ProId);
+        TiaoJian();
     });
 
     //根据条件分页数据查询
-    function TiaoJian(pageIndex, pageSize,ProId) {
+    function TiaoJian() {
+        var ProId = $("#id").val();
         $.ajax({
             type: "POST",
             url: "/LiuJie/GetTiaoJianPageListProbaict",
-            data: "{pageIndex:" + pageIndex + ",pageSize:" + pageSize + ",ProId:" + $("#ProId").val() + "}",
+            data: "{pageIndex:" + pageIndex + ",pageSize:" + pageSize + ",ProId:'" + ProId+"'}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 pageCount = result.pageCount;
                 $("#tbl tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a href='#' onclick='return Del(" + data.ProId + ")'>删除</a><a href='/Jie/ChanPingUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
+                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a href='#' onclick='return Del(" + data.ProId + ")'>删除</a><a href='/LiuJie/ChanPingYeMianUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
                 })
             },
             error: function (ex) {
@@ -174,4 +177,65 @@
             }
         });
     }
+
+    //删除
+    function Delete(id) {
+        if (confirm('确认删除该产品吗？')) {
+            $.ajax({
+                type: "POST",
+                url: "/LiuJie/GetDeleteProbaict",
+                data: "{id:" + id + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("删除成功!");
+                        PageList();
+                    } else {
+                        alert("删除失败!");
+                    }
+                },
+                error: function (ex) {
+                    $("Error" + ex.responseText);
+                }
+            });
+        }
+        return;
+    }
+
+    //复选框
+    $("#subcheck").click(function () {
+        var cf = $("#subcheck").prop("checked");
+        $("[name=subcheck]").prop("checked", cf);
+    });
+
+    //批量删除
+    $("#PiLiangShanChu").click(function () {
+        if (confirm('确定删除多个产品吗')) {
+            var count = 0;
+            $("input[name='subcheck']:checked").each(function () {
+                var n = $(this).parents("tr").index();//tr所在行
+                var name = document.getElementById("tabInfo").getElementsByTagName("tr")[n + 1].getElementsByTagName("td")[1].innerHTML;//获取id
+                alert(name);
+                $.ajax({
+                    type: "POST",
+                    url: "/LiuJie/GetDeleteProbaict",
+                    data: "{id:'" + name + "'}",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {
+                        GetRows();
+                    }, error: function (ex) {
+                        alert("Error:" + ex.responseText);
+                    }
+                });
+                count++;
+            });
+            if (count > 0) {
+                alert("有" + count + "项数据删除成功！");
+            } else {
+                alert("删除失败！");
+            }
+        }
+    });
 </script>

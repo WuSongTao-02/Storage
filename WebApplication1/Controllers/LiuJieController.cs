@@ -84,8 +84,8 @@ namespace WebApplication1.Controllers
         /// 产品修改
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetUpdateProbaict(Probaict p) {
-            return Json(ProbaictManager.Update(p),JsonRequestBehavior.AllowGet);
+        public ActionResult GetUpdateProbaict(Probaict pr) {
+            return Json(ProbaictManager.Update(pr),JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -103,6 +103,37 @@ namespace WebApplication1.Controllers
         /// <returns></returns>
         public ActionResult GetByIdProbaict(string id) {
             return Json(ProbaictManager.GetById(id),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 查询ProbaictCatagory表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetProbaictCatagory() {
+            return Json(ProbaictCatagoryManager.GetProbaictCatagory(),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 查询Unit表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetUnit() {
+            return Json(UnitManager.GetUnit(),JsonRequestBehavior.AllowGet);
+        }
+
+        //入库页面
+        public ActionResult RuKuYeMian() {
+            return View();
+        }
+        //入库新增页面
+        public ActionResult RuKuYeMianAdd()
+        {
+            return View();
+        }
+        //入库修改页面
+        public ActionResult RuKuYeMianUpdate()
+        {
+            return View();
         }
     }
 }

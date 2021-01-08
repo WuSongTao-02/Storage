@@ -136,21 +136,21 @@ namespace DAL.LiuJIeDAL
         /// 修改
         /// </summary>
         /// <returns></returns>
-        public static int Update(Probaict pr) {
-            var obj = (from p in entity.Probaict where pr.ProId == p.ProId select p).First();
-            obj.ProId = pr.ProId;
-            obj.ProName = pr.ProName;
-            obj.ProPrice = pr.ProPrice;
-            obj.PorGuiGe = pr.PorGuiGe;
-            obj.ProCId = pr.ProCId;
-            obj.UnId = pr.UnId;
-            obj.CreateTime = pr.CreateTime;
-            obj.IsDelete = pr.IsDelete;
-            obj.ProNumber = pr.ProNumber;
-            obj.ProJinhuo = pr.ProJinhuo;
-            obj.ProChuhuo = pr.ProChuhuo;
-            obj.ProBaosun = pr.ProBaosun;
-            obj.Remake = pr.Remake;
+        public static int Update(Probaict r) {
+            var obj = (from p in entity.Probaict where p.ProId == r.ProId select p).First();
+            obj.ProId = r.ProId;
+            obj.ProName = r.ProName;
+            obj.ProPrice = r.ProPrice;
+            obj.PorGuiGe = r.PorGuiGe;
+            obj.ProCId = r.ProCId;
+            obj.UnId = r.UnId;
+            obj.CreateTime = r.CreateTime;
+            obj.IsDelete = r.IsDelete;
+            obj.ProNumber = r.ProNumber;
+            obj.ProJinhuo = r.ProJinhuo;
+            obj.ProChuhuo = r.ProChuhuo;
+            obj.ProBaosun = r.ProBaosun;
+            obj.Remake = r.Remake;
             return entity.SaveChanges();
         }
     }

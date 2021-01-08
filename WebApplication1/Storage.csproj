@@ -323,6 +323,9 @@
     <Content Include="Views\LiuJie\ChanPingYeMian.cshtml" />
     <Content Include="Views\LiuJie\ChanPingYeMianAdd.cshtml" />
     <Content Include="Views\LiuJie\ChanPingYeMianUpdate.cshtml" />
+    <Content Include="Views\LiuJie\RuKuYeMian.cshtml" />
+    <Content Include="Views\LiuJie\RuKuYeMianAdd.cshtml" />
+    <Content Include="Views\LiuJie\RuKuYeMianUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
