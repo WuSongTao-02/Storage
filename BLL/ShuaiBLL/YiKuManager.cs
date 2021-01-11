@@ -34,5 +34,14 @@ namespace BLL.ShuaiBLL
             return DAL.ShuaiDAL.YiKuService.YikuPageList2(PageIndex,PageSize,name,sname,sname2);
         }
 
-     }
+        public static ShuaiPageList YikuPageList3(int PageIndex, int PageSize, DateTime sname, DateTime sname2)
+        {
+            return DAL.ShuaiDAL.YiKuService.YikuPageList3(PageIndex,PageSize,sname,sname2);
+        }
+
+        public static ShuaiPageList querydaishenhe(int PageIndex, int PageSize) {
+            return DAL.ShuaiDAL.YiKuService.querydaishenhe(PageIndex, PageSize);
+        }
+
+        }
 }

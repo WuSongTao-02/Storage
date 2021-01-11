@@ -34,7 +34,12 @@ namespace DAL.ShuaiDAL
             CangChuEntities1 hh = new CangChuEntities1();
             return hh.GarageShift.Count();
         }
-
+       /// <summary>
+       /// 分页
+       /// </summary>
+       /// <param name="PageIndex"></param>
+       /// <param name="PageSize"></param>
+       /// <returns></returns>
         public static ShuaiPageList YikuPageList(int PageIndex, int PageSize)
         {
             CangChuEntities1 hh = new CangChuEntities1();
@@ -58,7 +63,15 @@ namespace DAL.ShuaiDAL
             list.PageCoun = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
             return list;
         }
-
+        /// <summary>
+        /// 所有条件查询
+        /// </summary>
+        /// <param name="PageIndex"></param>
+        /// <param name="PageSize"></param>
+        /// <param name="name"></param>
+        /// <param name="sname"></param>
+        /// <param name="sname2"></param>
+        /// <returns></returns>
         public static ShuaiPageList YikuPageList2(int PageIndex, int PageSize, string name,DateTime sname,DateTime sname2)
         {
             CangChuEntities1 hh = new CangChuEntities1();
@@ -82,6 +95,45 @@ namespace DAL.ShuaiDAL
             list.PageCoun = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
             return list;
         }
+        /// <summary>
+        /// 按照时间区间查询
+        /// </summary>
+        /// <param name="PageIndex"></param>
+        /// <param name="PageSize"></param>
+        /// <param name="name"></param>
+        /// <param name="sname"></param>
+        /// <param name="sname2"></param>
+        /// <returns></returns>
+        public static ShuaiPageList YikuPageList3(int PageIndex, int PageSize, DateTime sname, DateTime sname2)
+        {
+            CangChuEntities1 hh = new CangChuEntities1();
+            ShuaiPageList list = new ShuaiPageList();
+            var obj = from p in hh.GarageShift
+                      where  p.CreateTime >= sname && p.CreateTime <= sname2
+                      orderby p.GarSId
+                      select new
+                      {
+                          GarSId = p.GarSId,
+                          AudiId = p.AudiId,
+                          GarSType = p.GarSType,
+                          GarSOrder = p.GarSOrder,
+                          num = from jj in hh.GarageShiftStorage select jj.Num,
+                          GarSPerson = p.GarSPerson,
+                          IsDelete = p.IsDelete,
+                          CreateTime = p.CreateTime,
+                      };
+            list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
+            int rows = hh.Damage.Count();
+            list.PageCoun = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
+            return list;
+        }
+        /// <summary>
+        /// 按照类型查询
+        /// </summary>
+        /// <param name="PageIndex"></param>
+        /// <param name="PageSize"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static ShuaiPageList YikuPageList1(int PageIndex, int PageSize,string name)
         {
             CangChuEntities1 hh = new CangChuEntities1();
@@ -92,6 +144,31 @@ namespace DAL.ShuaiDAL
                       orderby p.GarSId
                       select new
                       {
+                          GarSId = p.GarSId,
+                          AudiId = p.AudiId,
+                          GarSType = p.GarSType,
+                          GarSOrder = p.GarSOrder,
+                          num = from jj in hh.GarageShiftStorage select jj.Num,
+                          GarSPerson = p.GarSPerson,
+                          IsDelete = p.IsDelete,
+                          CreateTime = p.CreateTime,
+                      };
+            list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
+            int rows = hh.Damage.Count();
+            list.PageCoun = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
+            return list;
+        }
+
+
+        public static ShuaiPageList querydaishenhe(int PageIndex, int PageSize)
+        {
+            CangChuEntities1 hh = new CangChuEntities1();
+            ShuaiPageList list = new ShuaiPageList();
+            var obj = from p in hh.GarageShift
+                      where p.AudiId==1
+                      orderby p.GarSId
+                      select new
+                      { 
                           GarSId = p.GarSId,
                           AudiId = p.AudiId,
                           GarSType = p.GarSType,
@@ -120,4 +197,6 @@ namespace DAL.ShuaiDAL
             return hh.SaveChanges();
         }
     }
+
+
 }

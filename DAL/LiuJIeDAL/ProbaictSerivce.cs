@@ -19,7 +19,7 @@ namespace DAL.LiuJIeDAL
         /// <param name="pageSize"></param>
         /// <returns></returns>
         public static Model.Jie.PageList PageListProbaict(int pageIndex, int pageSize) {
-            Model.Jie.PageList list = new PageList();
+            Model.Jie.PageList list = new Model.Jie.PageList();
             var obj = from p in entity.Probaict
                       orderby p.ProId
                       select new
@@ -53,7 +53,7 @@ namespace DAL.LiuJIeDAL
         /// <returns></returns>
         public static Model.Jie.PageList TiaoJianPageListProbaict(int pageIndex, int pageSize,string ProId)
         {
-            Model.Jie.PageList list = new PageList();
+            Model.Jie.PageList list = new Model.Jie.PageList();
             var obj = from p in entity.Probaict
                       where p.ProId == ProId 
                       orderby p.ProId

@@ -76,5 +76,12 @@ namespace WebApplication1.Controllers
             return Json(BLL.ShuaiBLL.YiKuManager.YikuPageList2(PageIndex,PageSize,name,sname,sname2),JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult YikuPageList3(int PageIndex, int PageSize, DateTime sname, DateTime sname2)
+        { 
+        return Json(BLL.ShuaiBLL.YiKuManager.YikuPageList3(PageIndex,PageSize,sname,sname2),JsonRequestBehavior.AllowGet );
+        }
+        public ActionResult querydaishenhe(int PageIndex, int PageSize) {
+            return Json(BLL.ShuaiBLL.YiKuManager.querydaishenhe(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
+        }
         }
 }
