@@ -126,59 +126,14 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HuangController.cs" />
     <Compile Include="Controllers\LiuJieController.cs" />
-    <Compile Include="Controllers\LiuMinController.cs" />
     <Compile Include="Controllers\shuaikmController.cs" />
     <Compile Include="Controllers\WSTController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Antlr3.Runtime.dll" />
-    <Content Include="bin\Antlr3.Runtime.pdb" />
-    <Content Include="bin\BLL.dll" />
-    <Content Include="bin\BLL.pdb" />
-    <Content Include="bin\DAL.dll" />
-    <Content Include="bin\DAL.pdb" />
-    <Content Include="bin\EntityFramework.dll" />
-    <Content Include="bin\EntityFramework.SqlServer.dll" />
-    <Content Include="bin\EntityFramework.SqlServer.xml" />
-    <Content Include="bin\EntityFramework.xml" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Model.dll" />
-    <Content Include="bin\Model.pdb" />
-    <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\Newtonsoft.Json.xml" />
-    <Content Include="bin\System.Web.Helpers.dll" />
-    <Content Include="bin\System.Web.Helpers.xml" />
-    <Content Include="bin\System.Web.Mvc.dll" />
-    <Content Include="bin\System.Web.Mvc.xml" />
-    <Content Include="bin\System.Web.Optimization.dll" />
-    <Content Include="bin\System.Web.Optimization.xml" />
-    <Content Include="bin\System.Web.Razor.dll" />
-    <Content Include="bin\System.Web.Razor.xml" />
-    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
-    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
-    <Content Include="bin\System.Web.WebPages.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.xml" />
-    <Content Include="bin\System.Web.WebPages.xml" />
-    <Content Include="bin\WebApplication1.dll" />
-    <Content Include="bin\WebApplication1.pdb" />
-    <Content Include="bin\WebGrease.dll" />
-    <Content Include="bin\zh-Hans\EntityFramework.resources.dll" />
-    <Content Include="bin\zh-Hans\EntityFramework.SqlServer.resources.dll" />
-    <Content Include="bin\zh-Hans\System.Web.Helpers.resources.dll" />
-    <Content Include="bin\zh-Hans\System.Web.Mvc.resources.dll" />
-    <Content Include="bin\zh-Hans\System.Web.Optimization.resources.dll" />
-    <Content Include="bin\zh-Hans\System.Web.Razor.resources.dll" />
-    <Content Include="bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll" />
-    <Content Include="bin\zh-Hans\System.Web.WebPages.Razor.resources.dll" />
-    <Content Include="bin\zh-Hans\System.Web.WebPages.resources.dll" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -329,8 +284,6 @@
     <Content Include="X-admin\order-list1.html" />
     <Content Include="X-admin\welcome.html" />
     <Content Include="X-admin\welcome1.html" />
-    <Content Include="bin\Model.dll.config" />
-    <Content Include="bin\WebApplication1.dll.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -367,17 +320,14 @@
     <Content Include="Views\Huang\Update.cshtml" />
     <Content Include="Views\WST\password.cshtml" />
     <Content Include="Views\WST\UserMsessage.cshtml" />
-    <Content Include="Views\LiuJie\ChanPingYeMian.cshtml" />
-    <Content Include="Views\LiuJie\ChanPingYeMianAdd.cshtml" />
-    <Content Include="Views\LiuJie\ChanPingYeMianUpdate.cshtml" />
-    <Content Include="Views\LiuJie\RuKuYeMian.cshtml" />
-    <Content Include="Views\LiuJie\RuKuYeMianAdd.cshtml" />
-    <Content Include="Views\LiuJie\RuKuYeMianUpdate.cshtml" />
+    <Content Include="Views\shuaikm\Index.cshtml" />
+    <Content Include="Views\shuaikm\cate.cshtml" />
+    <Content Include="Views\shuaikm\pandian.cshtml" />
+    <Content Include="Views\shuaikm\yiku.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
