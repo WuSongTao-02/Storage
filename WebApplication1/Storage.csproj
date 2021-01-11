@@ -125,7 +125,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HuangController.cs" />
-    <Compile Include="Controllers\JieController.cs" />
     <Compile Include="Controllers\LiuJieController.cs" />
     <Compile Include="Controllers\LiuMinController.cs" />
     <Compile Include="Controllers\shuaikmController.cs" />
