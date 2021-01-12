@@ -83,5 +83,14 @@ namespace WebApplication1.Controllers
         public ActionResult querydaishenhe(int PageIndex, int PageSize) {
             return Json(BLL.ShuaiBLL.YiKuManager.querydaishenhe(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Querytongguo(int PageIndex, int PageSize) {
+            return Json(BLL.ShuaiBLL.YiKuManager.Querytongguo(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Queryshibai(int PageIndex, int PageSize) {
+            return Json(BLL.ShuaiBLL.YiKuManager.Queryshibai(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
+        
+        }
         }
 }

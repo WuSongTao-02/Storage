@@ -42,6 +42,12 @@ namespace BLL.ShuaiBLL
         public static ShuaiPageList querydaishenhe(int PageIndex, int PageSize) {
             return DAL.ShuaiDAL.YiKuService.querydaishenhe(PageIndex, PageSize);
         }
+        public static ShuaiPageList Querytongguo(int PageIndex, int PageSize) {
+            return DAL.ShuaiDAL.YiKuService.Querytongguo(PageIndex,PageSize);
+        }
+        public static ShuaiPageList Queryshibai(int PageIndex, int PageSize) {
+            return DAL.ShuaiDAL.YiKuService.Queryshibai(PageIndex,PageSize);
+        }
 
         }
 }

@@ -37,13 +37,12 @@
                 </div>
 
                 <div class="actions  pull-right">
-                    <a class="btn btn-primary" href="/InaStorage/Product/Add"><i class="icon-pencil"></i>&nbsp;新增</a>
+                    <a class="btn btn-primary" href="/InaStorage/Prouct/Add"><i class="icon-pencil"></i>&nbsp;新增</a>
                     <a class="btn btn-info" href="javascript:void(0)" onclick="InStorageManager.ToExcel()"><i class="icon-download"></i>&nbsp;导出</a>
                 </div>
             </div>
 
             <div class="row-fluid">
-                <form class="form-horizontal" action="javascript:void(0)">
                     <div class="control-group">
                         <div class="controls controls-cus">
                             <input type="hidden" id="txtReprtNum" name="txtReportNum" />
@@ -65,12 +64,12 @@
                         </div>
 
                     </div>
-                </form>
+           
             </div>
             <div id="divHSearch" class="row-fluid hide">
                 <div class="widget">
                     <div class="widget-body form">
-                        <form class="horizontal-form" action="javascript:void(0)">
+                       
                             <div class="row-fluid">
 
                                 <div class="span2">
@@ -108,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                   
                     </div>
                 </div>
             </div>
@@ -117,11 +116,11 @@
             <thead>
                 <tr class="widget-title">
                     <td class="hidden-480">编号</td>
-                    <td class="hidden-480">移库单编号</td>
-                    <td class="hidden-480">移库类型</td>
+                    <td class="hidden-480">移库单编号</td>   
+                    <td class="hidden-480">移库类型</td> 
+                     
                     <td class="hidden-480">关联单号</td>
-                    <td class="hidden-480">移库总数</td>
-                  
+                    <td class="hidden-480">移库总数</td>                 
                     <td class="hidden-480">移库人</td>
                     <td class="hidden-480">创建时间</td>
                     <td class="hidden-480">操作</td>
@@ -274,11 +273,9 @@
                 }
             });
         });
+
         $("#sousuo").click(function () {
-            if ($("#txtOrderNum").val() == "" || $("#txtBeginTime").val() == "" || $("#txtEndTime").val() == "") {
-                PageList(1, 10);
-                return;
-            }
+           
             $.ajax({
                 type: "post",
                 url: "/shuaikm/YikuPageList3",
@@ -287,7 +284,7 @@
                 contentType: "application/json",
                 success: function (result) {
                     $("#tab tr").remove();
-                    $.each(result.Datalist, function (index, data) {
+                    $.each(result.DataList, function (index, data) {
                         $("#tab").append("<tr><td>" + data.GarSId + "</td><td>" + data.AudiId + "</td><td>" + data.GarSType + "</td><td>" + data.GarSOrder + "</td><td>" + data.num + "</td><td>" + data.GarSPerson + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.GarSId + ")'>删除</a></td></tr>");
                     });
                 }, error: function (ex) {
@@ -298,8 +295,7 @@
 
 
         //根据状态查待审核
-        function Querydaishenhe() {
-           
+        function Querydaishenhe() {         
             $.ajax({
                 type: "post",
                 url: "/shuaikm/querydaishenhe",
@@ -307,9 +303,11 @@
                 dataType: "json",
                 contentType: "application/json",
                 success: function (result) {
-                   
+                  
                     $("#tab tr").remove();
-                    $.each(result.Datalist, function (index, data) {    
+                 
+
+                    $.each(result.DataList, function (index, data) {    
                         $("#tab").append("<tr><td>" + data.GarSId + "</td><td>" + data.AudiId + "</td><td>" + data.GarSType + "</td><td>" + data.GarSOrder + "</td><td>" + data.num + "</td><td>" + data.GarSPerson + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.GarSId + ")'>删除</a></td></tr>");
                      });
                 }, error: function (ex) {
@@ -317,6 +315,49 @@
                 }
             });
         }
+        //查询通过的
+        
+        function Querytongguo() {
+            $.ajax({
+                type: "post",
+                url: "/shuaikm/Querytongguo",
+                data: "{pageIndex:" + 1 + ",pageSize:" + 4 + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    $("#tab tr").remove();
+
+                    $.each(result.DataList, function (index, data) {
+                        $("#tab").append("<tr><td>" + data.GarSId + "</td><td>" + data.AudiId + "</td><td>" + data.GarSType + "</td><td>" + data.GarSOrder + "</td><td>" + data.num + "</td><td>" + data.GarSPerson + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.GarSId + ")'>删除</a></td></tr>");
+                    });
+                }, error: function (ex) {
+                    alert("Error:" + ex.responseText);
+                }
+            });
+        }
+
+        //查询失败的
+        function Queryshibai() {
+            $.ajax({
+                type: "post",
+                url: "/shuaikm/Queryshibai",
+                data: "{pageIndex:" + 1 + ",pageSize:" + 4 + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    $("#tab tr").remove();
+
+                    $.each(result.DataList, function (index, data) {
+                        $("#tab").append("<tr><td>" + data.GarSId + "</td><td>" + data.AudiId + "</td><td>" + data.GarSType + "</td><td>" + data.GarSOrder + "</td><td>" + data.num + "</td><td>" + data.GarSPerson + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.GarSId + ")'>删除</a></td></tr>");
+                    });
+                }, error: function (ex) {
+                    alert("Error:" + ex.responseText);
+                }
+            });
+        }
+
+
+
 
 
     </script>
