@@ -21,6 +21,7 @@ namespace DAL.LiuJIeDAL
         public static Model.Jie.PageList PageListProbaict(int pageIndex, int pageSize) {
             Model.Jie.PageList list = new Model.Jie.PageList();
             var obj = from p in entity.Probaict
+                      where p.IsDelete == 0
                       orderby p.ProId
                       select new
                       {
@@ -45,17 +46,17 @@ namespace DAL.LiuJIeDAL
         }
 
         /// <summary>
-        /// 根据条件分页
+        /// 根据条件产品编号分页
         /// </summary>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <param name="ProId"></param>
         /// <returns></returns>
-        public static Model.Jie.PageList TiaoJianPageListProbaict(int pageIndex, int pageSize,string ProId)
+        public static Model.Jie.PageList TiaoJianProidPageListProbaict(int pageIndex, int pageSize,string ProId)
         {
             Model.Jie.PageList list = new Model.Jie.PageList();
             var obj = from p in entity.Probaict
-                      where p.ProId == ProId 
+                      where p.ProId == ProId
                       orderby p.ProId
                       select new
                       {
@@ -93,7 +94,10 @@ namespace DAL.LiuJIeDAL
         /// <returns></returns>
         public static int GetDelete(string id) {
             var obj = (from p in entity.Probaict where p.ProId == id select p).First();
-            entity.Probaict.Remove(obj);
+            if (obj != null)
+            {
+                obj.IsDelete = 1;
+            }
             return entity.SaveChanges();
         }
 

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -11,68 +10,70 @@
     <title>RuKuYeMian</title>
     <link href="~/X-admin/css/font.css" rel="stylesheet" />
     <link href="~/X-admin/css/xadmin.css" rel="stylesheet" />
-    <script src="~/X-admin/lib/layui/layui.js"></script>
-    <script src="~/X-admin/js/xadmin.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/X-admin/js/jquery.min.js"></script>
 </head>
 <body>
-    <div class="x-nav">
-
-    </div>
-    <div class="layui-fluid">
-        <div class="layui-row layui-col-space15">
-            <div class="layui-col-md12">
-                <div class="layui-card">
-                    <div class="layui-card-body ">
-                        <form class="layui-form layui-col-space5">
-                            <div class="layui-inline layui-show-xs-block">
-                                <input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start">
-                            </div>
-                            <div class="layui-inline layui-show-xs-block">
-                                <input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end">
-                            </div>
-                            <div class="layui-inline layui-show-xs-block">
-                                <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
-                            </div>
-                            <div class="layui-inline layui-show-xs-block">
-                                <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="layui-card-header">
-                        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                        <button class="layui-btn" onclick="xadmin.open('添加用户','./admin-add.html',600,400)"><i class="layui-icon"></i>添加</button>
-                    </div>
-                    <div class="layui-card-body ">
-                        <table class="layui-table layui-form">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <input type="checkbox" name="" lay-skin="primary">
-                                    </th>
-                                    <th>入库编号</th>
-                                    <th>入库类型</th>
-                                    <th>关联订单号</th>
-                                    <th>制单人</th>
-                                    <th>供应商编号</th>
-                                    <th>加入时间</th>
-                                    <th>状态</th>
-                                    <th>操作</th>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="layui-card-body ">
-                        <div class="page">
-                            <div>
-                                
-                            </div>
-                        </div>
-                    </div>
+    <div class="widget box light-grey">
+        <div class="widget-title">
+            <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+                <a href="#widget-config" data-toggle="modal" class="config"></a>
+                <a href="javascript:;" class="reload"></a>
+                <a href="javascript:;" class="remove"></a>
+            </div>
+        </div>
+        <br />
+        <div class="widget-body">
+            <div class="clearfix margin-bottom-10">
+                <div class="btn-group" id="btnStatusGroup">
+                    <button class="btn disabled" value="0">所有</button>
+                    <button class="btn" value="1" onclick="Querydaishenhe(this)">待审核</button>
+                    <button class="btn" value="2" onclick="Querytongguo(this)">审核通过</button>
+                    <button class="btn" value="3" onclick="Queryshibai(this)">审核失败</button>
+                </div>
+                <div style="margin-left:350px" class="actions">
+                    <a class="btn btn-primary" href="/LiuJie/RuKuYeMianAdd">新增</a>
                 </div>
             </div>
+            <br />
+            <div class="row-fluid">
+                <div class="control-group">
+                    <div class="controls controls-cus">
+                        <input type="hidden" id="txtReprtNum" name="txtReportNum" />
+                        <input id="txtOrderNum" name="txtOrderNum" type="text" class="input-medium" placeholder="移库单编号" />&nbsp;&nbsp;
+                        时间&nbsp;<input id="txtBeginTime" name="txtBeginTime" type="date" class="input-medium" />
+                        -<input id="txtEndTime" name="txtEndTime" type="date" class="input-medium" />&nbsp;&nbsp;
+                        <a id="sousuo" onclick="ChaXun2(this)" class="btn btn-info" href="javascript:void(0)"><i class="icon-search"></i>&nbsp;搜索</a>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <table border="1" width="100%" class="layui-table">
+            <thead>
+                <tr class="widget-title">
+                    <td class="hidden-480">入库编号</td>
+                    <td class="hidden-480">入库类型</td>
+                    <td class="hidden-480">关联订单号</td>
+                    <td class="hidden-480">制单人</td>
+                    <td class="hidden-480">供应商</td>
+                    <td class="hidden-480">创建时间</td>
+                    <td class="hidden-480">操作</td>
+                </tr>
+            </thead>
+            <tbody id="tbl">
+            </tbody>
+        </table>
+        <!--定义分页的容器-->
+        <div id="DemoPageList">
+
         </div>
     </div>
 </body>
 </html>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/X-admin/lib/layui/layui.js"></script>
+<script>
+
+</script>
