@@ -38,7 +38,6 @@
 
                 <div class="actions  pull-right">
                     <a class="btn btn-primary" href="/InaStorage/Product/Add"><i class="icon-pencil"></i>&nbsp;新增</a>
-                    <a class="btn btn-danger" href="javascript:void(0)" onclick="dels()"><i class="icon-trash"></i>&nbsp;删除</a>
                     <a class="btn btn-info" href="javascript:void(0)" onclick="InStorageManager.ToExcel()"><i class="icon-download"></i>&nbsp;导出</a>
                 </div>
             </div>
@@ -48,7 +47,7 @@
                     <div class="control-group">
                         <div class="controls controls-cus">
                             <input type="hidden" id="txtReprtNum" name="txtReportNum" />
-                            <input id="txtOrderNum" name="txtOrderNum" type="text" class="input-medium" placeholder="移库单编号" />&nbsp;&nbsp;
+                            <input id="txtOrderNum" name="txtOrderNum" type="text" class="input-medium" placeholder="移库类型" />&nbsp;&nbsp;
                             时间&nbsp;<input id="txtBeginTime" name="txtBeginTime" type="date" class="input-medium" />
                             -<input id="txtEndTime" name="txtEndTime" type="date" class="input-medium" />&nbsp;&nbsp;
                             <a id="sousuo" onclick="ChaXun2(this)" class="btn btn-info" href="javascript:void(0)"><i class="icon-search"></i>&nbsp;搜索</a>
@@ -251,28 +250,73 @@
                 }
             });
         }
-
+        
         $("#sousuo").click(function () {
             if ($("#txtOrderNum").val() == "" || $("#txtBeginTime").val() == "" || $("#txtEndTime").val() == "") {
-                fenye(1, 10);
+                PageList(1, 10);
+                return;
+
+            }
+           
+            $.ajax({
+                type: "post",
+                url: "/shuaikm/YikuPageList2",
+                data: "{pageIndex:" + 1 + ",PageSize:" + 10 + ",name:'" + $("#txtOrderNum").val() + "',sname:'" + $("#txtBeginTime").val() + "',sname2:'" + $("#txtEndTime").val() + "'}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    $("#tab tr").remove();
+                    $.each(result.Datalist, function (index, data) {
+                        $("#tab").append("<tr><td>" + data.GarSId + "</td><td>" + data.AudiId + "</td><td>" + data.GarSType + "</td><td>" + data.GarSOrder + "</td><td>" + data.num + "</td><td>" + data.GarSPerson + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.GarSId + ")'>删除</a></td></tr>");
+                     });
+                }, error: function (ex) {
+                    alert("Error:" + ex.responseText);
+                }
+            });
+        });
+        $("#sousuo").click(function () {
+            if ($("#txtOrderNum").val() == "" || $("#txtBeginTime").val() == "" || $("#txtEndTime").val() == "") {
+                PageList(1, 10);
                 return;
             }
             $.ajax({
                 type: "post",
-                url: "/shuaikm/YikuPageList2",
-                data: "{pageIndex:" + 1 + ",pagesize:" + 10 + ",id:'" + $("#txtOrderNum").val() + "',kstime:'" + $("#txtBeginTime").val() + "',jstime:'" + $("#txtEndTime").val() + "'}",
+                url: "/shuaikm/YikuPageList3",
+                data: "{pageIndex:" + 1 + ",PageSize:" + 10 + ",sname:'" + $("#txtBeginTime").val() + "',sname2:'" + $("#txtEndTime").val() + "'}",
                 dataType: "json",
                 contentType: "application/json",
                 success: function (result) {
-                    $("#tb1 tr").remove();
+                    $("#tab tr").remove();
                     $.each(result.Datalist, function (index, data) {
-                        $("#tb1").append("<tr><td><input id='Checkbox1' type='checkbox'/></td><td>" + data.receiptNum + "</td><td>" + data.receiptTypeName + "</td><td>" + data.supplierName + "</td><td>" + data.orderNo + "</td><td>" + data.totalNum + "</td><td>" + data.totalAmount + "</td><td>" + data.examineState + "</td><td>" + data.ygNumber + "</td><td>" + data.OperationMode + "</td><td>" + time(data.createTime) + "</td><td><a onclick='return del(" + data.receiptNum + ")'>删除</a><a href=''>查看</a><tr>");
+                        $("#tab").append("<tr><td>" + data.GarSId + "</td><td>" + data.AudiId + "</td><td>" + data.GarSType + "</td><td>" + data.GarSOrder + "</td><td>" + data.num + "</td><td>" + data.GarSPerson + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.GarSId + ")'>删除</a></td></tr>");
                     });
                 }, error: function (ex) {
                     alert("Error:" + ex.responseText);
                 }
             });
         });
+
+
+        //根据状态查待审核
+        function Querydaishenhe() {
+           
+            $.ajax({
+                type: "post",
+                url: "/shuaikm/querydaishenhe",
+                data: "{pageIndex:" + 1 + ",pageSize:" + 4 + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                   
+                    $("#tab tr").remove();
+                    $.each(result.Datalist, function (index, data) {    
+                        $("#tab").append("<tr><td>" + data.GarSId + "</td><td>" + data.AudiId + "</td><td>" + data.GarSType + "</td><td>" + data.GarSOrder + "</td><td>" + data.num + "</td><td>" + data.GarSPerson + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.GarSId + ")'>删除</a></td></tr>");
+                     });
+                }, error: function (ex) {
+                    alert("Error:" + ex.responseText);
+                }
+            });
+        }
 
 
     </script>
