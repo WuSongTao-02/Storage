@@ -31,7 +31,7 @@ namespace BLL.LiuJIeBLL
         /// <returns></returns>
         public static Model.Jie.PageList TiaoJianPageListProbaict(int pageIndex, int pageSize, string ProId)
         {
-            return ProbaictSerivce.TiaoJianPageListProbaict(pageIndex,pageSize,ProId);
+            return ProbaictSerivce.TiaoJianProidPageListProbaict(pageIndex,pageSize,ProId);
         }
 
             /// <summary>
@@ -48,7 +48,7 @@ namespace BLL.LiuJIeBLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static int GetDelete(string id)
+        public static int GetDelete(string  id)
         {
             return ProbaictSerivce.GetDelete(id);
         }

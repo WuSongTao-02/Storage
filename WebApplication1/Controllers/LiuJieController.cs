@@ -76,7 +76,7 @@ namespace WebApplication1.Controllers
         /// 产品删除
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDeleteProbaict(string id) {
+        public ActionResult GetDeleteProbaict(string  id) {
             return Json(ProbaictManager.GetDelete(id),JsonRequestBehavior.AllowGet);
         }
 
@@ -125,13 +125,41 @@ namespace WebApplication1.Controllers
         public ActionResult RuKuYeMian() {
             return View();
         }
+
         //入库新增页面
         public ActionResult RuKuYeMianAdd()
         {
             return View();
         }
+
         //入库修改页面
         public ActionResult RuKuYeMianUpdate()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 出库页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChuKuYeMian() {
+            return View();
+        }
+
+        /// <summary>
+        /// 出库新增页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChuKuYeMianAdd()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 出库修改页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChuKuYeMianUpdate()
         {
             return View();
         }
