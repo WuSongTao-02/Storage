@@ -48,6 +48,7 @@
     <Compile Include="LiuJIeBLL\ProbaictManager.cs" />
     <Compile Include="LiuJIeBLL\ProbaictStorageManager.cs" />
     <Compile Include="LiuJIeBLL\UnitManager.cs" />
+    <Compile Include="LiuJIeBLL\WarehouseManager.cs" />
     <Compile Include="LiuMingBLL\CustomerBLL.cs" />
     <Compile Include="LiuMingBLL\StorehouseBLL.cs" />
     <Compile Include="LiuMingBLL\VendorBLL.cs" />

@@ -54,6 +54,7 @@
     <Compile Include="LiuJIeDAL\ProbaictSerivce.cs" />
     <Compile Include="LiuJIeDAL\ProbaictStorageSerivce.cs" />
     <Compile Include="LiuJIeDAL\UnitSerivce.cs" />
+    <Compile Include="LiuJIeDAL\WarehouseSerivce.cs" />
     <Compile Include="LiuMingDAL\CustomerDAL.cs" />
     <Compile Include="LiuMingDAL\StorehouseDAL.cs" />
     <Compile Include="LiuMingDAL\VendorDAL.cs" />
