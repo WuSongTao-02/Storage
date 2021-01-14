@@ -244,6 +244,20 @@ namespace DAL.ShuaiDAL
             }
             return hh.SaveChanges();
         }
+
+        public static int add(GarageShift kk) {
+            CangChuEntities1 hh = new CangChuEntities1();
+            var obj = hh.GarageShift.Add(kk);
+            return hh.SaveChanges();
+        }
+        //public static string GetNo(DateTime time) {
+        //    string stime = time.ToString("yyyyMMdd");
+        //    CangChuEntities1 hh = new CangChuEntities1();
+        //    var obj = from p in hh.GarageShift 
+        //              where p.GarSId.Contains(stime)
+        //              select p.
+        //}
+
     }
 
 

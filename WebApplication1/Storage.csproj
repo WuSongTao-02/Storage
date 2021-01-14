@@ -547,7 +547,6 @@
     <Content Include="Views\WST\UserMsessage.cshtml" />
     <Content Include="Views\shuaikm\Index.cshtml" />
     <Content Include="Views\shuaikm\cate.cshtml" />
-    <Content Include="Views\shuaikm\pandian.cshtml" />
     <Content Include="Views\shuaikm\yiku.cshtml" />
     <Content Include="Views\LiuJie\ChanPingYeMian.cshtml" />
     <Content Include="Views\LiuJie\ChanPingYeMianAdd.cshtml" />
@@ -561,6 +560,8 @@
     <Content Include="Views\LiuMin\CustIndex.cshtml" />
     <Content Include="Views\LiuMin\Index.cshtml" />
     <Content Include="Views\LiuMin\VendorIndex.cshtml" />
+    <Content Include="Views\shuaikm\tuihuo.cshtml" />
+    <Content Include="Views\shuaikm\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

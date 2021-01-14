@@ -49,5 +49,10 @@ namespace BLL.ShuaiBLL
             return DAL.ShuaiDAL.YiKuService.Queryshibai(PageIndex,PageSize);
         }
 
+        public static int add(GarageShift kk)
+        {
+            return DAL.ShuaiDAL.YiKuService.add(kk);
+        }
+
         }
 }
