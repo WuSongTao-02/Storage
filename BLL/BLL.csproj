@@ -44,6 +44,7 @@
     <Compile Include="HuangBLL\AdminManager.cs" />
     <Compile Include="HuangBLL\DeptManager.cs" />
     <Compile Include="HuangBLL\RoleManager.cs" />
+    <Compile Include="LiuJIeBLL\DeliverManager.cs" />
     <Compile Include="LiuJIeBLL\ProbaictCatagoryManager.cs" />
     <Compile Include="LiuJIeBLL\ProbaictManager.cs" />
     <Compile Include="LiuJIeBLL\ProbaictStorageManager.cs" />
