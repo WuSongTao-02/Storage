@@ -173,6 +173,30 @@ namespace DAL.ShuaiDAL
                           AudiId = p.AudiId,
                           GarSType = p.GarSType,
                           GarSOrder = p.GarSOrder,
+                          num = from jj in hh.GarageShiftStorage select jj.Num,   
+                          GarSPerson = p.GarSPerson,
+                          IsDelete = p.IsDelete,
+                          CreateTime = p.CreateTime,
+                      };
+            list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
+            int rows = hh.Damage.Count();
+            list.PageCoun = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
+            return list;
+        }
+
+        public static ShuaiPageList Querytongguo(int PageIndex, int PageSize)
+        {
+            CangChuEntities1 hh = new CangChuEntities1();
+            ShuaiPageList list = new ShuaiPageList();
+            var obj = from p in hh.GarageShift
+                      where p.AudiId == 2
+                      orderby p.GarSId
+                      select new
+                      {
+                          GarSId = p.GarSId,
+                          AudiId = p.AudiId,
+                          GarSType = p.GarSType,
+                          GarSOrder = p.GarSOrder,
                           num = from jj in hh.GarageShiftStorage select jj.Num,
                           GarSPerson = p.GarSPerson,
                           IsDelete = p.IsDelete,
@@ -183,6 +207,30 @@ namespace DAL.ShuaiDAL
             list.PageCoun = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
             return list;
         }
+        public static ShuaiPageList Queryshibai(int PageIndex, int PageSize)
+        {
+            CangChuEntities1 hh = new CangChuEntities1();
+            ShuaiPageList list = new ShuaiPageList();
+            var obj = from p in hh.GarageShift
+                      where p.AudiId == 3
+                      orderby p.GarSId
+                      select new
+                      {
+                          GarSId = p.GarSId,
+                          AudiId = p.AudiId,
+                          GarSType = p.GarSType,
+                          GarSOrder = p.GarSOrder,
+                          num = from jj in hh.GarageShiftStorage select jj.Num,
+                          GarSPerson = p.GarSPerson,
+                          IsDelete = p.IsDelete,
+                          CreateTime = p.CreateTime,
+                      };
+            list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
+            int rows = hh.Damage.Count();
+            list.PageCoun = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
+            return list;
+        }
+        
 
         public static int yikuedit(int id)
         {
