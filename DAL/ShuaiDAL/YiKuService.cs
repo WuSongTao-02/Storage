@@ -9,6 +9,11 @@ namespace DAL.ShuaiDAL
 {
     public  class YiKuService
     {
+        //public static IQueryable chacun() {
+        //    CangChuEntities1 hh = new CangChuEntities1();
+        //    var obj = from p  in hh.GarageShift 
+        //}
+
 
         public static IQueryable Yikuchaxun()
         {
@@ -16,13 +21,17 @@ namespace DAL.ShuaiDAL
             var obj = from p in hh.GarageShift
                       orderby p.GarSId
                       select new {
+                        
+                          GarSId=p.GarSId,
                           AudiId=p.AudiId,
                           GarSType=p.GarSType,
                           GarSOrder=p.GarSOrder,
                           num=from jj in hh.GarageShiftStorage select jj.Num,
                           GarSPerson=p.GarSPerson,
+                          ProId=from jj in hh.GarageShiftStorage select jj.ProId,
                           IsDelete=p.IsDelete,
-                          CreateTime=p.CreateTime,
+                          Remake = p.Remake,
+                          CreateTime =p.CreateTime,
                       };
 
             return obj;
@@ -55,7 +64,9 @@ namespace DAL.ShuaiDAL
                           GarSOrder = p.GarSOrder,
                           num = from jj in hh.GarageShiftStorage select jj.Num,
                           GarSPerson = p.GarSPerson,
+                          ProId = from jj in hh.GarageShiftStorage select jj.ProId,
                           IsDelete = p.IsDelete,
+                          Remake = p.Remake,
                           CreateTime = p.CreateTime,
                       };
             list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
@@ -87,7 +98,9 @@ namespace DAL.ShuaiDAL
                           GarSOrder = p.GarSOrder,
                           num = from jj in hh.GarageShiftStorage select jj.Num,
                           GarSPerson = p.GarSPerson,
+                          ProId = from jj in hh.GarageShiftStorage select jj.ProId,
                           IsDelete = p.IsDelete,
+                          Remake = p.Remake,
                           CreateTime = p.CreateTime,
                       };
             list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
@@ -119,7 +132,9 @@ namespace DAL.ShuaiDAL
                           GarSOrder = p.GarSOrder,
                           num = from jj in hh.GarageShiftStorage select jj.Num,
                           GarSPerson = p.GarSPerson,
+                          ProId = from jj in hh.GarageShiftStorage select jj.ProId,
                           IsDelete = p.IsDelete,
+                          Remake = p.Remake,
                           CreateTime = p.CreateTime,
                       };
             list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
@@ -150,7 +165,9 @@ namespace DAL.ShuaiDAL
                           GarSOrder = p.GarSOrder,
                           num = from jj in hh.GarageShiftStorage select jj.Num,
                           GarSPerson = p.GarSPerson,
+                          ProId = from jj in hh.GarageShiftStorage select jj.ProId,
                           IsDelete = p.IsDelete,
+                          Remake = p.Remake,
                           CreateTime = p.CreateTime,
                       };
             list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
@@ -175,7 +192,9 @@ namespace DAL.ShuaiDAL
                           GarSOrder = p.GarSOrder,
                           num = from jj in hh.GarageShiftStorage select jj.Num,   
                           GarSPerson = p.GarSPerson,
+                          ProId = from jj in hh.GarageShiftStorage select jj.ProId,
                           IsDelete = p.IsDelete,
+                          Remake = p.Remake,
                           CreateTime = p.CreateTime,
                       };
             list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
@@ -199,7 +218,9 @@ namespace DAL.ShuaiDAL
                           GarSOrder = p.GarSOrder,
                           num = from jj in hh.GarageShiftStorage select jj.Num,
                           GarSPerson = p.GarSPerson,
+                          ProId = from jj in hh.GarageShiftStorage select jj.ProId,
                           IsDelete = p.IsDelete,
+                          Remake = p.Remake,
                           CreateTime = p.CreateTime,
                       };
             list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
@@ -222,7 +243,9 @@ namespace DAL.ShuaiDAL
                           GarSOrder = p.GarSOrder,
                           num = from jj in hh.GarageShiftStorage select jj.Num,
                           GarSPerson = p.GarSPerson,
+                          ProId = from jj in hh.GarageShiftStorage select jj.ProId,
                           IsDelete = p.IsDelete,
+                          Remake=p.Remake,
                           CreateTime = p.CreateTime,
                       };
             list.DataList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
@@ -245,18 +268,31 @@ namespace DAL.ShuaiDAL
             return hh.SaveChanges();
         }
 
-        public static int add(GarageShift kk) {
+        public static int Add(GarageShift kk) {
             CangChuEntities1 hh = new CangChuEntities1();
-            var obj = hh.GarageShift.Add(kk);
+            hh.GarageShift.Add(kk);
             return hh.SaveChanges();
         }
-        //public static string GetNo(DateTime time) {
-        //    string stime = time.ToString("yyyyMMdd");
-        //    CangChuEntities1 hh = new CangChuEntities1();
-        //    var obj = from p in hh.GarageShift 
-        //              where p.GarSId.Contains(stime)
-        //              select p.
-        //}
+
+        public static int tadd(GarageShiftStorage ll) {
+            CangChuEntities1 hh = new CangChuEntities1();
+            hh.GarageShiftStorage.Add(ll);
+            return hh.SaveChanges();
+        }
+
+        public static string GetNo(DateTime time)
+        {
+            string stime = time.ToString("yyyyMMdd");
+            CangChuEntities1 hh = new CangChuEntities1();
+            var obj = from p in hh.GarageShiftStorage
+                      where p.ProId.Contains(stime)
+                      select p.ProId;
+            if (obj.Count()>0) {
+                string maxno = obj.Max();
+                return (Convert.ToInt64(maxno) + 1).ToString();
+            }
+            return stime + "001";
+        }
 
     }
 

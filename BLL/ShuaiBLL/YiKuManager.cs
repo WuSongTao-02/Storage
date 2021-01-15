@@ -49,9 +49,16 @@ namespace BLL.ShuaiBLL
             return DAL.ShuaiDAL.YiKuService.Queryshibai(PageIndex,PageSize);
         }
 
-        public static int add(GarageShift kk)
+        public static int Add(GarageShift kk)
         {
-            return DAL.ShuaiDAL.YiKuService.add(kk);
+            return DAL.ShuaiDAL.YiKuService.Add(kk);
+        }
+        public static string GetNo(DateTime time) {
+            return DAL.ShuaiDAL.YiKuService.GetNo(time);
+        }
+        public static int tadd(GarageShiftStorage ll)
+        {
+            return DAL.ShuaiDAL.YiKuService.tadd(ll);
         }
 
         }

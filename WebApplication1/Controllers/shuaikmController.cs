@@ -141,5 +141,19 @@ namespace WebApplication1.Controllers
             return Json(BLL.ShuaiBLL.TuiHuoManager.TuiHuoPageList3(PageIndex,PageSize,sname,sname2),JsonRequestBehavior.AllowGet);
         }
 
+
+        public ActionResult jiAdd(GarageShift kk)
+        {
+            return Json(BLL.ShuaiBLL.YiKuManager.Add(kk),JsonRequestBehavior.AllowGet);
+        }
+            public ActionResult GetNo(DateTime time) {
+            return Json(BLL.ShuaiBLL.YiKuManager.GetNo(time),JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult tadd(GarageShiftStorage ll) {
+            return Json(BLL.ShuaiBLL.YiKuManager.tadd(ll),JsonRequestBehavior.AllowGet);
+
+        }
+
         }
 }
