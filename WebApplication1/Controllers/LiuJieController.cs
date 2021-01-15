@@ -93,8 +93,8 @@ namespace WebApplication1.Controllers
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public ActionResult GetAddProbaict(Probaict p) {
-            return Json(ProbaictManager.Add(p),JsonRequestBehavior.AllowGet);
+        public ActionResult GetAddProbaict(Probaict pr) {
+            return Json(ProbaictManager.Add(pr),JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -132,7 +132,103 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        //入库修改页面
+        /// <summary>
+        /// Warehouse表总条数
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetRowsWarehouse() {
+            return Json(WarehouseManager.GetRowsWarehouse(),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 查询入库分页Warehouse所有数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetPageListWarehouse(int pageIndex, int pageSize) {
+            return Json(WarehouseManager.GetPageListWarehouse(pageIndex,pageSize),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 分页查询Warehouse表所有数据
+        /// 状态为1:待审核
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListWarehouse1(int pageIndex, int pageSize)
+        {
+            return Json(WarehouseManager.GetPageListWarehouse1(pageIndex, pageSize), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 分页查询Warehouse表所有数据
+        /// 状态为2:审核通过
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListWarehouse2(int pageIndex, int pageSize)
+        {
+            return Json(WarehouseManager.GetPageListWarehouse2(pageIndex, pageSize), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 分页查询Warehouse表所有数据
+        /// 状态为3:审核失败
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListWarehouse3(int pageIndex, int pageSize)
+        {
+            return Json(WarehouseManager.GetPageListWarehouse3(pageIndex, pageSize), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据时间区间查询
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListWarehouseShiJian(int pageIndex, int pageSize, DateTime date1, DateTime date2)
+        {
+            return Json(WarehouseManager.GetPageListWarehouseShiJian(pageIndex,pageSize,date1,date2),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据编号查询
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListWarehouseBianHao(int pageIndex, int pageSize, string bianhao)
+        {
+            return Json(WarehouseManager.GetPageListWarehouseBianHao(pageIndex,pageSize,bianhao),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据编号时间两个条件进行查询
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="bianhao"></param>
+        /// <param name="date1"></param>
+        /// <param name="date2"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListWarehouseTiaoJian(int pageIndex, int pageSize, string bianhao, DateTime date1, DateTime date2)
+        {
+            return Json(WarehouseManager.GetPageListWarehouseTiaoJian(pageIndex,pageSize,bianhao,date1,date2),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据id删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult GetDeleteWarehouse(int id) {
+            return Json(WarehouseManager.GetDeleteWarehouse(id),JsonRequestBehavior.AllowGet);
+        }
+            //入库修改页面
         public ActionResult RuKuYeMianUpdate()
         {
             return View();
@@ -147,10 +243,110 @@ namespace WebApplication1.Controllers
         }
 
         /// <summary>
-        /// 出库新增页面
+        /// Warehouse表总条数
         /// </summary>
         /// <returns></returns>
-        public ActionResult ChuKuYeMianAdd()
+        public ActionResult GetRowsDeliver()
+        {
+            return Json(DeliverManager.GetRowsDeliver(), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 查询入库分页Warehouse所有数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetPageListDeliver(int pageIndex, int pageSize)
+        {
+            return Json(DeliverManager.GetPageListDeliver(pageIndex, pageSize), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 分页查询Warehouse表所有数据
+        /// 状态为1:待审核
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListDeliver1(int pageIndex, int pageSize)
+        {
+            return Json(DeliverManager.GetPageListDeliver1(pageIndex, pageSize), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 分页查询Warehouse表所有数据
+        /// 状态为2:审核通过
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListDeliver2(int pageIndex, int pageSize)
+        {
+            return Json(DeliverManager.GetPageListDeliver2(pageIndex, pageSize), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 分页查询Warehouse表所有数据
+        /// 状态为3:审核失败
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListDeliver3(int pageIndex, int pageSize)
+        {
+            return Json(DeliverManager.GetPageListDeliver3(pageIndex, pageSize), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据时间区间查询
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListDeliverShiJian(int pageIndex, int pageSize, DateTime date1, DateTime date2)
+        {
+            return Json(DeliverManager.GetPageListDeliverShiJian(pageIndex,pageSize,date1,date2),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据编号查询
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListDeliverBianHao(int pageIndex, int pageSize, string bianhao)
+        {
+            return Json(DeliverManager.GetPageListDeliverBianHao(pageIndex,pageSize,bianhao),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据编号时间两个条件进行查询
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="bianhao"></param>
+        /// <param name="date1"></param>
+        /// <param name="date2"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListDeliverTiaoJian(int pageIndex, int pageSize, string bianhao, DateTime date1, DateTime date2)
+        {
+            return Json(DeliverManager.GetPageListDeliverTiaoJian(pageIndex,pageSize,bianhao,date1,date2),JsonRequestBehavior.AllowGet);
+        }
+
+            /// <summary>
+            /// 删除
+            /// </summary>
+            /// <param name="id"></param>
+            /// <returns></returns>
+            public ActionResult GetDeleteDeliver(int id)
+        {
+            return Json(DeliverManager.GetDeleteDeliver(id),JsonRequestBehavior.AllowGet);
+        }
+
+            /// <summary>
+            /// 出库新增页面
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult ChuKuYeMianAdd()
         {
             return View();
         }

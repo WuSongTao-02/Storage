@@ -58,9 +58,9 @@ namespace BLL.LiuJIeBLL
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public static int Add(Probaict p)
+        public static int Add(Probaict pr)
         {
-            return ProbaictSerivce.Add(p);
+            return ProbaictSerivce.Add(pr);
         }
 
         /// <summary>
