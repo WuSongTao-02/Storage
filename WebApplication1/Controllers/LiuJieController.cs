@@ -93,8 +93,8 @@ namespace WebApplication1.Controllers
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public ActionResult GetAddProbaict(Probaict p) {
-            return Json(ProbaictManager.Add(p),JsonRequestBehavior.AllowGet);
+        public ActionResult GetAddProbaict(Probaict pr) {
+            return Json(ProbaictManager.Add(pr),JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

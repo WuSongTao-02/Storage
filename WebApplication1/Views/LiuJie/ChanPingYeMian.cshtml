@@ -127,7 +127,7 @@
                 pageCount = result.pageCount;
                 $("#tbl tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a onclick='return Delete(" + data.ProId + ")'>删除</a><a href='/LiuJie/ChanPingYeMianUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
+                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return Delete(" + data.ProId + ")'>删除</a><a href='/LiuJie/ChanPingYeMianUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
                 })
             },
             error: function (ex) {
@@ -190,7 +190,7 @@
                 success: function (result) {
                     if (result > 0) {
                         alert("删除成功!");
-                        PageList();
+                        PageList(1, 3);
                     } else {
                         alert("删除失败!");
                     }
