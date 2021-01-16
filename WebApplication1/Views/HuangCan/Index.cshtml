@@ -28,8 +28,6 @@
                     <th>电子邮箱</th>
                     <th>电话</th>
                     <th>创建时间</th>
-                    <th>是否注销</th>
-                    <th>注销时间</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -110,7 +108,7 @@
                 //console.log(result);
                 $("#tb1 tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tb1").append("<tr><th>" + data.Id + "</th><th>" + data.UserName + "</th><th>" + data.RealName + "</th><th>" + data.Rname + "</th><th>" + data.Dname + "</th><th>" + data.Email + "</th><th>" + data.phone + "</th><th>" + ConverTime(data.CreateTime) + "</th><th>" + data.IsDelete + "</th><th>" + data.DeleteTime + "</th><th> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='return Del(" + data.Id + ")'></i></button> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='xadmin.open(&quot;修改员工信息&quot;,&quot;/HuangCan/Update?id=" + data.Id + "&quot;,450,620)'></i></button></th></tr>");
+                    $("#tb1").append("<tr><th>" + data.Id + "</th><th>" + data.UserName + "</th><th>" + data.RealName + "</th><th>" + data.Rname + "</th><th>" + data.Dname + "</th><th>" + data.Email + "</th><th>" + data.phone + "</th><th>" + ConverTime(data.CreateTime) + "</th><th> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='return Del(" + data.Id + ")'></i></button> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='xadmin.open(&quot;修改员工信息&quot;,&quot;/HuangCan/Update?id=" + data.Id + "&quot;,450,620)'></i></button></th></tr>");
                 });
             },
             error: function (ex) {

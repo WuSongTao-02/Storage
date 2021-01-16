@@ -36,9 +36,9 @@ namespace BLL.HuangBLL
             return AdminService.GetById(id);
         }
 
-        public static int Edit(Admin ad)
+        public static int Edit(Admin a)
         {
-            return AdminService.Edit(ad);
+            return AdminService.Edit(a);
         }
 
     }
