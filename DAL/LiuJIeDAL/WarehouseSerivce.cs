@@ -138,6 +138,30 @@ namespace DAL.LiuJIeDAL
             return list;
         }
 
+        public static Model.Jie.PageList GetPageListWarehouses(int pageIndex, int pageSize)
+        {
+            CangChuEntities1 entity = new CangChuEntities1();
+            Model.Jie.PageList list = new Model.Jie.PageList();
+            var obj = from p in entity.Warehouse
+                      orderby p.WarId
+                      select new
+                      {
+                          WarId = p.WarId,
+                          WarType = p.WarType,
+                          WarOrder = p.WarOrder,
+                          WarPerson = p.WarPerson,
+                          VenId = from pp in entity.Vendor where p.VenId == pp.VenId select pp.VenName,
+                          AudiId = from ppp in entity.Auditing where p.AudiId == ppp.AudiId select ppp.AudiName,
+                          CreateTime = p.CreateTime,
+                          IsDelete = p.IsDelete,
+                          Remake = p.Remake
+                      };
+            list.DataList = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            int rows = entity.Probaict.Count();
+            list.PageCount = rows % pageSize == 0 ? rows / pageSize : rows / pageSize + 1;
+            return list;
+        }
+
         /// <summary>
         /// 根据时间区间查询
         /// </summary>
