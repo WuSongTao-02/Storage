@@ -124,6 +124,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\HcController.cs" />
+    <Compile Include="Controllers\HuangCanController.cs" />
     <Compile Include="Controllers\HuangController.cs" />
     <Compile Include="Controllers\LiuJieController.cs" />
     <Compile Include="Controllers\LiuMinController.cs" />
@@ -562,6 +564,12 @@
     <Content Include="Views\LiuMin\VendorIndex.cshtml" />
     <Content Include="Views\shuaikm\tuihuo.cshtml" />
     <Content Include="Views\shuaikm\Add.cshtml" />
+    <Content Include="Views\Hc\Create.cshtml" />
+    <Content Include="Views\Hc\Index.cshtml" />
+    <Content Include="Views\Hc\Update.cshtml" />
+    <Content Include="Views\HuangCan\Create.cshtml" />
+    <Content Include="Views\HuangCan\Index.cshtml" />
+    <Content Include="Views\HuangCan\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
