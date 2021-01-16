@@ -48,7 +48,7 @@ namespace DAL.HuangDAL
         {
             CangChuEntities1 entity = new CangChuEntities1();
             var obj = from p in entity.Admin
-                      where p.RoleId == RoleId
+                      where p.Id == RoleId
                       select new
                       {
                           Id = p.Id,
