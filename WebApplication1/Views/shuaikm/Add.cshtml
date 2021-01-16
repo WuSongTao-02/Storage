@@ -115,11 +115,12 @@
         });
     }
 
-        $("#ZengJia").click(function () {
+        function  aaa() {
           
         $.ajax({
             type: "POST",
             url: "/shuaikm/jiAdd",
+            async: false,
             data: "{kk:{GarSType:'" + $("#UnId").val() + "',AudiId:'" + $("#ProPrice").val() + "',GarSOrder:'" + $("#ProName").val() + "',GarSPerson:'" + $("#PorGuiGe").val() + "',CreateTime:'" + $("#CreateTime").val() + "',IsDelete:'" + 0 + "',Remake:'" + $("#miaoshu").val() + "'}}",
             dataType: "json",
             contentType: "application/json",
@@ -135,7 +136,46 @@
                 alert(ex.responseText);
             }
         });
-    })
-       
+        }
+    $("#ZengJia").click(function () {
+        aaa();
+        bb();
+    });
+    function bb() {
+        $.ajax({
+            type: "POST",
+            url: "/shuaikm/GetNo",
+            data: "{}",
+            async: false,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
 
+                $.ajax({
+                    type: "POST",
+                    url: "/shuaikm/GetNo1",
+                    data: "{}",
+                    async: false,
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result1) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/shuaikm/tadd",
+                            data: "{ll: { GarSId: '" + result1 + "', ProId: '" + result + "', Supid: '" + 1 + "', StorId: '" + 1 + "', Num: '" + 1 + "' }}",
+                            dataType: "json",
+                            contentType: "application/json",
+                            success: function (result2) {
+
+                            },
+                            error: function (ex) {
+                                alert(ex.responseText);
+                            }
+                        });
+                    }
+                });
+            }
+
+        });
+    }
 </script>

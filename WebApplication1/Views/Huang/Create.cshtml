@@ -11,7 +11,8 @@
     <title>Create</title>
     <link rel="stylesheet" href="~/X-admin/css/font.css">
     <link rel="stylesheet" href="~/X-admin/css/xadmin.css">
-
+    <script type="text/javascript" src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="~/X-admin/js/xadmin.js"></script>
 
 </head>
 <body>
@@ -34,30 +35,26 @@
         </div>
     </div>
 
-
+    
 </body>
 </html>
-<script type="text/javascript" src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
-<script type="text/javascript" src="~/X-admin/js/xadmin.js"></script>
 <script>
+        
 
-   // var time = DateTime.Now.ToLongDateString();
-    //alert(time);
-    //var time = new Date();
-    //alert(time.toLocaleDateString());
+    var time = Date.now.toString();
     var IsDelete = 0;
     function add() {
         $.ajax({
             type: "POST",
             url: "/Huang/Add",
-            data: "{d:{DeptName:'" + $("#name").val() +  "',IsDelete:'" + IsDelete + "'}}",
+            data: "{d:{DeptName:'" + $("#name").val() + "',CreateTime:'" + time + "',IsDelete:'" + IsDelete + "'}}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 if (result > 0) {
-                   // alert("1" + time);
-                    // alert("新增成功");
-                    // location.href = '/Huang/Department';
+                    alert("1"+time);
+                   // alert("新增成功");
+                   // location.href = '/Huang/Department';
                 } else {
                     alert("新增失败");
                 }
@@ -77,7 +74,7 @@
             form.verify({
                 nikename: function (value) {
                     if (value.length < 3) {
-                        return '部门名称至少得3个字符啊';
+                        return '昵称至少得3个字符啊';
                     }
                 },
             });

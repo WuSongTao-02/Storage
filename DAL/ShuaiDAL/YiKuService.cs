@@ -280,18 +280,23 @@ namespace DAL.ShuaiDAL
             return hh.SaveChanges();
         }
 
-        public static string GetNo(DateTime time)
+        public static string GetNo()
         {
-            string stime = time.ToString("yyyyMMdd");
             CangChuEntities1 hh = new CangChuEntities1();
-            var obj = from p in hh.GarageShiftStorage
-                      where p.ProId.Contains(stime)
+            var obj = from p in hh.GarageShiftStorage  
                       select p.ProId;
-            if (obj.Count()>0) {
-                string maxno = obj.Max();
-                return (Convert.ToInt64(maxno) + 1).ToString();
-            }
-            return stime + "001";
+            return obj.Max().ToString();
+            //string maxno = obj.Max();
+            //return (Convert.ToInt64(maxno) + 1).ToString(); 
+        }
+
+        public static string GetNo1()
+        {
+            CangChuEntities1 hh = new CangChuEntities1();
+            var obj = from p in hh.GarageShift
+                      select p.GarSId;
+            return obj.Max().ToString();
+           
         }
 
     }
