@@ -21,16 +21,13 @@ namespace BLL.LiuMingBLL
         }
 
         #region 按条件查询
-        public static PageList querid(int pageIndex, int pagesize, string SupName, string StName, string StoreNum)
+        public static IQueryable querid(string store, string StName, string StoreName)
         {
-            return StorehouseDAL.querid(pageIndex,pagesize, SupName,StName, StoreNum);
+            return StorehouseDAL.querid(store,StName,StoreName);
         }
         #endregion
 
-        public static int Add(Storehouse stroe)
-        {
-            return StorehouseDAL.Add(stroe);
-        }
+      
 
 
 
