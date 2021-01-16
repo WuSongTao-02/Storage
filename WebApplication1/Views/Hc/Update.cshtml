@@ -8,11 +8,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
+    <title>Update</title>
     <link rel="stylesheet" href="~/X-admin/css/font.css">
     <link rel="stylesheet" href="~/X-admin/css/xadmin.css">
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-
 </head>
 <body>
     <div class="layui-fluid">
@@ -20,8 +19,8 @@
             <form class="layui-form">
                 <div class="layui-form-item">
                     <label for="L_username" class="layui-form-label">
-                        <span class="x-red">*</span>部门名
-                            
+                        <span class="x-red">*</span>角色名
+
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" id="name" name="name" required="" lay-verify="nikename" autocomplete="off" class="layui-input">
@@ -34,28 +33,28 @@
             </form>
         </div>
     </div>
-
-
 </body>
 </html>
 <script type="text/javascript" src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="~/X-admin/js/xadmin.js"></script>
 <script>
+
     var id = 0;
     $(function () {
-         id =@Request.QueryString["id"];
+        id =@Request.QueryString["id"];
         GetById(id);
-    });
 
+    });
     function GetById(id) {
         $.ajax({
             type: "POST",
-            url: "/Huang/GetById",
+            url: "/Hc/GetById",
             data: "{id:"+id+"}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
-                $("#name").val(result[0].DeptName); 
+                $("#name").val(result[0].RoleName);
+
             },
             error: function (ex) {
                 alert(ex.responseText);
@@ -63,12 +62,11 @@
         });
 
     }
-
     $("#Submit1").click(function () {
         $.ajax({
             type: "POST",
-            url: "/Huang/Edit",
-            data: "{de:{DeptId:" + id + ",DeptName:'" + $("#name").val() + "'}}",
+            url: "/Hc/Edit",
+            data: "{r:{RoleId:" + id + ",RoleName:'" + $("#name").val() + "'}}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
@@ -77,13 +75,14 @@
                 } else {
                     alert("修改失败");
                 }
+
             },
             error: function (ex) {
                 alert(ex.responseText);
             }
         });
     });
-   
+
 
 
     layui.use(['form', 'layer', 'jquery'],
@@ -94,8 +93,8 @@
             //自定义验证规则
             form.verify({
                 nikename: function (value) {
-                    if (value.length < 3) {
-                        return '部门名称至少得3个字符啊';
+                    if (value.length < 2) {
+                        return '角色名称至少得2个字符啊';
                     }
                 },
             });
@@ -117,4 +116,3 @@
                 });
         });
 </script>
-

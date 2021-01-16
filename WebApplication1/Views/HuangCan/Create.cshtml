@@ -23,7 +23,7 @@
                         <span class="x-red">*</span>登录用户名
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="UserName" name="UserName" required=""  autocomplete="off" class="layui-input">
+                        <input type="text" id="UserName" name="UserName" required="" lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -31,7 +31,7 @@
                         <span class="x-red">*</span>密码
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="PassWord" name="PassWord" required=""  autocomplete="off" class="layui-input">
+                        <input type="text" id="PassWord" name="PassWord" required="" lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -39,7 +39,7 @@
                         <span class="x-red">*</span>真实姓名
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="RealName" name="RealName" required="" autocomplete="off" class="layui-input">
+                        <input type="text" id="RealName" name="RealName" required=""  autocomplete="off" class="layui-input">
                     </div>
                 </div>
 
@@ -66,7 +66,7 @@
                         <span class="x-red">*</span>电子邮箱
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="Email" name="Email" required=""  autocomplete="off" class="layui-input">
+                        <input type="text" id="Email" name="Email" required=""lay-verify="email"  autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -74,7 +74,7 @@
                         <span class="x-red">*</span>电话
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="phone" name="phone" required=""  autocomplete="off" class="layui-input">
+                        <input type="text" id="phone" name="phone" required=""lay-verify="phone"  autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux">
                         <span class="x-red">*</span>
@@ -85,33 +85,56 @@
                 <div class="layui-form-item layui-form-text">
                     <label for="desc" class="layui-form-label">描述备注</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" id="Remake" name="Remake" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入内容" id="desc" name="desc" class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label for="L_repass" class="layui-form-label"></label>
-                    <button  id="Submit1" class="layui-btn" lay-filter="add" lay-submit="" onclick="Edit()">确认</button>
+                    <button class="layui-btn" lay-filter="add" lay-submit="" onclick="add()">增加</button>
                 </div>
             </form>
+</div>
         </div>
-    </div>
 </body>
 </html>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="~/X-admin/js/xadmin.js"></script>
 <script type="text/javascript">
-
-    var id = 0;
-    id =@Request.QueryString["id"];
-    $(function () {
+    $(function(){
         GetDepts();
         GetRole();
-        GetById(id);
     });
 
 
+    layui.use('form', function () {
+        var form = layui.form;
+        form.render();
+    });
+    layui.use(['form', 'layer'],
+        function () {
+            $ = layui.jquery;
+            var form = layui.form,
+                layer = layui.layer;
 
+            //监听提交
+            form.on('submit(add)',
+                function (data) {
+                    console.log(data);
+                    //发异步，把数据提交给php
+                    layer.alert("增加成功", {
+                        icon: 6
+                    },
+                        function () {
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
+                            //关闭当前frame
+                            parent.layer.close(index);
+                        });
+                    return false;
+                });
+
+        });
 
 
 
@@ -141,6 +164,7 @@
         });
     }
 
+
     function GetRole() {
         $.ajax({
             type: "POST",
@@ -150,6 +174,7 @@
             contentType: "application/json",
             success: function (result) {
                 $.each(result, function (index, data) {
+                    
                     $("#shipping").append(new Option(data.name, data.id));
                 });
                 layui.use(['laypage', 'layer'], function () {
@@ -167,72 +192,46 @@
     }
 
 
-    $("#Submit1").click(function () {
+    var IsDelete = 0;
+    function add() {
         $.ajax({
             type: "POST",
-            url: "/HuangCan/Edit",
-            data: "{a:{Id:" + id + ",UserName:'" + $("#UserName").val() + "',RealName:'" + $("#RealName").val()+ "',PassWord :'" + $("#PassWord").val() + "',RoleId:'" + $("#shipping").val() + "',DeptId :'" + $("#contrller").val() + "',Email :'" + $("#Email").val() + "',phone:'" + $("#phone").val() + "'}}",
+            url: "/HuangCan/Add",
+            data: "{ad:{UserName:'" + $("#UserName").val() + "',PassWord :'" + $("#PassWord").val() + "',RealName:'" + $("#RealName").val() + "',RoleId:'" + $("#shipping").val() + "',DeptId :'" + $("#contrller").val() + "',Email :'" + $("#Email").val() + "',phone:'" + $("#phone").val() + "',IsDelete:0}}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 if (result > 0) {
-                   //alert("修改成功");
-                    // location.href = '/DemoAJAX/Index';
                 } else {
-                    alert("修改失败");
+                    alert("新增失败");
                 }
             },
             error: function (ex) {
                 alert(ex.responseText);
             }
         });
-    });
-
-
-
-
-
-    function GetById(id) {
-        $.ajax({
-            type: "POST",
-            url: "/HuangCan/GetById",
-            data: "{id:" + id + "}",
-            dataType: "json",
-            contentType: "application/json",
-            success: function (result) {
-                $("#UserName").val(result[0].UserName);
-                $("#PassWord ").val(result[0].PassWord);
-                $("#RealName").val(result[0].RealName);
-                $("#shipping").val(result[0].RoleId);
-                $("#contrller").val(result[0].DeptId);
-                $("#Email").val(result[0].Email);
-                $("#phone").val(result[0].phone);
-                $("#Remake").val(result[0].Remake);
-            },
-            error: function (ex) {
-                alert(ex.responseText);
-            }
-        });
-
     }
 
-    layui.use('form', function () {
-        var form = layui.form;
-        form.render();
-    });
-    layui.use(['form', 'layer'],
+    layui.use(['form', 'layer', 'jquery'],
         function () {
             $ = layui.jquery;
             var form = layui.form,
                 layer = layui.layer;
-
+            //自定义验证规则
+            form.verify({
+                nikename: function (value) {
+                    if (value.length < 1) {
+                        return '部门名称至少得1个字符啊';
+                    }
+                },
+            });
             //监听提交
             form.on('submit(add)',
                 function (data) {
                     console.log(data);
-                    //发异步，把数据提交给php
-                    layer.alert("修改成功", {
-                        icon: 6
+                    layer.alert("增加成功", {
+                        //发异步，把数据提交给php
+                        icon: 1
                     },
                         function () {
                             //关闭当前frame

@@ -16,10 +16,48 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        public ActionResult PageListProbaict(int pageIndex, int pageSize) {
+
+        /// <summary>
+        /// 产品页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChanPingYeMian() {
+            return View();
+        }
+
+        /// <summary>
+        /// 产品新增页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChanPingYeMianAdd()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 产品修改页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChanPingYeMianUpdate()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 产品分页查询
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListProbaict(int pageIndex, int pageSize) {
             return Json(ProbaictManager.PageListProbaict(pageIndex,pageSize),JsonRequestBehavior.AllowGet);
         }
-        public ActionResult GetRows() {
+
+        /// <summary>
+        /// 产品数据条数
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetRowsProbaict() {
             return Json(ProbaictManager.GetRows(),JsonRequestBehavior.AllowGet);
         }
 
@@ -233,6 +271,8 @@ namespace WebApplication1.Controllers
         {
             return Json(DeliverManager.GetPageListDeliver1(pageIndex, pageSize), JsonRequestBehavior.AllowGet);
         }
+
+   
 
         /// <summary>
         /// 分页查询Warehouse表所有数据

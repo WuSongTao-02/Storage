@@ -55,9 +55,9 @@ namespace WebApplication1.Controllers
             return Json(AdminManager.Add(ad), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Edit(Admin ad)
+        public ActionResult Edit(Admin a)
         {
-            return Json(AdminManager.Edit(ad), JsonRequestBehavior.AllowGet);
+            return Json(AdminManager.Edit(a), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetById(int id)
