@@ -25,16 +25,12 @@ namespace WebApplication1.Controllers
         }
 
         //按条件查询
-        public ActionResult querid(int pageIndex, int pagesize, string SupName, string StName, string StoreNum)
+        public ActionResult querid(string store, string StName, string StoreName)
         {
-            return Json(StorehouseBLL.querid(pageIndex, pagesize, SupName, StName, StoreNum), JsonRequestBehavior.AllowGet);
+            return Json(StorehouseBLL.querid(store,StName,StoreName),JsonRequestBehavior.AllowGet);
         }
 
-        //新增
-        public ActionResult Add(Storehouse stroe)
-        {
-            return Json(StorehouseBLL.Add(stroe), JsonRequestBehavior.AllowGet);
-        }
+         
 
         #endregion
 
@@ -49,6 +45,24 @@ namespace WebApplication1.Controllers
         public ActionResult CustGetAll()
         {
             return Json(CustomerBLL.CustGetAll(), JsonRequestBehavior.AllowGet);
+        }
+
+        //按客户名称查询
+        public ActionResult Custquery(string SName)
+        {
+            return Json(CustomerBLL.Custquery(SName),JsonRequestBehavior.AllowGet);
+        }
+
+        //添加客户
+        public ActionResult CustAdd(Customer cust)
+        {
+            return Json(CustomerBLL.CustAdd(cust),JsonRequestBehavior.AllowGet);
+        }
+
+        //删除客户信息
+        public ActionResult CustomerDele(int id)
+        {
+            return Json(CustomerBLL.CustomerDele(id), JsonRequestBehavior.AllowGet);
         }
         #endregion
 
@@ -84,6 +98,49 @@ namespace WebApplication1.Controllers
         public ActionResult aaaa(int VenId)
         {
             return Json(VendorBLL.ShowByName1(VenId), JsonRequestBehavior.AllowGet);
+        }
+        //添加供应商
+        public ActionResult VendorAdd(Vendor ven)
+        {
+            return Json(VendorBLL.VendorAdd(ven),JsonRequestBehavior.AllowGet); ;
+        }
+
+        //删除供应商
+        public ActionResult VendorDele(int id)
+        {
+            return Json(VendorBLL.VendorDele(id),JsonRequestBehavior.AllowGet);
+        }
+            #endregion
+
+
+        #region 单位管理
+
+        public ActionResult UnitIndex()
+        {
+            return View();
+        }
+        //查询所有
+        public ActionResult UnitGetAll()
+        {
+            return Json(UnitBLL.UnitGetAll(),JsonRequestBehavior.AllowGet);
+        }
+
+        //按编号查询
+        public ActionResult Unitquery(string SName)
+        {
+            return Json(UnitBLL.Unitquery(SName), JsonRequestBehavior.AllowGet);
+        }
+
+        //添加单位名称
+        public ActionResult UnitAdd(Unit unit)
+        {
+            return Json(UnitBLL.UnitAdd(unit),JsonRequestBehavior.AllowGet);
+        }
+
+        //删除单位名称
+        public ActionResult UnitDele(int id)
+        {
+            return Json(UnitBLL.UnitDele(id),JsonRequestBehavior.AllowGet);
         }
         #endregion
 

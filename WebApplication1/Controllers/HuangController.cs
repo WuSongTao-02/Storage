@@ -41,21 +41,16 @@ namespace WebApplication1.Controllers
             return Json(DeptManager.Del(DeptId), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult dele(Dept dd)
-        {
-            return Json(DeptManager.dele(dd), JsonRequestBehavior.AllowGet);
-        }
-
         public ActionResult Add(Dept d)
         {
-
-            d.CreateTime = DateTime.Now;
+            
+            
             return Json(DeptManager.Add(d), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Edit(Dept de)
+        public ActionResult Edit(Dept d)
         {
-            return Json(DeptManager.Edit(de), JsonRequestBehavior.AllowGet);
+            return Json(DeptManager.Edit(d), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetById(int id)
@@ -63,7 +58,7 @@ namespace WebApplication1.Controllers
             return Json(DeptManager.GetById(id), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult update()
+        public ActionResult Update()
         {
             return View();
         }

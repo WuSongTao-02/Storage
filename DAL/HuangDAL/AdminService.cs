@@ -77,6 +77,7 @@ namespace DAL.HuangDAL
             obj.DeptId = a.DeptId;
             obj.Email = a.Email;
             obj.phone = a.phone;
+            obj.CreateTime = a.CreateTime;
             obj.Remake = a.Remake;
             return entity.SaveChanges();
         }

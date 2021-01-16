@@ -12,7 +12,7 @@ namespace DAL.HuangDAL
         public static IQueryable queryDept()
         {
             CangChuEntities1 entities1 = new CangChuEntities1();
-            var obj = from p in entities1.Dept where p.IsDelete==0
+            var obj = from p in entities1.Dept
                       select new
                       {
                           id = p.DeptId,

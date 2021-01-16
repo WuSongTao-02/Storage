@@ -85,12 +85,12 @@
                 <div class="layui-form-item layui-form-text">
                     <label for="desc" class="layui-form-label">描述备注</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" id="Remake" name="Remake" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入内容" id="desc" name="desc" class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label for="L_repass" class="layui-form-label"></label>
-                    <button  id="Submit1" class="layui-btn" lay-filter="add" lay-submit="" onclick="Edit()">确认</button>
+                    <button class="layui-btn" lay-filter="Edit" lay-submit="" onclick="Edit()">确认</button>
                 </div>
             </form>
         </div>
@@ -171,12 +171,12 @@
         $.ajax({
             type: "POST",
             url: "/HuangCan/Edit",
-            data: "{a:{Id:" + id + ",UserName:'" + $("#UserName").val() + "',RealName:'" + $("#RealName").val()+ "',PassWord :'" + $("#PassWord").val() + "',RoleId:'" + $("#shipping").val() + "',DeptId :'" + $("#contrller").val() + "',Email :'" + $("#Email").val() + "',phone:'" + $("#phone").val() + "'}}",
+            data: "{a:{Id:"+id+",UserName:'" + $("#UserName").val() + "',PassWord :'" + $("#PassWord").val() + "',RealName:'" + $("#RealName").val() + "',RoleId:'" + $("#shipping").val() + "',DeptId :'" + $("#contrller").val() + "',Email :'" + $("#Email").val() + "',phone:'" + $("#phone").val() + "'}}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 if (result > 0) {
-                   //alert("修改成功");
+                    alert("修改成功");
                     // location.href = '/DemoAJAX/Index';
                 } else {
                     alert("修改失败");
@@ -227,7 +227,7 @@
                 layer = layui.layer;
 
             //监听提交
-            form.on('submit(add)',
+            form.on('submit(Edit)',
                 function (data) {
                     console.log(data);
                     //发异步，把数据提交给php
@@ -235,10 +235,10 @@
                         icon: 6
                     },
                         function () {
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
                             //关闭当前frame
-                            xadmin.close();
-                            // 可以对父窗口进行刷新
-                            xadmin.father_reload();
+                            parent.layer.close(index);
                         });
                     return false;
                 });

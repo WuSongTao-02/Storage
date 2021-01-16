@@ -102,5 +102,10 @@ namespace BLL.LiuJIeBLL
         {
             return WarehouseSerivce.GetDeleteWarehouse(id);
         }
-    }
+
+        public static Model.Jie.PageList GetPageListWarehouses(int pageIndex, int pageSize)
+        {
+            return WarehouseManager.GetPageListWarehouses(pageIndex, pageSize);
+        }
+        }
 }

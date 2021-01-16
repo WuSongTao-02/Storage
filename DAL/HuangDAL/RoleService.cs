@@ -14,7 +14,6 @@ namespace DAL.HuangDAL
         {
             CangChuEntities1 entities1 = new CangChuEntities1();
             var obj = from p in entities1.Role
-                      where p.IsDelete == 0
                       select new
                       {
                           id = p.RoleId,
