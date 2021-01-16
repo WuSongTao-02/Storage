@@ -19,8 +19,7 @@ namespace DAL.ShuaiDAL
                       DamOrder=p.DamOrder,
                       DamPerson=p.DamPerson,
                       AudiId=p.AudiId,
-                          ProId = from jj in hh.DamageStorage select jj.ProId,
-                          CreateTime =p.CreateTime,
+                      CreateTime=p.CreateTime,
                       IsDelete=p.IsDelete,
                       Remake=p.Remake,
                       };
@@ -39,7 +38,6 @@ namespace DAL.ShuaiDAL
                           DamOrder = p.DamOrder,
                           DamPerson = p.DamPerson,
                           AudiId = p.AudiId,
-                          ProId = from jj in hh.DamageStorage select jj.ProId,
                           CreateTime = p.CreateTime,
                           IsDelete = p.IsDelete,
                           Remake = p.Remake,
@@ -77,7 +75,6 @@ namespace DAL.ShuaiDAL
                           DamOrder = p.DamOrder,
                           DamPerson = p.DamPerson,
                           AudiId = p.AudiId,
-                          ProId = from jj in hh.DamageStorage select jj.ProId,
                           CreateTime = p.CreateTime,
                           IsDelete = p.IsDelete,
                           Remake = p.Remake,
@@ -99,7 +96,6 @@ namespace DAL.ShuaiDAL
                           DamOrder = p.DamOrder,
                           DamPerson = p.DamPerson,
                           AudiId = p.AudiId,
-                          ProId = from jj in hh.DamageStorage select jj.ProId,
                           CreateTime = p.CreateTime,
                           IsDelete = p.IsDelete,
                           Remake = p.Remake,
@@ -109,8 +105,5 @@ namespace DAL.ShuaiDAL
             list.PageCoun = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
             return list;
         }
-
-
-
     }
 }

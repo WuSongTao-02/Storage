@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ChanPingYeMianAdd</title>
+    <title>ChanPingUpdate</title>
     <link href="~/X-admin/css/font.css" rel="stylesheet" />
     <link href="~/X-admin/css/xadmin.css" rel="stylesheet" />
     <script src="~/X-admin/lib/layui/layui.js"></script>
@@ -17,6 +17,7 @@
 <body>
     <div class="layui-fluid">
         <div class="layui-row">
+            <form>
                 <div class="layui-form-item">
                     <label for="username" class="layui-form-label">
                         <span class="x-red">*</span>产品编号
@@ -72,30 +73,53 @@
                         <span class="x-red">*</span>创建时间
                     </label>
                     <div class="layui-input-inline">
-                        <input type="date" id="CreateTime" class="layui-input">
+                        <input type="text" id="CreateTime" class="layui-input">
                     </div>
                 </div>
+            </form>
         </div>
         <div class="layui-form-item">
-            <input type="button" id="ZengJia" value="增加" class="layui-btn" />
-            <a href="/LiuJie/ChanPingYeMian" class="layui-btn">取消</a>
+            <input type="button" id="Submit1" value="保存" class="layui-btn" />
+            <a href="/Jie/ChanPing" class="layui-btn">取消</a>
         </div>
     </div>
 </body>
 </html>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/X-admin/lib/layui/layui.js"></script>
 <script>
+    var id = 0;
     $(function () {
-        ProbaictCatagory();
-        Unit();
+        id =@Request.QueryString["id"];
+        GetUnit();
+        GetProbaitCatagory();
+        GetById(id);
+        $("#Submit1").click(function () {
+            Sava(id);
+        })
     });
-
-    //绑定产品类别
-    function ProbaictCatagory() {
+    //单位绑定
+    function GetUnit() {
         $.ajax({
             type: "POST",
-            url: "/LiuJie/GetProbaictCatagory",
+            url: "/Jie/GetUnit",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("#UnId").append("<option value='" + data.UnId + "'>" + data.UnName + "</option>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    //类别名称绑定
+    function GetProbaitCatagory() {
+        $.ajax({
+            type: "POST",
+            url: "/Jie/GetProbaitCatagory",
             data: "{}",
             dataType: "json",
             contentType: "application/json",
@@ -110,18 +134,27 @@
         });
     }
 
-    //绑定产品单位
-    function Unit() {
+    function time(m) {
+        var dd = new Date(parseInt(m.substr(6)));
+        return dd.toLocaleDateString();
+    };
+
+    function GetById(id) {
         $.ajax({
             type: "POST",
-            url: "/LiuJie/GetUnit",
-            data: "{}",
+            url: "/Jie/GetById",
+            data: "{Id:" + id + "}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
-                $.each(result, function (index, data) {
-                    $("#UnId").append("<option value='" + data.UnId + "'>" + data.UnName + "</option>");
-                });
+                $("#ProId").val(result[0].ProId);
+                $("#ProName").val(result[0].ProName);
+                $("#ProPrice").val(result[0].ProPrice);
+                $("#PorGuiGe").val(result[0].PorGuiGe);
+                $("#ProCId").val(result[0].ProCId);
+                $("#UnId").val(result[0].UnId);
+                $("#CreateTime").val(time(result[0].CreateTime));
+                $("#Remake").val(result[0].Remake);
             },
             error: function (ex) {
                 alert(ex.responseText);
@@ -129,25 +162,25 @@
         });
     }
 
-    $("#ZengJia").click(function () {
+    function Sava(id) {
         $.ajax({
             type: "POST",
-            url: "/LiuJie/GetAddProbaict",
-            data: "{pr:{ProId:'" + $("#ProId").val() + "',ProName:'" + $("#ProName").val() + "',ProPrice:'" + $("#ProPrice").val() + "',PorGuiGe:'" + $("#PorGuiGe").val() + "',ProCId:'" + $("#ProCId").val() + "',UnId:'" + $("#UnId").val() + "',CreateTime:'" + $("#CreateTime").val() + "',IsDelete:'" + 0 + "',ProNumber:'" + 0 + "',ProJinhuo:'" + 0 + "',ProChuhuo:'" + 0 + "',ProBaosun:'" + 0 + "'}}",
+            url: "/Jie/Update",
+            data: "{pr:{ProId:"+id+", ProId:'" + $("#ProId").val() + "',ProName:'" + $("#ProName ").val() + "',ProPrice:'" + $("#ProPrice").val() + "',PorGuiGe:'" + $("#PorGuiGe").val() + "',ProCId:'" + $("#ProCId").val + "',UnId:'" + $("#UnId").val() + "',CreateTime:'" + $("#CreateTime").val() + "'}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 if (result > 0) {
-                    alert("增加成功");
-                    location.href = '/LiuJie/ChanPingYeMian';
+                    alert("修改成功");
+                    location.href = '/Default/Index';
                 }
                 else {
-                    alert("增加失败");
+                    alert("修改失败");
                 }
             },
             error: function (ex) {
                 alert(ex.responseText);
             }
-        });
-    })
+        })
+    }
 </script>
