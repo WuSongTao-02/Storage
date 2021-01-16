@@ -31,6 +31,7 @@ namespace Model
         public int IsDelete { get; set; }
         public string Remake { get; set; }
         public int AudiId { get; set; }
+        public string address { get; set; }
     
         public virtual Auditing Auditing { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

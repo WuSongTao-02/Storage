@@ -7,15 +7,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 
-
-
     <link href="~/layui-v2.5.7/layui/css/layui.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/layui-v2.5.7/layui/layui.js"></script>
-    <!--[if lt IE 9]>
-      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <style type="text/css">
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 5px 5px;
+        }
+
+        .xdiv {
+            width: 540px;
+            height: 340px;
+            border: 1px solid black;
+            position: fixed;
+            left: 400px;
+            top: 100px;
+            background-color: white;
+            display: none;
+        }
+
+            .xdiv h4 {
+                color: white;
+                background-color: #626262;
+                height: 30px;
+                line-height: 30px;
+            }
+
+            .xdiv ul {
+                margin-left: 10px;
+            }
+
+                .xdiv ul:nth-of-type(1) {
+                    margin-top: 8px;
+                }
+
+                .xdiv ul li {
+                    display: inline-block;
+                    width: 250px;
+                    margin: 8px 0px;
+                    font-size: 13px;
+                    color: #626262;
+                }
+
+            .xdiv h3 {
+                color: #626262;
+                background-color: #EDEEEE;
+                height: 40px;
+                line-height: 40px;
+                margin-top: 30px;
+                text-align: right;
+            }
+
+            .xdiv input, .xdiv select {
+                height: 30px;
+                color: #626262;
+                width: 160px;
+            }
+    </style>
 </head>
 <body>
     <div class="x-nav">
@@ -35,26 +90,29 @@
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-body ">
-                        <form class="layui-form layui-col-space5">
+                        @*<form class="layui-form layui-col-space5">*@
 
                             <div class="layui-inline layui-show-xs-block">
-                                <input type="text" placeholder="请输入供应编号或名称" autocomplete="off" class="layui-input" id="username">
+                                <input type="text" placeholder="请输入供应编号" autocomplete="off" class="layui-input" id="username">
                             </div>
                             <div class="layui-inline layui-show-xs-block">
-                                @*<button class="layui-btn"  lay-filter="sreach" id="queryByName"><i class="layui-icon">&#xe615;</i></button>*@
                                 <input class="layui-btn" lay-filter="sreach" id="queryByName" value="搜索" />
-
+                                <button class="layui-btn" id="tian">添加</button>
                             </div>
-                        </form>
+
+                        @*</form>*@
+                        @*<div class="layui-card-header">
+                            
+                            <button class="layui-btn" id="tian">添加</button>
+
+                        </div>*@
                     </div>
 
                     <div class="layui-card-body ">
                         <table class="layui-table layui-form">
                             <thead>
                                 <tr>
-                                    <th>
-                                        <input type="checkbox" name="" lay-skin="primary">
-                                    </th>
+                                   
                                     <th>供应商编号</th>
                                     <th>供应商类型</th>
                                     <th>供应商名称</th>
@@ -62,7 +120,8 @@
                                     <th>Email</th>
                                     <th>联系人</th>
                                     <th>地址</th>
-                                    <th>描述</th>
+                                    <th>状态</th>
+                                    <th>备注</th>
                                     <th>操作</th>
                             </thead>
                             <tbody id="bot">
@@ -70,7 +129,34 @@
                         </table>
                         <div id="demo4"></div>
                     </div>
+                    <div class="xdiv">
+                        <h4>添加供应商</h4>
+                        <ul>
+                            <li>供应商编号&nbsp;<input type="text" placeholder="自动生成 可不填" disabled="disabled"></li>
+                            <li>供应商类型&nbsp;<input type="text" placeholder="请输入供应商类型" id="LocationNum"></li>
+                        </ul>
+                        <ul>
+                            <li>供应商名称&nbsp;<input type="text" placeholder="请输入供应商名称" id="LocationName"></li>
+                            <li>电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="请输入电话" id="LocationTel"></li>
+                        </ul>
 
+                        <ul>
+                            <li>邮箱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="请输入邮箱" id="LocationEmail"></li>
+                            <li>联系人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="请输入联系人" id="LocationLxr"></li>
+
+                        </ul>
+                        <ul>
+                            <li>地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="请输入地址" id="LocationDress"></li>
+                            <li>是否注销&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="LocationDel" /></li>
+                        </ul>
+                        <ul>
+                            <li>备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="LocationBz"></li>
+                        </ul>
+                        <h3>
+                            <input type="button" value="确定" style="width: 60px;height:26px;line-height:26px;" onclick="VendorAdd()">
+                            <input type="button" id="GBButton" value="关闭" style="   width: 60px; height: 26px;line-height: 26px;">
+                        </h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,31 +169,18 @@
         $(function () {
             GetRows();
             PageList(pageIndex, pageSize);
+
+            $('#tian').click(function () {
+                $('.xdiv').show();
+                $('.xdiv').css('box-shadow', '0 0 30px #d2d2d2');
+            });
+            $('#GBButton').click(function () {
+                $('.xdiv').hide();
+            });
+
         });
 
-        //function GetAll() {
-        //    $.ajax({
-        //        type: "post",//请求类型
-        //        url: "/Vendor/GetAll",
-        //        data: "{}",
-        //        dataType: "json",
-        //        contentType: "application/json",
-        //        success: function (rdata) {
-        //            console.log(rdata);
-        //            $("#bot tr").remove();
-        //            $.each(rdata, function (index, data) {
-        //                $("#bot").append("<tr><td><input type='checkbox' name='' lay-skin='primary'></td><td>" + data.VenId + "</td><td>" + data.VenType + "</td><td>" + data.VenName
-        //                    + "</td><td>" + data.VenTel + "</td><td>" + data.VenEmain + "</td><td>" + data.VenPerson + "</td><td>"
-        //                    + data.VenAddress + "</td><td>" + data.Remake + "</td><td><a class=''>启用</a><a class=''>编辑</a><a>删除</a></td></tr>")
-        //            })
-        //        },
-        //        error: function (xrh) {
-        //            alert(xrh.responseText);
-        //        }
-
-        //    });
-        //}
-
+      
         $("#queryByName").click(function () {
 
             //判断文本框是否为空
@@ -130,7 +203,7 @@
                         $.each(result, function (index, data) {
                             $("#bot").append("<tr><td><input type='checkbox' name='' lay-skin='primary'></td><td>" + data.VenId + "</td><td>" + data.VenType + "</td><td>" + data.VenName
                                 + "</td><td>" + data.VenTel + "</td><td>" + data.VenEmain + "</td><td>" + data.VenPerson + "</td><td>"
-                                + data.VenAddress + "</td><td>" + data.Remake + "</td><td><a class=''>启用</a><a class=''>编辑</a><a>删除</a></td></tr>")
+                                + data.VenAddress + "</td><td>" + data.Remake + "</td><td><a class=''>编辑</a><a>删除</a></td></tr>")
                         })
                     },
                     error: function (ex) {
@@ -153,10 +226,13 @@
                     console.log(rdata);
                     $("#bot tr").remove();
                     $.each(rdata.DataList, function (index, data) {
-                        $("#bot").append("<tr><td><input type='checkbox' name='' lay-skin='primary'></td><td>" + data.VenId + "</td><td>" + data.VenType + "</td><td>" + data.VenName
-                            + "</td><td>" + data.VenTel + "</td><td>" + data.VenEmain + "</td><td>" + data.VenPerson + "</td><td>"
-                            + data.VenAddress + "</td><td>" + data.Remake + "</td><td><a class=''>启用</a><a class=''>编辑</a><a>删除</a></td></tr>")
-                    })
+                        if (data.IsDelete>0) {
+                            $("#bot").append("<tr><td>" + data.VenId + "</td><td>" + data.VenType + "</td><td>" + data.VenName
+                                + "</td><td>" + data.VenTel + "</td><td>" + data.VenEmain + "</td><td>" + data.VenPerson + "</td><td>"
+                                + data.VenAddress + "</td><td>" + data.IsDelete + "</td><td>" + data.Remake + "</td><td><button class='layui-btn'>修改</button><button onclick='return VendorDele(" + data.VenId + ")' class='layui-btn'>删除</button></td></tr>")
+
+                        }
+                        })
                 },
                 error: function (xrh) {
                     alert(xrh.responseText);
@@ -202,39 +278,57 @@
             });
         }
 
-        ////根据用户名或工号进行查询
-        //$("#queryByName").click(function () {
+       //添加供应商
+        function VendorAdd() {
+            $.ajax({
+                type: "post",
+                url: "/LiuMin/VendorAdd",
+                data: "{ven:{VenType:'" + $("#LocationNum").val() + "',VenName:'" + $("#LocationName").val()
+                    + "',VenTel:'" + $("#LocationTel").val() + "',VenEmain:'" + $("#LocationEmail").val()
+                    + "',VenPerson:'" + $("#LocationLxr").val() + "',VenAddress:'" + $("#LocationDress").val()
+                    + "',IsDelete:'" + $("#LocationDel").val() + "',Remake:'" + $("LocationBz").val() + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("新增成功");
+                        PageList(pageIndex, pageSize);
+                    } else {
+                        alert("新增失败");
+                    }
+                }, error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+        }
 
-        //    ////判断文本框是否为空
-        //    //if ($("#username").val() == "") {
-        //    //    fenye(1, 10);
-        //    //    return;
-        //    //}
-        //    alert("111");
-        //    $.ajax({
-        //        type: "post",
-        //        url: "/Vendor/ShowByName",
-        //        data: "{pageIndex:" + 1 + ",pageSize:" + 10 + ",VenId:'" + $("#username").val() + "',VenName:'" + $("#username").val() + "'}",
+        //删除供应商
+        function VendorDele(id) {
+            alert("1111");
+            if (confirm('确定删除?')) {
+                $.ajax({
+                    type: "post",//请求类型
+                    url: "/LiuMin/VendorDele",
+                    data: "{id:" + id + "}",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (rdata) {
+                        if (rdata > 0) {
+                            alert("删除成功！");
+                            PageList(pageIndex, pageSize);
+                        }
+                        else {
+                            alert("删除失败！");
+                        }
+                    },
+                    error: function (xrh) {
+                        alert(xrh.responseText);
+                    }
 
-        //        dataType: "json",
-        //        contentType: "application/json",
-        //        success: function (result)
-        //        {
-        //            alert(result);
-        //            $("#bot tr").remove();
-        //            $.each(result.Datalist, function (index, data) {
-        //                $("#bot").append("<tr><td><input type='checkbox' name='' lay-skin='primary'></td><td>" + data.VenId + "</td><td>" + data.VenType + "</td><td>" + data.VenName
-        //                    + "</td><td>" + data.VenTel + "</td><td>" + data.VenEmain + "</td><td>" + data.VenPerson + "</td><td>"
-        //                    + data.VenAddress + "</td><td>" + data.Remake + "</td><td><a class=''>启用</a><a class=''>编辑</a><a>删除</a></td></tr>")
-        //            })
-        //        },
-        //        error: function (ex) {
-        //            alert("Error" + ex.responseText);
-        //        }
-        //    });
-        //});
-
-
+                });
+            }
+            return false;
+        }
     </script>
 </body>
 <script>
@@ -266,30 +360,8 @@
         });
     });
 
-    /*用户-停用*/
-
-
-    /*用户-删除*/
-    function member_del(obj, id) {
-        layer.confirm('确认要删除吗？', function (index) {
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', { icon: 1, time: 1000 });
-        });
-    }
-
-
-
-    function delAll(argument) {
-
-        var data = tableCheck.getData();
-
-        layer.confirm('确认要删除吗？' + data, function (index) {
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', { icon: 1 });
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
-    }
+   
+    
 </script>
 
 </html>

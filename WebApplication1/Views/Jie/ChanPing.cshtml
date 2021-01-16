@@ -15,17 +15,9 @@
     <script src="~/X-admin/js/xadmin.js"></script>
 </head>
 <body>
-    <div class="x-nav">
-        <span class="layui-breadcrumb">
-            <a href="">首页</a>
-            <a href="">演示</a>
-            <a>
-                <cite>导航元素</cite>
-            </a>
-        </span>
-    </div>
+   
     <div class="layui-fluid">
-        <div class="layui-row layui-col-space15">
+      
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-body ">
@@ -39,17 +31,16 @@
                     <br />
                     <div class="layui-card-header">
 
-                        <a href="/LiuJie/ChanPingYeMianAdd" class="layui-btn">添加</a>
+                        <a onclick="xadmin.open('新增商品','/LiuJie/ChanPingYeMianAdd',450,520)" class="layui-btn">添加</a>
                     </div>
                     <div>
-                        <p style="margin-left:200px"><span style="font-size:18px;font-weight:bold">产品编号</span>&nbsp;&nbsp;<input type="text" id="id" style="padding:2px" />&nbsp;&nbsp;<input type="button" value="搜索" id="sosuo" style="padding:2px" /></p>
+                        <p style="margin-left:200px"><span style="font-size:18px;font-weight:bold">产品编号</span>&nbsp;&nbsp;<input class="layui-text" type="text" id="id" style="padding:2px" />&nbsp;&nbsp;<input type="button" value="搜索" id="sosuo"    class="layui-btn"/></p>
                     </div>
                     <br />
                     <div class="layui-card-body ">
                         <table border="1" width="100%" class="layui-table">
                             <thead>
                                 <tr>
-                                    <td><input type="checkbox" name=""></td>
                                     <td>产品编号</td>
                                     <td>产品名称</td>
                                     <td>产品价格</td>
@@ -71,11 +62,13 @@
                 </div>
             </div>
         </div>
-    </div>
+
 </body>
 </html>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/X-admin/lib/layui/layui.js"></script>
+<script src="~/layer/layer.js"></script>
+<script src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
+<script src="~/X-admin/js/xadmin.js"></script>
 <script>
     var pageIndex = 1;
     var pageSize = 3;
@@ -100,7 +93,7 @@
                 pageCount = result.pageCount;
                 $("#tbl tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td><a href='#' onclick='return Delete(" + data.ProId + ")'>删除</a><a href='/LiuJie/ChanPingYeMianUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
+                    $("#tbl").append("<tr><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td><a href='#' class='layui-btn' onclick='return Delete(" + data.ProId + ")'>删除</a><a href='javascript:' class='layui-btn' onclick=\"xadmin.open('产品修改','/LiuJie/ChanPingYeMianUpdate?id=" + data.ProId +"',460,550)\">修改</a></td></tr>");
                 })
             },
             error: function (ex) {
@@ -127,7 +120,7 @@
                 pageCount = result.pageCount;
                 $("#tbl tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return Delete(" + data.ProId + ")'>删除</a><a href='/LiuJie/ChanPingYeMianUpdate?id=" + data.ProId + "'>修改</a></td></tr>");
+                    $("#tbl").append("<tr><td><input  type='checkbox'name='subcheck'/></td><td>" + data.ProId + "</td><td>" + data.ProName + "</td><td>" + data.ProPrice + "</td><td>" + data.PorGuiGe + "</td><td>" + data.ProCId + "</td><td>" + data.UnId + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return Delete(" + data.ProId + ")'>删除</a><a onclick=\"xadmin.open('产品修改',''/LiuJie/ChanPingYeMianUpdate?id=" + data.ProId+"',880,550)\" >修改</a></td></tr>");
                 })
             },
             error: function (ex) {
