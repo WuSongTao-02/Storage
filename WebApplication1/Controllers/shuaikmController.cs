@@ -11,26 +11,8 @@ namespace WebApplication1.Controllers
     public class shuaikmController : Controller
     {
         // GET: shuaikm
-
-
-
-        public ActionResult Add() {
-            return View();
-        }
-        public ActionResult tuihuo() {
-            return View();
-        }
         public ActionResult Index()
         {
-            return View();
-        }
-        public ActionResult yiku() {
-            return View();
-        }
-        public ActionResult pandian() {
-            return View();
-        }
-        public ActionResult cate() {
             return View();
         }
 
@@ -42,118 +24,25 @@ namespace WebApplication1.Controllers
         public ActionResult GetRows() {
             return Json(BLL.ShuaiBLL.BaoSunManager.GetRows(), JsonRequestBehavior.AllowGet);
 
-        }
-        public ActionResult GetRows1() {
-            return Json(BLL.ShuaiBLL.YiKuManager.GetRows1(), JsonRequestBehavior.AllowGet);
 
         }
         public ActionResult edit(int id)
         {
-            return Json(BLL.ShuaiBLL.BaoSunManager.edit(id), JsonRequestBehavior.AllowGet);
+            return Json(BLL.ShuaiBLL.BaoSunManager.edit(id),JsonRequestBehavior.AllowGet);
         }
-        public ActionResult yikuedit(int id) {
-            return Json(BLL.ShuaiBLL.YiKuManager.yikuedit(id), JsonRequestBehavior.AllowGet);
+            public ActionResult GetPageList(int PageIndex, int PageSize){
 
-        }
-        public ActionResult GetPageList(int PageIndex, int PageSize) {
-
-            return Json(BLL.ShuaiBLL.BaoSunManager.GetPageList(PageIndex, PageSize), JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult YikuPageList(int PageIndex, int PageSize) {
-            return Json(BLL.ShuaiBLL.YiKuManager.YikuPageList(PageIndex, PageSize), JsonRequestBehavior.AllowGet);
-        }
+            return Json(BLL.ShuaiBLL.BaoSunManager.GetPageList(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
+            }
 
         public ActionResult GetPageList1(int PageIndex, int PageSize, string name) {
-            return Json(BLL.ShuaiBLL.BaoSunManager.GetPageList1(PageIndex, PageSize, name), JsonRequestBehavior.AllowGet);
+            return Json(BLL.ShuaiBLL.BaoSunManager.GetPageList1(PageIndex,PageSize,name),JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ChaXun2(string name)
         {
-            return Json(BLL.ShuaiBLL.BaoSunManager.ChaXun2(name), JsonRequestBehavior.AllowGet);
-
+            return Json(BLL.ShuaiBLL.BaoSunManager.ChaXun2(name),JsonRequestBehavior.AllowGet);
+        
         }
-        public ActionResult Yikuchaxun() {
-            return Json(BLL.ShuaiBLL.YiKuManager.Yikuchaxun(), JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult YikuPageList1(int PageIndex, int PageSize, string name) {
-            return Json(BLL.ShuaiBLL.YiKuManager.YikuPageList1(PageIndex, PageSize, name), JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult YikuPageList2(int PageIndex, int PageSize, string name, DateTime sname, DateTime sname2) {
-            return Json(BLL.ShuaiBLL.YiKuManager.YikuPageList2(PageIndex, PageSize, name, sname, sname2), JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult YikuPageList3(int PageIndex, int PageSize, DateTime sname, DateTime sname2)
-        {
-            return Json(BLL.ShuaiBLL.YiKuManager.YikuPageList3(PageIndex, PageSize, sname, sname2), JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult querydaishenhe(int PageIndex, int PageSize) {
-            return Json(BLL.ShuaiBLL.YiKuManager.querydaishenhe(PageIndex, PageSize), JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult Querytongguo(int PageIndex, int PageSize) {
-            return Json(BLL.ShuaiBLL.YiKuManager.Querytongguo(PageIndex, PageSize), JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult Queryshibai(int PageIndex, int PageSize) {
-            return Json(BLL.ShuaiBLL.YiKuManager.Queryshibai(PageIndex, PageSize), JsonRequestBehavior.AllowGet);
-
-        }
-
-
-        //退货管理代码
-
-        public  ActionResult TuiHuochaxun(int PageIndex, int PageSize) {
-
-            return Json(BLL.ShuaiBLL.TuiHuoManager.TuiHuochaxun(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
-
-        }
-
-        public ActionResult GetRows2() {
-            return Json(BLL.ShuaiBLL.TuiHuoManager.GetRows2(),JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult Tuihuoedit(int id) {
-            return Json(BLL.ShuaiBLL.TuiHuoManager.Tuihuoedit(id),JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult TuiHuodaishenhe(int PageIndex, int PageSize) {
-            return Json(BLL.ShuaiBLL.TuiHuoManager.TuiHuodaishenhe(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
-        }
-
-
-        public ActionResult TuiHuoTongHuo(int PageIndex,int PageSize) {
-            return Json(BLL.ShuaiBLL.TuiHuoManager.TuiHuoTongHuo(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
-    }
-        public ActionResult TuiHuoShiBai(int PageIndex,int PageSize) {
-            return Json(BLL.ShuaiBLL.TuiHuoManager.TuiHuoShiBai(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult AnMinzi(int PageIndex,int PageSize,string name) {
-            return Json(BLL.ShuaiBLL.TuiHuoManager.AnMinzi(PageIndex,PageSize,name),JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult TuiHuoPageList2(int PageIndex, int PageSize, string name, DateTime sname, DateTime sname2) {
-
-            return Json(BLL.ShuaiBLL.TuiHuoManager.TuiHuoPageList2(PageIndex,PageSize,name,sname,sname2),JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult TuiHuoPageList3(int PageIndex, int PageSize, DateTime sname, DateTime sname2) {
-            return Json(BLL.ShuaiBLL.TuiHuoManager.TuiHuoPageList3(PageIndex,PageSize,sname,sname2),JsonRequestBehavior.AllowGet);
-        }
-
-
-        public ActionResult jiAdd(GarageShift kk)
-        {
-            return Json(BLL.ShuaiBLL.YiKuManager.Add(kk),JsonRequestBehavior.AllowGet);
-        }
-            public ActionResult GetNo(DateTime time) {
-            return Json(BLL.ShuaiBLL.YiKuManager.GetNo(time),JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult tadd(GarageShiftStorage ll) {
-            return Json(BLL.ShuaiBLL.YiKuManager.tadd(ll),JsonRequestBehavior.AllowGet);
-
-        }
-
         }
 }
