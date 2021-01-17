@@ -32,5 +32,15 @@ namespace BLL.LiuMingBLL
         {
             return VendorDAL.ShowByName1(VenId);
         }
+        //添加供应商
+        public static int VendorAdd(Vendor ven)
+        {
+            return VendorDAL.VendorAdd(ven);
+        }
+        //删除
+        public static int VendorDele(int id)
+        {
+            return VendorDAL.VendorDele(id);
+        }
     }
 }

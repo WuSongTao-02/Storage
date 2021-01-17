@@ -7,10 +7,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <script src="~/X-admin/js/jquery.min.js"></script>
-    <script src="~/X-admin/js/xadmin.js"></script>
+
     <script src="~/layui-v2.5.7/layui/layui.all.js"></script>
     <link href="~/layui-v2.5.7/layui/css/layui.css" rel="stylesheet" />
     <script src="~/layui-v2.5.7/layui/layui.js"></script>
+    <style type="text/css">
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 5px 5px;
+        }
+
+        .xdiv {
+            width: 520px;
+            height: 265px;
+            border: 1px solid black;
+            position: fixed;
+            left: 400px;
+            top: 100px;
+            background-color: white;
+            display: none;
+        }
+
+            .xdiv h4 {
+                color: white;
+                background-color: #626262;
+                height: 30px;
+                line-height: 30px;
+            }
+
+            .xdiv ul {
+                margin-left: 10px;
+            }
+
+                .xdiv ul:nth-of-type(1) {
+                    margin-top: 8px;
+                }
+
+                .xdiv ul li {
+                    display: inline-block;
+                    width: 250px;
+                    margin: 8px 0px;
+                    font-size: 13px;
+                    color: #626262;
+                }
+
+            .xdiv h3 {
+                color: #626262;
+                background-color: #EDEEEE;
+                height: 40px;
+                line-height: 40px;
+                margin-top: 46px;
+                text-align: right;
+            }
+
+            .xdiv input, .xdiv select {
+                height: 30px;
+                color: #626262;
+                width: 160px;
+            }
+    </style>
 </head>
 <body>
     <div class="x-nav">
@@ -30,170 +91,205 @@
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-body ">
-                        <form class="layui-form layui-col-space5">
-                            <div class="layui-inline layui-show-xs-block">
-
-                                <select><option value="">请选择仓库</option> <option value="1">产品仓库</option></select>
-                            </div>
-                            <div class="layui-inline layui-show-xs-block">
-                                <select>
-                                    <option value="">请选择类型</option>
-                                    <option value="1">正式库区</option>
-                                    <option value="2">报损库区</option>
-                                    <option value="3">待出库区</option>
-                                    <option value="4">待检库区</option>
-                                    <option value="5">待入库区</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline layui-show-xs-block">
-                                <input type="text" name="username" placeholder="请输入库位" autocomplete="off" class="layui-input">
-                            </div>
-                            <div class="layui-inline layui-show-xs-block">
-                                <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="layui-card-header">
-                        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                        <button class="layui-btn" onclick="xadmin.open('添加用户','./role-add.html',600,400)">添加</button>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" id="userName" placeholder="请输入客户名称" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <button id="queryByName" class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                            <button class="layui-btn" id="tian">添加</button>
+                        </div>
 
                     </div>
+                    @*<div class="layui-card-header">
+
+                            <button class="layui-btn" id="tian" >添加</button>
+                        </div>*@
                     <div class="layui-card-body ">
                         <table class="layui-table layui-form">
                             <thead>
                                 <tr>
-                                    <th>
-                                        <input type="checkbox" name="" lay-skin="primary">
-                                    </th>
+
                                     <th>客户编号</th>
                                     <th>客户名称</th>
                                     <th>电话</th>
+                                    <th>状态</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
+                                </tr>
                             </thead>
 
                             <tbody id="bot">
-
-                               
                             </tbody>
 
                         </table>
                     </div>
+                    <div class="xdiv">
+                        <h4>添加客户</h4>
+                        <ul>
+                            <li>客户编号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="自动生成 可不填" disabled="disabled"></li>
+                            <li>客户名称&nbsp;<input type="text" placeholder="请输入客户名称" id="LocationNum"></li>
+                        </ul>
+                        <ul>
+                            <li>客户电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="请输入电话" id="LocationName"></li>
+                            <li>创建时间&nbsp;<input type="text" placeholder="请输入时间" id="LocationTime"></li>
+                        </ul>
 
+                        <ul>
+                            <li>邮箱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="请输入邮箱" id="LocationEmail"></li>
+                            <li>是否注销&nbsp;<input type="text" id="LocationDel"></li>
+
+                        </ul>
+                        <ul>
+                            <li>订单数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="请输入订单数" id="LocationShu"></li>
+                            <li>备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="LocationRem" /></li>
+                        </ul>
+                        <h3>
+                            <input type="button" value="确定" style="width: 60px;height:26px;line-height:26px;" onclick="CustAdd()">
+                            <input type="button" id="GBButton" value="关闭" style="   width: 60px; height: 26px;line-height: 26px;">
+                        </h3>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-  
 
-    <script>
-
-            $(function () {
-
-                GetAll();
-
-            })
-
-            //时间类型转换
-            var time = new Date();
-            var y = time.getUTCFullYear(); //获取bai年du
-            var m = time.getMonth() + 1; //获取月
-            var d = time.getDate(); //获取日zhi
-            var CopyTime = y + "-" + m + "-" + d;
-            function GetTime(op) {
-                var time = new Date(parseInt(op.substr(6)));
-                return time.toLocaleString();
-            }
-            function GetAll() {
-                $.ajax({
-                    type: "post",//请求类型
-                    url: "/LiuMin/CustGetAll",
-                    data: "{}",
-                    dataType: "json",
-                    contentType: "application/json",
-                    success: function (rdata) {
-                        console.log(rdata);
-                        $("#bot tr").remove();
-                        $.each(rdata, function (index, data) {
-                            $("#bot").append("<tr><td><input type='checkbox' name='' lay-skin='primary'></td><td>" + data.CusId + "</td><td>" + data.CusName + "</td><td>" + data.CusTel
-                                + "</td><td>" + GetTime(data.CreateTime) + "</td><td><button class='layui-btn'>修改</button></td></tr>")
-                        })
-                    },
-                    error: function (xrh) {
-                        alert(xrh.responseText);
-                    }
-
-                });
-            }
-    </script>
 </body>
+
+
+</html>
 <script>
-      layui.use(['laydate','form'], function(){
+    $(function () {
+        GetAll();
+        $('#tian').click(function () {
+            $('.xdiv').show();
+            $('.xdiv').css('box-shadow', '0 0 30px #d2d2d2');
+        });
+        $('#GBButton').click(function () {
+            $('.xdiv').hide();
+        });
+    })
+    //时间类型转换
+    var time = new Date();
+    var y = time.getUTCFullYear(); //获取bai年du
+    var m = time.getMonth() + 1; //获取月
+    var d = time.getDate(); //获取日zhi
+    var CopyTime = y + "-" + m + "-" + d;
+    function GetTime(op) {
+        var time = new Date(parseInt(op.substr(6)));
+        return time.toLocaleString();
+    }
+    //查询所有
+    function GetAll() {
+        $.ajax({
+            type: "post",//请求类型
+            url: "/LiuMin/CustGetAll",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (rdata) {
+                console.log(rdata);
+                $("#bot tr").remove();
+                $.each(rdata, function (index, data) {
+                    if (data.IsDelete > 0) {
+                        $("#bot").append("<tr><td>" + data.CusId + "</td><td>" + data.CusName + "</td><td>" + data.CusTel
+                            + "</td><td>" + data.IsDelete + "</td><td>" + GetTime(data.CreateTime) + "</td><td><button onclick='return CustomerDele(" + data.CusId + ")' class='layui-btn'>删除</button></td></tr>")
+                    }
+                })
+            },
+            error: function (xrh) {
+                alert(xrh.responseText);
+            }
+        });
+    }
+    //根据编号查询
+    $("#queryByName").click(function () {
+        var a = $("#userName").val();
+
+        $.ajax({
+            type: "post",
+            url: "/LiuMin/Custquery",
+            data: "{SName:'" + a + "'}",
+            dataType: "json",
+            async: false,
+            contentType: "application/json",
+            success: function (rdata) {
+
+                console.log(rdata);
+                $("#bot").empty();
+                $.each(rdata, function (index, data) {
+                    if (data.IsDelete > 0) {
+                        $("#bot").append("<tr><td>" + data.CusId + "</td><td>" + data.CusName + "</td><td>" + data.CusTel
+                            + "</td><td>" + data.IsDelete + "</td><td>" + GetTime(data.CreateTime) + "</td><td><button onclick='return CustomerDele(" + data.CusId + ")' class='layui-btn'>删除</button></td></tr>")
+                    }
+                })
+            },
+            error: function (ex) {
+                alert("Error" + ex.responseText);
+            }
+        });
+    });
+    //添加客户名称
+    function CustAdd() {
+        $.ajax({
+            type: "post",
+            url: "/LiuMin/CustAdd",
+            data: "{cust:{CusName:'" + $("#LocationNum").val() + "',CusTel:'" + $("#LocationName").val()
+                + "',CreateTime:'" + $("#LocationTime").val() + "',email:'" + $("#LocationEmail").val()
+                + "',IsDelete:'" + $("#LocationDel").val() + "',CusNum:'" + $("#LocationShu").val()
+                + "',Remanke:'" + $("#LocationRem").val() + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    alert("新增成功");
+                    GetAll();
+                } else {
+                    alert("新增失败");
+                }
+            }, error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    //删除客户信息
+    function CustomerDele(id) {
+        alert("1111");
+        if (confirm('确定删除?')) {
+            $.ajax({
+                type: "post",//请求类型
+                url: "/LiuMin/CustomerDele",
+                data: "{id:" + id + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (rdata) {
+                    if (rdata > 0) {
+                        alert("删除成功！");
+                        GetAll();
+                    }
+                    else {
+                        alert("删除失败！");
+                    }
+                },
+                error: function (xrh) {
+                    alert(xrh.responseText);
+                }
+            });
+        }
+        return false;
+    }
+</script>
+
+<script>
+    layui.use(['laydate', 'form'], function () {
         var laydate = layui.laydate;
         var form = layui.form;
-
         //执行一个laydate实例
         laydate.render({
-          elem: '#start' //指定元素
+            elem: '#start' //指定元素
         });
-
         //执行一个laydate实例
         laydate.render({
-          elem: '#end' //指定元素
+            elem: '#end' //指定元素
         });
-      });
-
-       /*用户-停用*/
-      function member_stop(obj,id){
-          layer.confirm('确认要停用吗？',function(index){
-
-              if($(obj).attr('title')=='启用'){
-
-                //发异步把用户状态进行更改
-                $(obj).attr('title','停用')
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!',{icon: 5,time:1000});
-
-              }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!',{icon: 5,time:1000});
-              }
-
-          });
-      }
-
-      /*用户-删除*/
-      function member_del(obj,id){
-          layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
-          });
-      }
-
-
-
-      function delAll (argument) {
-
-        var data = tableCheck.getData();
-
-        layer.confirm('确认要删除吗？'+data,function(index){
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
-      }
+    });
 </script>
-<script>
-var _hmt = _hmt || []; (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();</script>
-</html>

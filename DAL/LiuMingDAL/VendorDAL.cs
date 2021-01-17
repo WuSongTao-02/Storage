@@ -37,6 +37,7 @@ namespace DAL.LiuMingDAL
                           VenEmain = p.VenEmain,
                           VenPerson = p.VenPerson,
                           VenAddress = p.VenAddress,
+                          IsDelete = p.IsDelete,
                           Remake = p.Remake
                       };
             //设置分页数据
@@ -55,14 +56,15 @@ namespace DAL.LiuMingDAL
             var obj = from p in contxt.Vendor
                       select new
                       {
-                            VenId=p.VenId,
-                            VenType=p.VenType,
-                            VenName=p.VenName,
-                            VenTel=p.VenTel,
-                            VenEmain=p.VenEmain,
-                            VenPerson=p.VenPerson,
-                            VenAddress=p.VenAddress,
-                            Remake=p.Remake
+                          VenId = p.VenId,
+                          VenType = p.VenType,
+                          VenName = p.VenName,
+                          VenTel = p.VenTel,
+                          VenEmain = p.VenEmain,
+                          VenPerson = p.VenPerson,
+                          VenAddress = p.VenAddress,
+                          IsDelete = p.IsDelete,
+                          Remake = p.Remake
 
                       };
             return obj;
@@ -87,6 +89,7 @@ namespace DAL.LiuMingDAL
                           VenEmain = p.VenEmain,
                           VenPerson = p.VenPerson,
                           VenAddress = p.VenAddress,
+                          IsDelete = p.IsDelete,
                           Remake = p.Remake
                       };
             list.Datalist = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
@@ -100,7 +103,7 @@ namespace DAL.LiuMingDAL
         {
             CangChuEntities1 contxt = new CangChuEntities1();
             var obj = from p in contxt.Vendor
-                      where p.VenId == VenId 
+                      where p.VenId == VenId
                       select new
                       {
                           VenId = p.VenId,
@@ -114,5 +117,26 @@ namespace DAL.LiuMingDAL
                       };
             return obj;
         }
+
+        #region 添加供应商
+        public static int VendorAdd(Vendor ven)
+        {
+            CangChuEntities1 contxt = new CangChuEntities1();
+            contxt.Vendor.Add(ven);
+            return contxt.SaveChanges();
+        }
+        #endregion
+
+        #region 删除供应商
+        public static int VendorDele(int id)
+        {
+            CangChuEntities1 txtcon = new CangChuEntities1();
+            var obj = (from p in txtcon.Vendor
+                       where p.VenId == id
+                       select p).First();
+            obj.IsDelete = 0;
+            return txtcon.SaveChanges();
+        }
+        #endregion
     }
 }

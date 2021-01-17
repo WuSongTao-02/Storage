@@ -10,9 +10,9 @@ namespace DAL.LiuMingDAL
     /// <summary>
     /// 库位管理
     /// </summary>
-   public class StorehouseDAL
+    public class StorehouseDAL
     {
-       
+
 
         #region 查询所有
         public static IQueryable GetAll11()
@@ -37,14 +37,13 @@ namespace DAL.LiuMingDAL
         #endregion
 
         #region 按条件查询
-        public static PageList querid(int pageIndex, int pagesize,string SupName,string StName,string StoreNum) 
+        public static IQueryable querid(string store, string StName, string StoreName)
         {
             PageList list = new PageList();
             CangChuEntities1 contxt = new CangChuEntities1();
             var obj = from p in contxt.Storehouse
-                      orderby p.StoreNum
-                      where p.Supplier.SupName == SupName || p.Storehousetype.StName == StName || p.StoreNum == StoreNum
-                      select new {
+                      select new
+                      {
                           StorId = p.StorId,
                           StoreNum = p.StoreNum,
                           StoreName = p.StoreName,
@@ -53,23 +52,19 @@ namespace DAL.LiuMingDAL
                           IsJin = p.Storehousetype.IsJin,
                           IsMoren = p.IsMoren,
                           CreateTime = p.CreateTime
+
                       };
-            list.Datalist = obj.Skip((pageIndex - 1) * pagesize).Take(pagesize);
-            int row = contxt.Storehouse.Count();
-            list.PageCount = row % pagesize == 0 ? row / pagesize : row / pagesize + 1;
-            return list;
+
+            if (store != "" || StName != "" || StoreName != "")
+            {
+                obj = obj.Where(p => p.SupName == store || p.StName == StName || p.StoreName == StoreName);
+            }
+
+            return obj;
         }
         #endregion
 
-        #region 新增
-        public static int Add(Storehouse stroe)
-        {
-            CangChuEntities1 contxt = new CangChuEntities1();
-            contxt.Storehouse.Add(stroe);
-            return contxt.SaveChanges();
-        }
 
-        #endregion
 
     }
 }
