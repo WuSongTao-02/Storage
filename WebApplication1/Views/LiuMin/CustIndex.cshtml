@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
@@ -74,18 +78,7 @@
     </style>
 </head>
 <body>
-    <div class="x-nav">
-        <span class="layui-breadcrumb">
-            <a href="">首页</a>
-            <a href="">演示</a>
-            <a>
-                <cite>导航元素</cite>
-            </a>
-        </span>
-        <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
-            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
-        </a>
-    </div>
+   
     <div class="layui-fluid">
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12">
@@ -112,7 +105,6 @@
                                     <th>客户编号</th>
                                     <th>客户名称</th>
                                     <th>电话</th>
-                                    <th>状态</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -190,10 +182,10 @@
                 console.log(rdata);
                 $("#bot tr").remove();
                 $.each(rdata, function (index, data) {
-                    if (data.IsDelete > 0) {
+                   
                         $("#bot").append("<tr><td>" + data.CusId + "</td><td>" + data.CusName + "</td><td>" + data.CusTel
-                            + "</td><td>" + data.IsDelete + "</td><td>" + GetTime(data.CreateTime) + "</td><td><button onclick='return CustomerDele(" + data.CusId + ")' class='layui-btn'>删除</button></td></tr>")
-                    }
+                            + "</td><td>" + GetTime(data.CreateTime) + "</td><td><button onclick='return CustomerDele(" + data.CusId + ")' class='layui-btn'>删除</button></td></tr>")
+                    
                 })
             },
             error: function (xrh) {

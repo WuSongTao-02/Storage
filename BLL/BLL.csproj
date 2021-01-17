@@ -60,6 +60,7 @@
     <Compile Include="ShuaiBLL\Class1.cs" />
     <Compile Include="ShuaiBLL\TuiHuoManager.cs" />
     <Compile Include="ShuaiBLL\YiKuManager.cs" />
+    <Compile Include="WstBLL\StatementBLL.cs" />
     <Compile Include="WstBLL\WstLoginBLL.cs" />
   </ItemGroup>
   <ItemGroup>

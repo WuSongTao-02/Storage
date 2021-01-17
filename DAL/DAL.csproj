@@ -65,6 +65,7 @@
     <Compile Include="ShuaiDAL\BaoSunService.cs" />
     <Compile Include="ShuaiDAL\TuiHuoService.cs" />
     <Compile Include="ShuaiDAL\YiKuService.cs" />
+    <Compile Include="WstDAL\StatementDAL.cs" />
     <Compile Include="WstDAL\WstLoginDAl.cs" />
   </ItemGroup>
   <ItemGroup>

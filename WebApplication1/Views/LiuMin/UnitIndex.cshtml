@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
@@ -97,16 +101,15 @@
                             <button class="layui-btn" id="queryByName" onclick="" lay-submit="" lay-filter="sreach">查询</button>
                             <button class="layui-btn" id="tian">添加</button>
                         </div>
-                        
+
                     </div>
 
                     <div class="layui-card-body ">
                         <table class="layui-table layui-form">
                             <thead>
                                 <tr>
-                                    <td>编号</td>
-                                    <td>名称</td>
-                                    <td>状态</td>
+                                    <td width="400px">编号</td>
+                                    <td width="400px">名称</td>
                                     <td>操作</td>
                             </thead>
                             <tbody id="bot">
@@ -154,7 +157,7 @@
             $('.xdiv').hide();
         });
     });
-   
+
     //查询所有
     function GetAll() {
         $.ajax({
@@ -167,10 +170,10 @@
                 console.log(rdata);
                 $("#bot").empty();
                 $.each(rdata, function (index, data) {
-                    if (data.IsDelete > 0) {
-                        $("#bot").append("<tr><td>" + data.UnId + "</td><td>" + data.UnName + "</td><td>" + data.IsDelete + "</td><td><button class='layui-btn'>修改</button><button onclick='return UnitDele(" + data.UnId + ")' class='layui-btn'>删除</button></tr>")
-                           }
-                    })
+                   
+                        $("#bot").append("<tr><td>" + data.UnId + "</td><td>" + data.UnName + "</td><td><button class='layui-btn'>修改</button><button onclick='return UnitDele(" + data.UnId + ")' class='layui-btn'>删除</button></tr>")
+                    
+                })
             },
             error: function (xrh) {
                 alert(xrh.responseText);
@@ -181,31 +184,31 @@
 
 
     //根据编号查询
-        $("#queryByName").click(function () {
-            var a = $("#userName").val();
-            
-            $.ajax({
-                type: "post",
-                url: "/LiuMin/Unitquery",
-                data: "{SName:'" + a + "'}",
+    $("#queryByName").click(function () {
+        var a = $("#userName").val();
 
-                dataType: "json",
-                async: false,
-                contentType: "application/json",
-                success: function (rdata) {
-                    console.log(rdata);
-                    $("#bot").empty();
-                    $.each(rdata, function (index, data) {
-                        if (data.IsDelete > 0) {
-                            $("#bot").append("<tr><td>" + data.UnId + "</td><td>" + data.UnName + "</td><td>" + data.IsDelete + "</td><td><button class='layui-btn'>修改</button><button onclick='return UnitDele(" + data.UnId + ")' class='layui-btn'>删除</button></tr>")
-                        }
-                    })
-                },
-                error: function (ex) {
-                    alert("Error" + ex.responseText);
-                }
-            });
+        $.ajax({
+            type: "post",
+            url: "/LiuMin/Unitquery",
+            data: "{SName:'" + a + "'}",
+
+            dataType: "json",
+            async: false,
+            contentType: "application/json",
+            success: function (rdata) {
+                console.log(rdata);
+                $("#bot").empty();
+                $.each(rdata, function (index, data) {
+                   
+                        $("#bot").append("<tr><td>" + data.UnId + "</td><td>" + data.UnName + "</td><td><button class='layui-btn'>修改</button><button onclick='return UnitDele(" + data.UnId + ")' class='layui-btn'>删除</button></tr>")
+                    
+                })
+            },
+            error: function (ex) {
+                alert("Error" + ex.responseText);
+            }
         });
+    });
 
     //添加单位名称
     function UnitAdd() {
@@ -229,7 +232,7 @@
         });
     }
 
-   //删除单位名称
+    //删除单位名称
     function UnitDele(id) {
         alert("1111");
         if (confirm('确定删除?')) {
@@ -256,5 +259,5 @@
         }
         return false;
     }
-    
+
 </script>
