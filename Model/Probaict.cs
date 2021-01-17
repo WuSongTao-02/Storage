@@ -37,7 +37,6 @@ namespace Model
         public int ProBaosun { get; set; }
         public int IsDelete { get; set; }
         public string Remake { get; set; }
-        public int ProTuihuo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DamageStorage> DamageStorage { get; set; }

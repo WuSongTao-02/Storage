@@ -9,19 +9,9 @@ namespace DAL.HuangDAL
 {
    public  class DeptService
     {
-        public static IQueryable queryDept()
-        {
-            CangChuEntities1 entities1 = new CangChuEntities1();
-            var obj = from p in entities1.Dept where p.IsDelete==0
-                      select new
-                      {
-                          id = p.DeptId,
-                          name = p.DeptName
-                      };
-            return obj;
-        }
         public static int GetRows()
         {
+            
             CangChuEntities1 entities = new CangChuEntities1();
             return entities.Dept.Count();
         }
@@ -30,7 +20,7 @@ namespace DAL.HuangDAL
         {
             CangChuEntities1 entities = new CangChuEntities1();
             Model.Huang.PageList list = new Model.Huang.PageList();
-            var obj = from p in entities.Dept where p.IsDelete==0
+            var obj = from p in entities.Dept
                       orderby p.DeptId
                       select new
                       {
@@ -67,6 +57,8 @@ namespace DAL.HuangDAL
             CangChuEntities1 entity = new CangChuEntities1();
             var obj = (from p in entity.Dept where p.DeptId == de.DeptId select p).First();
             obj.DeptName = de.DeptName;
+            obj.CreateTime = de.CreateTime;
+            obj.Remake = de.Remake;
             return entity.SaveChanges();
         }
 
@@ -76,14 +68,6 @@ namespace DAL.HuangDAL
             var obj = (from p in entities.Dept where p.DeptId == DeptId select p).First();
             entities.Dept.Remove(obj);
             return entities.SaveChanges();
-        }
-
-        public static int dele(Dept dd)
-        {
-            CangChuEntities1 entity = new CangChuEntities1();
-            var obj = (from p in entity.Dept where p.DeptId == dd.DeptId select p).First();
-            obj.IsDelete = dd.IsDelete;
-            return entity.SaveChanges();
         }
 
         public static int Add(Dept de)
