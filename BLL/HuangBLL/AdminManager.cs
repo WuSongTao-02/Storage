@@ -10,6 +10,10 @@ namespace BLL.HuangBLL
 {
    public  class AdminManager
     {
+        public static IQueryable QueryTest(Admin ad)
+        {
+            return AdminService.QueryTest(ad);
+        }
 
         public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
         {

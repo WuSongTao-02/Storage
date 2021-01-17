@@ -9,6 +9,58 @@ namespace DAL.HuangDAL
 {
    public  class AdminService
     {
+        public static IQueryable QueryTest(Admin ad)
+        {
+            CangChuEntities1 entity = new CangChuEntities1();
+            var obj = from p in entity.Admin
+                      where p.IsDelete == 0
+                      select new
+                      {
+                          Id = p.Id,
+                          UserName = p.UserName,
+                          RealName = p.RealName,
+                          RoleId = p.RoleId,
+                          DeptId = p.DeptId,
+                          Rname = p.Role.RoleName,
+                          Dname = p.Dept.DeptName,
+                          Email = p.Email,
+                          phone = p.phone,
+                          CreateTime = p.CreateTime,
+                          IsDelete = p.IsDelete,
+                          Remake = p.Remake
+                      };
+
+            if (!string.IsNullOrEmpty(ad.UserName))
+            {
+                obj = obj.Where(p => p.UserName.Contains(ad.UserName));
+            }
+            if (!string.IsNullOrEmpty(ad.RealName))
+            {
+                obj = obj.Where(p => p.RealName.Contains(ad.RealName));
+            }
+            if (ad.RoleId > 0)
+            {
+                obj = obj.Where(p => p.RoleId == ad.RoleId);
+            }
+            if (ad.DeptId > 0)
+            {
+                obj = obj.Where(p => p.DeptId == ad.DeptId);
+            }
+            return obj;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static int GetRows()
         {
             CangChuEntities1 entities = new CangChuEntities1();
@@ -44,11 +96,11 @@ namespace DAL.HuangDAL
             return list;
         }
 
-        public static IQueryable GetById(int RoleId)
+        public static IQueryable GetById(int Id)
         {
             CangChuEntities1 entity = new CangChuEntities1();
             var obj = from p in entity.Admin
-                      where p.RoleId == RoleId
+                      where p.Id == Id
                       select new
                       {
                           Id = p.Id,

@@ -11,6 +11,11 @@ namespace WebApplication1.Controllers
     public class HuangCanController : Controller
     {
         // GET: HuangCan
+
+        public ActionResult Query(Admin ad)
+        {
+            return Json(AdminManager.QueryTest(ad), JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Index()
         {
             return View();

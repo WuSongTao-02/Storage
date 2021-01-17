@@ -1,5 +1,4 @@
-﻿=
-@{
+﻿@{
     Layout = null;
 }
 
@@ -15,16 +14,51 @@
     <link rel="stylesheet" href="~/X-admin/css/xadmin.css">
 </head>
 <body>
-    <button class="layui-btn" onclick="xadmin.open('添加员工','/HuangCan/Create',450,620)"><i class="layui-icon"></i>添加</button>
+    <div class="layui-card-body">
+        <form class="layui-form layui-col-space5">
+            <div class="layui-input-inline layui-show-xs-block">
+                <input type="text" id="username" name="username" placeholder="请输入登录名" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-input-inline layui-show-xs-block">
+                <input type="text" id="RealName" name="RealName" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-input-inline layui-show-xs-block">
+                <div class="layui-input-inline">
+                    <select id="DeptId" name="DeptId" class="valid">
+                    </select>
+                </div>
+            </div>
+            <div class="layui-input-inline layui-show-xs-block">
+                <div class="layui-input-inline">
+                    <select id="RoleId" name="RoleId">
+                    </select>
+                </div>
+            </div>
+        </form>
+        <div class="layui-input-inline layui-show-xs-block">
+            <button class="layui-btn" lay-submit="add" lay-filter="sreach" onclick="GAI()">
+                <i class="layui-icon">&#xe615;</i>
+            </button>
+            <button class="layui-btn" onclick="xadmin.open('添加员工','/HuangCan/Create',450,620)">
+                <i class="layui-icon"></i>新增员工
+            </button>
+        </div>
+    </div>
+
+
+
+    
+
     <div class="layui-card-body layui-table-body layui-table-main">
+
         <table class="layui-table layui-form">
             <thead>
                 <tr>
                     <th>编号</th>
                     <th>登录名</th>
                     <th>真实姓名</th>
-                    <th>角色名</th>
-                    <th>部门名称</th>
+                    <th>所属部门</th>
+                    <th>角色</th>
                     <th>电子邮箱</th>
                     <th>电话</th>
                     <th>创建时间</th>
@@ -53,11 +87,92 @@
     }
 
     $(function () {
+        layui.use('form', function () {
+            var form = layui.form;
+            form.render();
+        });
+        GetDepts();
+        GetRole();
         PageRows();
         PageList(pageIndex, pageSize);
 
+        
     });
 
+    function GAI() {
+       
+        $.ajax({
+            type: "POST",
+            url: "/HuangCan/Query",
+            async: false,
+            data: "{ad:{UserName:'" + $("#username").val() + "',RealName:'" + $("#RealName").val() + "',DeptId:'" + $("#DeptId").val() + "',RoleId:'" + $("#RoleId").val() + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr").remove();
+                $.each(result, function (index, data) {
+                    $("#tb1").append("<tr><th>" + data.Id + "</th><th>" + data.UserName + "</th><th>" + data.RealName + "</th><th>" + data.Dname + "</th><th>" + data.Rname + "</th><th>" + data.Email + "</th><th>" + data.phone + "</th><th>" + ConverTime(data.CreateTime) + "</th><th> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='return Del(" + data.Id + ")'></i></button> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='xadmin.open(&quot;修改员工信息&quot;,&quot;/HuangCan/Update?id=" + data.Id + "&quot;,450,620)'></i></button></th></tr>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+
+    function GetDepts() {
+        $.ajax({
+            url: "/HuangCan/queryDept",
+            data: "{}",
+            type: "post",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#DeptId").empty();
+                $("#DeptId").prepend("<option value=0>请选择所属部门</option>");
+                $.each(result, function (index, data) {
+                    $("#DeptId").append(new Option(data.name, data.id))
+                });
+                layui.use(['laypage', 'layer'], function () {
+                    var laypage = layui.laypage
+                        , layer = layui.layer;
+                    var form = layui.form,
+                        layer = layui.layer;
+                    form.render("select");
+                });
+            }, error: function (ex) {
+                alert("Error:" + ex.responseText);
+            }
+
+        });
+    }
+
+    function GetRole() {
+        $.ajax({
+            url: "/HuangCan/queryRole",
+            data: "{}",
+            type: "post",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#RoleId").empty();
+                $("#RoleId").prepend("<option value=0>请选择所任角色</option>");
+                $.each(result, function (index, data) {
+                    $("#RoleId").append(new Option(data.name, data.id))
+                });
+                layui.use(['laypage', 'layer'], function () {
+                    var laypage = layui.laypage
+                        , layer = layui.layer;
+                    var form = layui.form,
+                        layer = layui.layer;
+                    form.render("select");
+                });
+            }, error: function (ex) {
+                alert("Error:" + ex.responseText);
+            }
+
+        });
+    }
 
     function PageRows() {
         $.ajax({
@@ -108,7 +223,7 @@
                 //console.log(result);
                 $("#tb1 tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tb1").append("<tr><th>" + data.Id + "</th><th>" + data.UserName + "</th><th>" + data.RealName + "</th><th>" + data.Rname + "</th><th>" + data.Dname + "</th><th>" + data.Email + "</th><th>" + data.phone + "</th><th>" + ConverTime(data.CreateTime) + "</th><th> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='return Del(" + data.Id + ")'></i></button> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='xadmin.open(&quot;修改员工信息&quot;,&quot;/HuangCan/Update?id=" + data.Id + "&quot;,450,620)'></i></button></th></tr>");
+                    $("#tb1").append("<tr><th>" + data.Id + "</th><th>" + data.UserName + "</th><th>" + data.RealName + "</th><th>" + data.Dname + "</th><th>" + data.Rname + "</th><th>" + data.Email + "</th><th>" + data.phone + "</th><th>" + ConverTime(data.CreateTime) + "</th><th> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='return Del(" + data.Id + ")'></i></button> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='xadmin.open(&quot;修改员工信息&quot;,&quot;/HuangCan/Update?id=" + data.Id + "&quot;,450,620)'></i></button></th></tr>");
                 });
             },
             error: function (ex) {
@@ -117,7 +232,7 @@
         });
 
     }
-
+    
 
     function Del(Id) {
         if (confirm('确定删除?')) {
