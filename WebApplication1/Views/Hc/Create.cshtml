@@ -11,8 +11,6 @@
     <title>Create</title>
     <link rel="stylesheet" href="~/X-admin/css/font.css">
     <link rel="stylesheet" href="~/X-admin/css/xadmin.css">
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-
 </head>
 <body>
     <div class="layui-fluid">
@@ -20,8 +18,7 @@
             <form class="layui-form">
                 <div class="layui-form-item">
                     <label for="L_username" class="layui-form-label">
-                        <span class="x-red">*</span>部门名
-                            
+                        <span class="x-red">*</span>角色名
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" id="name" name="name" required="" lay-verify="nikename" autocomplete="off" class="layui-input">
@@ -29,62 +26,35 @@
                 </div>
                 <div class="layui-form-item">
                     <label for="L_repass" class="layui-form-label"></label>
-                    <button id="Submit1" class="layui-btn" lay-filter="add" lay-submit="" onclick="Save(id)">确认</button>
+                    <button class="layui-btn" lay-filter="add" lay-submit="" onclick="add()">增加</button>
                 </div>
             </form>
         </div>
     </div>
-
-
 </body>
 </html>
 <script type="text/javascript" src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="~/X-admin/js/xadmin.js"></script>
 <script>
-    var id = 0;
-    $(function () {
-         id =@Request.QueryString["id"];
-        GetById(id);
-    });
-
-    function GetById(id) {
+    var IsDelete = 0;
+    function add() {
         $.ajax({
             type: "POST",
-            url: "/Huang/GetById",
-            data: "{id:"+id+"}",
-            dataType: "json",
-            contentType: "application/json",
-            success: function (result) {
-                $("#name").val(result[0].DeptName); 
-            },
-            error: function (ex) {
-                alert(ex.responseText);
-            }
-        });
-
-    }
-
-    $("#Submit1").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "/Huang/Edit",
-            data: "{de:{DeptId:" + id + ",DeptName:'" + $("#name").val() + "'}}",
+            url: "/Hc/Add",
+            data: "{r:{RoleName:'" + $("#name").val() + "',IsDelete:'" + IsDelete + "'}}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 if (result > 0) {
-                    // location.href = '/DemoAJAX/Index';
                 } else {
-                    alert("修改失败");
+                    alert("新增失败");
                 }
             },
             error: function (ex) {
                 alert(ex.responseText);
             }
         });
-    });
-   
-
+    }
 
     layui.use(['form', 'layer', 'jquery'],
         function () {
@@ -94,8 +64,8 @@
             //自定义验证规则
             form.verify({
                 nikename: function (value) {
-                    if (value.length < 3) {
-                        return '部门名称至少得3个字符啊';
+                    if (value.length < 2) {
+                        return '部门名称至少得2个字符啊';
                     }
                 },
             });
@@ -103,7 +73,7 @@
             form.on('submit(add)',
                 function (data) {
                     console.log(data);
-                    layer.alert("修改成功", {
+                    layer.alert("增加成功", {
                         //发异步，把数据提交给php
                         icon: 1
                     },
@@ -115,6 +85,6 @@
                         });
                     return false;
                 });
+
         });
 </script>
-

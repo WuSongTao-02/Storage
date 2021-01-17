@@ -11,6 +11,10 @@ namespace BLL.HuangBLL
 {
    public  class DeptManager
     {
+        public static IQueryable queryDept()
+        {
+            return DeptService.queryDept();
+        }
         public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
         {
             return DeptService. PageListDemo(pageindex, pagesize);
@@ -28,7 +32,12 @@ namespace BLL.HuangBLL
             return DeptService.Del(DeptId);
         }
 
-        public static int Add(Dept de)
+        public static int dele(Dept dd)
+        {
+            return DeptService.dele(dd);
+        }
+
+            public static int Add(Dept de)
         {
             return DeptService.Add(de);
         }

@@ -15,7 +15,7 @@ namespace DAL.HuangDAL
             return entities.Admin.Count();
         }
 
-            public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
+        public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
         {
             CangChuEntities1 entities = new CangChuEntities1();
             Model.Huang.PageList list = new Model.Huang.PageList();
@@ -44,11 +44,11 @@ namespace DAL.HuangDAL
             return list;
         }
 
-        public static IQueryable GetById(int Id)
+        public static IQueryable GetById(int RoleId)
         {
             CangChuEntities1 entity = new CangChuEntities1();
             var obj = from p in entity.Admin
-                      where p.Id == Id
+                      where p.RoleId == RoleId
                       select new
                       {
                           Id = p.Id,

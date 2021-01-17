@@ -11,6 +11,10 @@ namespace BLL.HuangBLL
 {
    public  class RoleManager
     {
+        public static IQueryable queryRole()
+        {
+            return RoleService.queryRole();
+        }
 
         public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
         {
@@ -24,9 +28,9 @@ namespace BLL.HuangBLL
         }
 
 
-        public static int Del(int Id)
+        public static int dele(Role r)
         {
-            return RoleService.Del(Id);
+            return RoleService.dele(r);
         }
 
         public static int Add(Role r)

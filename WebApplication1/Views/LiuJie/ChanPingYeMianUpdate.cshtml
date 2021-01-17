@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ChanPingUpdate</title>
+    <title>ChanPingYeMianUpdate</title>
     <link href="~/X-admin/css/font.css" rel="stylesheet" />
     <link href="~/X-admin/css/xadmin.css" rel="stylesheet" />
     <script src="~/X-admin/lib/layui/layui.js"></script>
@@ -79,47 +79,31 @@
             </form>
         </div>
         <div class="layui-form-item">
-            <input type="button" id="Submit1" value="保存" class="layui-btn" />
-            <a href="/Jie/ChanPing" class="layui-btn">取消</a>
+            <input type="button" id="BaoCun" value="保存" class="layui-btn" />
+            
         </div>
     </div>
 </body>
 </html>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/X-admin/lib/layui/layui.js"></script>
 <script>
     var id = 0;
     $(function () {
         id =@Request.QueryString["id"];
-        GetUnit();
-        GetProbaitCatagory();
+        ProbaictCatagory();
+        Unit();
         GetById(id);
-        $("#Submit1").click(function () {
+        $("#BaoCun").click(function () {
             Sava(id);
         })
     });
-    //单位绑定
-    function GetUnit() {
+
+    //绑定产品类别
+    function ProbaictCatagory() {
         $.ajax({
             type: "POST",
-            url: "/Jie/GetUnit",
-            data: "{}",
-            dataType: "json",
-            contentType: "application/json",
-            success: function (result) {
-                $.each(result, function (index, data) {
-                    $("#UnId").append("<option value='" + data.UnId + "'>" + data.UnName + "</option>");
-                });
-            },
-            error: function (ex) {
-                alert(ex.responseText);
-            }
-        });
-    }
-    //类别名称绑定
-    function GetProbaitCatagory() {
-        $.ajax({
-            type: "POST",
-            url: "/Jie/GetProbaitCatagory",
+            url: "/LiuJie/GetProbaictCatagory",
             data: "{}",
             dataType: "json",
             contentType: "application/json",
@@ -134,15 +118,36 @@
         });
     }
 
+    //绑定产品单位
+    function Unit() {
+        $.ajax({
+            type: "POST",
+            url: "/LiuJie/GetUnit",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("#UnId").append("<option value='" + data.UnId + "'>" + data.UnName + "</option>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+
+    //时间
     function time(m) {
         var dd = new Date(parseInt(m.substr(6)));
         return dd.toLocaleDateString();
     };
 
+    //根据id查询单条产品信息
     function GetById(id) {
         $.ajax({
             type: "POST",
-            url: "/Jie/GetById",
+            url: "/LiuJie/GetByIdProbaict",
             data: "{Id:" + id + "}",
             dataType: "json",
             contentType: "application/json",
@@ -154,7 +159,6 @@
                 $("#ProCId").val(result[0].ProCId);
                 $("#UnId").val(result[0].UnId);
                 $("#CreateTime").val(time(result[0].CreateTime));
-                $("#Remake").val(result[0].Remake);
             },
             error: function (ex) {
                 alert(ex.responseText);
@@ -162,17 +166,17 @@
         });
     }
 
+    //修改
     function Sava(id) {
         $.ajax({
             type: "POST",
-            url: "/Jie/Update",
-            data: "{pr:{ProId:"+id+", ProId:'" + $("#ProId").val() + "',ProName:'" + $("#ProName ").val() + "',ProPrice:'" + $("#ProPrice").val() + "',PorGuiGe:'" + $("#PorGuiGe").val() + "',ProCId:'" + $("#ProCId").val + "',UnId:'" + $("#UnId").val() + "',CreateTime:'" + $("#CreateTime").val() + "'}",
+            url: "/LiuJie/GetUpdateProbaict",
+            data: "{pr:{ProId:'" + $("#ProId").val() + "',ProName:'" + $("#ProName").val() + "',ProPrice:'" + $("#ProPrice").val() + "',PorGuiGe:'" + $("#PorGuiGe").val() + "',ProCId:'" + $("#ProCId").val() + "',UnId:'" + $("#UnId").val() + "',CreateTime:'" + $("#CreateTime").val() + "',IsDelete:'" + 0 + "',ProNumber:'" + 0 + "',ProJinhuo:'" + 0 + "',ProChuhuo:'" + 0 + "',ProBaosun:'" + 0 + "'}}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 if (result > 0) {
                     alert("修改成功");
-                    location.href = '/Default/Index';
                 }
                 else {
                     alert("修改失败");

@@ -9,9 +9,21 @@ namespace DAL.HuangDAL
 {
    public  class RoleService
     {
+
+        public static IQueryable queryRole()
+        {
+            CangChuEntities1 entities1 = new CangChuEntities1();
+            var obj = from p in entities1.Role
+                      where p.IsDelete == 0
+                      select new
+                      {
+                          id = p.RoleId,
+                          name = p.RoleName
+                      };
+            return obj;
+        }
         public static int GetRows()
         {
-
             CangChuEntities1 entities = new CangChuEntities1();
             return entities.Role.Count();
         }
@@ -20,7 +32,7 @@ namespace DAL.HuangDAL
         {
             CangChuEntities1 entities = new CangChuEntities1();
            Model.Huang.PageList list = new Model.Huang.PageList();
-            var obj = from p in entities.Role
+            var obj = from p in entities.Role where p.IsDelete == 0
                       orderby p.RoleId
                       select new
                       {
@@ -57,28 +69,25 @@ namespace DAL.HuangDAL
             CangChuEntities1 entity = new CangChuEntities1();
             var obj = (from p in entity.Role where p.RoleId == r.RoleId select p).First();
             obj.RoleName = r.RoleName;
-            obj.CreateTime = r.CreateTime;
-            obj.Remake =r.Remake;
             return entity.SaveChanges();
         }
 
-        public static int Del(int RoleId)
-        {
-            CangChuEntities1 entities = new CangChuEntities1();
-            var obj = (from p in entities.Role where p.RoleId == RoleId select p).First();
-            entities.Role.Remove(obj);
-            return entities.SaveChanges();
-        }
+        
 
         public static int Add(Role r)
         {
             CangChuEntities1 entities = new CangChuEntities1();
-
             entities.Role.Add(r);
             return entities.SaveChanges();
         }
 
-
+        public static int dele(Role r)
+        {
+            CangChuEntities1 entity = new CangChuEntities1();
+            var obj = (from p in entity.Role where p.RoleId == r.RoleId select p).First();
+            obj.IsDelete = r.IsDelete;
+            return entity.SaveChanges();
+        }
 
 
 
