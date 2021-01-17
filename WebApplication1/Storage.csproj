@@ -561,6 +561,9 @@
     <Content Include="Views\LiuMin\CustIndex.cshtml" />
     <Content Include="Views\LiuMin\Index.cshtml" />
     <Content Include="Views\LiuMin\VendorIndex.cshtml" />
+    <Content Include="Views\LiuJie\ChanPingLeibieYeMian.cshtml" />
+    <Content Include="Views\LiuJie\ChanPingLeiBieYeMianAdd.cshtml" />
+    <Content Include="Views\LiuJie\ChanPingLeiBieYeMianUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

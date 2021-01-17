@@ -110,7 +110,7 @@ namespace WebApplication1.Controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult GetProbaictCatagory() {
-            return Json(ProbaictCatagoryManager.GetProbaictCatagory(),JsonRequestBehavior.AllowGet);
+            return Json(ProbaictCatagoryManager.GetProbaictCatagorySerivce(),JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -358,6 +358,102 @@ namespace WebApplication1.Controllers
         public ActionResult ChuKuYeMianUpdate()
         {
             return View();
+        }
+
+        /// <summary>
+        /// 产品类别页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChanPingLeibieYeMian() {
+            return View();
+        }
+
+        /// <summary>
+        /// 产品类别分页查询
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult GetPageListProbaictCatagory(int pageIndex, int pageSize)
+        {
+            return Json(ProbaictCatagoryManager.GetPageListProbaictCatagory(pageIndex,pageSize),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 产品类别总条数
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetRows()
+        {
+            return Json(ProbaictCatagoryManager.GetRows(),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 产品类别删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult GetDeleteProbaictCatagory(int id)
+        {
+            return Json(ProbaictCatagoryManager.GetDeleteProbaictCatagory(id),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 产品新增页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChanPingLeiBieYeMianAdd() {
+            return View();
+        }
+
+        /// <summary>
+        /// 产品类别新增
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public ActionResult GetAddProbaictCatagory(ProbaictCatagory p)
+        {
+            return Json(ProbaictCatagoryManager.GetAddProbaictCatagory(p),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 产品类别修改页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChanPingLeiBieYeMianUpdate() {
+            return View();
+        }
+
+        /// <summary>
+        /// 根据id查询
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult GetById(int id)
+        {
+            return Json(ProbaictCatagoryManager.GetById(id),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 产品类别修改
+        /// </summary>
+        /// <param name="pr"></param>
+        /// <returns></returns>
+        public ActionResult GetUpdateProbaictCatagory(ProbaictCatagory pr)
+        {
+            return Json(ProbaictCatagoryManager.GetUpdateProbaictCatagory(pr),JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据id查询数据分页产品类别
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="ProId"></param>
+        /// <returns></returns>
+        public ActionResult TiaoJianProidProbaictCatagory(int pageIndex, int pageSize, int ProId)
+        {
+            return Json(ProbaictCatagoryManager.TiaoJianProidProbaictCatagory(pageIndex,pageSize,ProId),JsonRequestBehavior.AllowGet);
         }
     }
 }
