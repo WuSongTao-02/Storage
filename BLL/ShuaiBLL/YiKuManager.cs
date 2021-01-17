@@ -53,13 +53,8 @@ namespace BLL.ShuaiBLL
         {
             return DAL.ShuaiDAL.YiKuService.Add(kk);
         }
-        public static string GetNo() {
-            return DAL.ShuaiDAL.YiKuService.GetNo();
-        }
-
-        public static string GetNo1()
-        {
-            return DAL.ShuaiDAL.YiKuService.GetNo1();
+        public static string GetNo(DateTime time) {
+            return DAL.ShuaiDAL.YiKuService.GetNo(time);
         }
         public static int tadd(GarageShiftStorage ll)
         {

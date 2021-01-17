@@ -17,16 +17,28 @@ namespace BLL.LiuJIeBLL
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static Model.PageList PageListProbaict(int pageIndex, int pageSize)
+        public static Model.Jie.PageList PageListProbaict(int pageIndex, int pageSize)
         {
             return ProbaictSerivce.PageListProbaict(pageIndex, pageSize);
         }
 
         /// <summary>
-        /// 总条数
+        /// 根据条件分页
         /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="ProId"></param>
         /// <returns></returns>
-        public static int GetRows()
+        public static Model.Jie.PageList TiaoJianPageListProbaict(int pageIndex, int pageSize, string ProId)
+        {
+            return ProbaictSerivce.TiaoJianProidPageListProbaict(pageIndex,pageSize,ProId);
+        }
+
+            /// <summary>
+            /// 总条数
+            /// </summary>
+            /// <returns></returns>
+            public static int GetRows()
         {
             return ProbaictSerivce.GetRows();
         }
@@ -36,7 +48,7 @@ namespace BLL.LiuJIeBLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static int GetDelete(string id)
+        public static int GetDelete(string  id)
         {
             return ProbaictSerivce.GetDelete(id);
         }
@@ -46,9 +58,9 @@ namespace BLL.LiuJIeBLL
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public static int Add(Probaict p)
+        public static int Add(Probaict pr)
         {
-            return ProbaictSerivce.Add(p);
+            return ProbaictSerivce.Add(pr);
         }
 
         /// <summary>

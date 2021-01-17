@@ -44,11 +44,11 @@ namespace DAL.HuangDAL
             return list;
         }
 
-        public static IQueryable GetById(int Id)
+        public static IQueryable GetById(int RoleId)
         {
             CangChuEntities1 entity = new CangChuEntities1();
             var obj = from p in entity.Admin
-                      where p.Id == Id
+                      where p.RoleId == RoleId
                       select new
                       {
                           Id = p.Id,
