@@ -15,7 +15,7 @@ namespace DAL.HuangDAL
             return entities.Admin.Count();
         }
 
-            public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
+        public static Model.Huang.PageList PageListDemo(int pageindex, int pagesize)
         {
             CangChuEntities1 entities = new CangChuEntities1();
             Model.Huang.PageList list = new Model.Huang.PageList();
