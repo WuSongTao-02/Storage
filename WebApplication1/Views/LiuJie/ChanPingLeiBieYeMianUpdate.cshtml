@@ -52,8 +52,9 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label for="L_repass" class="layui-form-label"></label>
-        <button class="layui-btn" id="BaoCun">保存</button>
+        @*<label for="L_repass" class="layui-form-label"></label>
+        <button class="layui-btn" id="BaoCun">保存</button>*@
+        <a href="/LiuJie/ChanPingLeibieYeMian">返回</a>
     </div>
 </body>
 </html>
@@ -62,12 +63,12 @@
 <script>
         var id = 0;
         $(function () {
-        id =@Request.QueryString["id"];
-        GetById(id);
-        $("#BaoCun").click(function () {
-            Sava(id);
-        })
-    });
+            id =@Request.QueryString["id"];
+            GetById(id);
+            $("#BaoCun").click(function () {
+                Sava(id);
+            })
+        });
 
         function GetById(id) {
             $.ajax({
@@ -99,7 +100,7 @@
             $.ajax({
                 type: "POST",
                 url: "/LiuJie/GetUpdateProbaictCatagory",
-                data: "{p:{ProCName:'" + $("#ProCName").val() + "',ProCCreteName:'" + $("#ProCCreteName").val() + "'}}",
+                data: "{pr:{ProCName:'" + $("#ProCName").val() + "',ProCCreteName:'" + $("#ProCCreteName").val() + "',CreateTime:'" + $("#CreateTime").val() + "',IsDelete:'" + 0 + "',Remake:'" + $("#Remake") + "'}}",
                 dataType: "json",
                 contentType: "application/json",
                 success: function (result) {

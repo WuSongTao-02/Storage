@@ -98,7 +98,7 @@
                 pageCount = result.pageCount;
                 $("#tbl tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tbl").append("<tr><td>" + data.ProCId + "</td><td>" + data.ProCName + "</td><td>" + data.ProCCreteName + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a onclick='return Delete(" + data.ProCId + ")'>删除</a><a href='/LiuJie/ChanPingLeiBieYeMianUpdate?id=" + data.ProCId + "'>编辑</a></td>");
+                    $("#tbl").append("<tr><td>" + data.ProCId + "</td><td>" + data.ProCName + "</td><td>" + data.ProCCreteName + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a onclick='return Delete(" + data.ProCId + ")'>删除</a><a href='/LiuJie/ChanPingLeiBieYeMianUpdate?id=" + data.ProCId + "'>查看</a></td>");
                 })
             },
             error: function (ex) {
@@ -125,7 +125,7 @@
                 pageCount = result.pageCount;
                 $("#tbl tr").remove();
                 $.each(result.DataList, function (index, data) {
-                    $("#tbl").append("<tr><td>" + data.ProCId + "</td><td>" + data.ProCName + "</td><td>" + data.ProCCreteName + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a onclick='return Delete(" + data.ProCId + ")'>删除</a><a href='/LiuJie/ChanPingLeiBieYeMianUpdate?id=" + data.ProCId + "'>编辑</a></td>");
+                    $("#tbl").append("<tr><td>" + data.ProCId + "</td><td>" + data.ProCName + "</td><td>" + data.ProCCreteName + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Remake + "</td><td><a onclick='return Delete(" + data.ProCId + ")'>删除</a><a href='/LiuJie/ChanPingLeiBieYeMianUpdate?id=" + data.ProCId + "'>查看</a></td>");
                 })
             },
             error: function (ex) {

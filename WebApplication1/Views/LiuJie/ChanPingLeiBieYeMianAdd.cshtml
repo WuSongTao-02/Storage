@@ -60,7 +60,7 @@
             $.ajax({
                 type: "POST",
                 url: "/LiuJie/GetAddProbaictCatagory",
-                data: "{p:{ProCName:'" + $("#ProCName").val() + "',ProCCreteName:'" + $("#ProCCreteName").val() + "'}}",
+                data: "{p:{ProCName:'" + $("#ProCName").val() + "',ProCCreteName:'" + $("#ProCCreteName").val() + "',CreateTime:'" + $("#CreateTime").val() + "',IsDelete:'" + 0 + "',Remake:'" + $("#Remake")+"'}}",
                 dataType: "json",
                 contentType: "application/json",
                 success: function (result) {
