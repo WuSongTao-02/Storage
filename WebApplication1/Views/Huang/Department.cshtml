@@ -11,41 +11,39 @@
     <title>Department</title>
 
     <link href="~/X-admin/css/font.css" rel="stylesheet" />
-    <link href="~/X-admin/js/xadmin.js" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/X-admin/js/xadmin.js"></script>
     <link href="~/X-admin/lib/layui/css/layui.css" rel="stylesheet" />
-    <link rel="stylesheet" href="X-admin/css/xadmin.css">
     <link rel="stylesheet" href="~/X-admin/css/xadmin.css">
-    <script src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="~/X-admin/js/xadmin.js"></script>
+
 
 
 
 </head>
 <body>
-    <button class="layui-btn" onclick="xadmin.open('添加部门','/Huang/Create',500,240)"><i class="layui-icon"></i>添加</button>
+    <button class="layui-btn" onclick="xadmin.open('添加部门','/Huang/Create',450,220)"><i class="layui-icon"></i>添加</button>
 
 
-    
-            <div class="layui-card-body layui-table-body layui-table-main">
-                <table  class="layui-table layui-form">
-                    <thead>
-                        <tr>
-                            <th>部门编号</th>
-                            <th>部门名称</th>
-                            <th>创建时间</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tb1"></tbody>
-                </table>
-                <div class="layui-card-body " id="demoPageList"></div>
-            </div>
+
+    <div class="layui-card-body layui-table-body layui-table-main">
+        <table class="layui-table layui-form">
+            <thead>
+                <tr>
+                    <th>部门编号</th>
+                    <th>部门名称</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="tb1"></tbody>
+        </table>
+        <div class="layui-card-body " id="demoPageList"></div>
+    </div>
 </body>
 </html>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/X-admin/lib/layui/layui.js"></script>
-
+<script src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="~/X-admin/js/xadmin.js"></script>
 <script>
 
 
@@ -89,7 +87,7 @@
                                 //调用分页的方法
                                 PageList(obj.curr, obj.limit);
                             }
-                            console.log(obj)
+                            
                         }
                     });
                 });
@@ -113,8 +111,8 @@
                 pageCount = result.PageCount;
                 //console.log(result);
                 $("#tb1 tr").remove();
-                $.each(result.DataList, function (index, data) {                                                         
-                    $("#tb1").append("<tr><th>" + data.DeptId + "</th><th>" + data.DeptName + "</th><th>" + ConverTime(data.CreateTime) + "</th><th> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='return Del(" + data.DeptId + ")'></i></button><button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon'></i></button></th></tr>");
+                $.each(result.DataList, function (index, data) {
+                    $("#tb1").append("<tr><th>" + data.DeptId + "</th><th>" + data.DeptName + "</th><th>" + ConverTime(data.CreateTime) + "</th><th> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='return Del(" + data.DeptId + ")'></i></button> <button type='button' class='layui-btn layui-btn-sm'><i class='layui-icon' onclick='xadmin.open(&quot;修改部门&quot;,&quot;/Huang/Update?id="+data.DeptId+"&quot;,440,220)'></i></button></th></tr>");
                 });
             },
             error: function (ex) {
@@ -126,17 +124,16 @@
 
     function Del(DeptId) {
         if (confirm('确定删除?')) {
-
             $.ajax({
                 type: "POST",
-                url: "/Huang/Del",
-                data: "{DeptId:" + DeptId + "}",
+                url: "/Huang/dele",
+                data: "{DeptId:" + DeptId + ",IsDelete:"+1+"}",
                 dataType: "json",
                 contentType: "application/json",
                 success: function (result) {
                     if (result > 0) {
                         alert("删除成功！");
-                        PageList(1,10);
+                        PageList(1, 10);
                     }
                     else {
                         alert("删除失败！");

@@ -51,6 +51,7 @@
                             <thead>
                                 <tr>
                                     <td>ID</td>
+                                    <td>产品ID</td>
                                     <td>报损类型</td>
                                     <td>关联订单编号</td>
                                     <td>制单人</td>
@@ -99,7 +100,7 @@
             success: function (res) {
                 $("#tab tr").remove();
                 $.each(res.DataList, function (index, data) {
-                    $("#tab").append("<tr><td>" + data.Damid + "</td><td>" + data.DamType + "</td><td>" + data.DamOrder + "</td><td>" + data.DamPerson + "</td><td>" + data.AudiId + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.Damid + ")'>删除</a></td></tr>");
+                    $("#tab").append("<tr><td>" + data.Damid + "</td><td>" + data.ProId+"</td><td>" + data.DamType + "</td><td>" + data.DamOrder + "</td><td>" + data.DamPerson + "</td><td>" + data.AudiId + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.Damid + ")'>删除</a></td></tr>");
 
                 });
             }
@@ -118,8 +119,8 @@
             success: function (res) {
                 $("#tab tr").remove();
                 $.each(res.DataList, function (index, data) {
-                    $("#tab").append("<tr><td>" + data.Damid + "</td><td>" + data.DamType + "</td><td>" + data.DamOrder + "</td><td>" + data.DamPerson + "</td><td>" + data.AudiId + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.Damid + ")'>删除</a></td></tr>");
-                });
+                    $("#tab").append("<tr><td>" + data.Damid + "</td><td>" + data.ProId + "</td><td>" + data.DamType + "</td><td>" + data.DamOrder + "</td><td>" + data.DamPerson + "</td><td>" + data.AudiId + "</td><td>" + time(data.CreateTime) + "</td><td><a onclick='return edit(" + data.Damid + ")'>删除</a></td></tr>");
+});
             }
         });
     }
