@@ -21,18 +21,40 @@ namespace BLL.LiuMingBLL
         }
 
         #region 按条件查询
-        public static PageList querid(int pageIndex, int pagesize, string SupName, string StName, string StoreNum)
+        public static IQueryable querid(string store, string StName, string StoreName)
         {
-            return StorehouseDAL.querid(pageIndex,pagesize, SupName,StName, StoreNum);
+            return StorehouseDAL.querid(store, StName, StoreName);
         }
         #endregion
 
-        public static int Add(Storehouse stroe)
+
+        /// <summary>
+        /// 根据id查询
+        /// </summary>
+        /// <param name="id">编号</param>
+        /// <returns>数据集合</returns>
+        public static IQueryable StorehouseById(int id)
         {
-            return StorehouseDAL.Add(stroe);
+            return StorehouseDAL.StorehouseById(id);
         }
 
 
+        /// <summary>
+        /// 库位类型
+        /// </summary>
+        /// <returns></returns>
+        public static IQueryable type()
+        {
+            return StorehouseDAL.type();
+        }
+        public static IQueryable cangchu()
+        {
+            return StorehouseDAL.cangchu();
+        }
 
+        public static int update(Storehouse s)
+        {
+            return StorehouseDAL.update(s);
+        }
         }
 }

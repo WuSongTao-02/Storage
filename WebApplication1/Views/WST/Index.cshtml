@@ -37,7 +37,7 @@
                 </dl>
             </li>
             <li class="layui-nav-item to-index">
-                <a href="login.html">退出登录</a>
+                <a href="/WST/Login">退出登录</a>
             </li>
         </ul>
     </div>
@@ -56,20 +56,20 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a onclick="xadmin.add_tab('员工管理','welcome1.html')">
+                            <a onclick="xadmin.add_tab('员工管理','/HuangCan/Index')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>员工管理</cite>
                              
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('角色管理','member-list.html')">
+                            <a onclick="xadmin.add_tab('角色管理','/Hc/Index')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>角色管理</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('部门管理','member-list1.html',true)">
+                            <a onclick="xadmin.add_tab('部门管理','/Huang/Department')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>部门管理</cite>
                             </a>
@@ -84,25 +84,25 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a onclick="xadmin.add_tab('库位管理','order-list.html')">
+                            <a onclick="xadmin.add_tab('库位管理','/LiuMin/Index')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>库位管理</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('供应商管理','order-list.html')">
+                            <a onclick="xadmin.add_tab('供应商管理','/LiuMin/VendorIndex')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>供应商管理</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('客户管理','order-list1.html')">
+                            <a onclick="xadmin.add_tab('客户管理','/LiuMin/CustIndex')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>客户管理</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('计量单位','order-list1.html')">
+                            <a onclick="xadmin.add_tab('计量单位','/LiuMin/UnitIndex')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>计量单位</cite>
                             </a>
@@ -114,7 +114,7 @@
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('产品管理','order-list1.html')">
+                            <a onclick="xadmin.add_tab('产品管理','/LiuJie/ChanPingYeMian')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>产品管理</cite>
                             </a>
@@ -129,37 +129,31 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a onclick="xadmin.add_tab('入库管理','admin-list.html')">
+                            <a onclick="xadmin.add_tab('入库管理','/LiuJie/RuKuYeMian')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>入库管理</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('出库管理','admin-role.html')">
+                            <a onclick="xadmin.add_tab('出库管理','/LiuJie/ChuKuYeMian')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>出库管理</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('报损管理','admin-cate.html')">
+                            <a onclick="xadmin.add_tab('报损管理','/shuaikm/cate')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>报损管理</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('移库管理','admin-rule.html')">
+                            <a onclick="xadmin.add_tab('移库管理','/shuaikm/yiku')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>移库管理</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('盘点管理','admin-cate.html')">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>盘点管理</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a onclick="xadmin.add_tab('退货管理','admin-rule.html')">
+                            <a onclick="xadmin.add_tab('退货管理','/shuaikm/tuihuo')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>退货管理</cite>
                             </a>
@@ -174,67 +168,55 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a onclick="xadmin.add_tab('库存清单','echarts1.html')">
+                            <a onclick="xadmin.add_tab('库存清单','/WST/GoodsStatistics')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>库存清单</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('货品统计','echarts2.html')">
+                            <a onclick="xadmin.add_tab('货品统计','/WST/Inventory')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>货品统计</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('入库报表','echarts3.html')">
+                            <a onclick="xadmin.add_tab('入库报表','/WST/Warehouse')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>入库报表</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('出库报表','echarts4.html')">
+                            <a onclick="xadmin.add_tab('出库报表','/WST/Deliver')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>出库报表</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('报损报表','echarts5.html')">
+                            <a onclick="xadmin.add_tab('报损报表','/WST/Damage')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>报损报表</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('退货报表','echarts6.html')">
+                            <a onclick="xadmin.add_tab('退货报表','/WST/Comeback')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>退货报表</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('客户报表','echarts7.html')">
+                            <a onclick="xadmin.add_tab('客户报表','/WST/Customer')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>客户报表</cite>
                             </a>
                         </li>
                         <li>
-                            <a onclick="xadmin.add_tab('供应商报表','echarts8.html')">
+                            <a onclick="xadmin.add_tab('供应商报表','/WST/Vendor')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>供应商报表</cite>
                             </a>
                         </li>
-                        <li>
-                            <a onclick="xadmin.add_tab('台账记录','echarts8.html')">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>台账记录</cite>
-                            </a>
-                        </li>
+                       
                     </ul>
-                </li>
-                <li>
-                    <a href="javascript:;" onclick="logout()">
-                        <i class="iconfont left-nav-li" lay-tips="退出系统">&#xe6b4;</i>
-                        <cite>退出系统</cite>
-                    </a>
-
                 </li>
 
             </ul>
@@ -259,7 +241,7 @@
             </div>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <iframe src='./welcome.html' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                    <iframe src='/WST/welcome' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
                 </div>
             </div>
             <div id="tab_show"></div>
@@ -277,7 +259,7 @@
 
 <script>
     function logout() {
-
+        
         location.href = "/WST/Login";
     }
 </script>

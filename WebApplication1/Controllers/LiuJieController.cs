@@ -272,6 +272,8 @@ namespace WebApplication1.Controllers
             return Json(DeliverManager.GetPageListDeliver1(pageIndex, pageSize), JsonRequestBehavior.AllowGet);
         }
 
+   
+
         /// <summary>
         /// 分页查询Warehouse表所有数据
         /// 状态为2:审核通过

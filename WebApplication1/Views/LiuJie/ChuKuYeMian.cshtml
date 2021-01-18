@@ -15,63 +15,69 @@
     <script src="~/X-admin/js/jquery.min.js"></script>
 </head>
 <body>
-    <div class="widget box light-grey">
-        <div class="widget-title">
-            <div class="tools">
-                <a href="javascript:;" class="collapse"></a>
-                <a href="#widget-config" data-toggle="modal" class="config"></a>
-                <a href="javascript:;" class="reload"></a>
-                <a href="javascript:;" class="remove"></a>
-            </div>
-        </div>
-        <br />
-        <div class="widget-body">
-            <div class="clearfix margin-bottom-10">
-                <div class="btn-group" id="btnStatusGroup">
-                    <button class="btn disabled" value="0">所有</button>
-                    <button class="btn" value="1" onclick="QueryDaiShenHe(this)">待审核</button>
-                    <button class="btn" value="2" onclick="QueryShenHeTongGuo(this)">审核通过</button>
-                    <button class="btn" value="3" onclick="QueryShenHeShiBai(this)">审核失败</button>
+    <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="widget box light-grey">
+                <div class="widget-title">
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse"></a>
+                        <a href="#widget-config" data-toggle="modal" class="config"></a>
+                        <a href="javascript:;" class="reload"></a>
+                        <a href="javascript:;" class="remove"></a>
+                    </div>
                 </div>
-                <div style="margin-left:350px" class="actions">
-                    <a class="btn btn-primary" href="/LiuJie/RuKuYeMianAdd">新增</a>
-                </div>
-            </div>
-            <br />
-            <div class="row-fluid">
-                <div class="control-group">
-                    <div class="controls controls-cus">
-                        订单号<input id="txtOrderNum" type="text" class="input-medium" placeholder="订单编号" />&nbsp;&nbsp;
-                        时间&nbsp;<input id="txtBeginTime" type="date" class="input-medium" />-<input id="txtEndTime" type="date" class="input-medium" />&nbsp;&nbsp;
-                        <a id="SouSuo" onclick="ChaXun2(this)" class="btn btn-info">&nbsp;搜索</a>
+                <br />
+                <div class="widget-body">
+                    <div class="clearfix margin-bottom-10">
+                        <div class="btn-group" id="btnStatusGroup">
+                            <button class="btn" value="1" onclick="QueryDaiShenHe(this)">待审核</button>
+                            <button class="btn" value="2" onclick="QueryShenHeTongGuo(this)">审核通过</button>
+                            <button class="btn" value="3" onclick="QueryShenHeShiBai(this)">审核失败</button>
+                        </div>
+                        <div style="margin-left:350px" class="actions">
+                            <a class="btn btn-primary" href="/LiuJie/RuKuYeMianAdd">新增</a>
+                        </div>
                     </div>
                     <br />
+                    <div class="row-fluid">
+                        <div class="control-group">
+                            <div class="controls controls-cus">
+                                订单号<input id="txtOrderNum" type="text" class="input-medium" placeholder="订单编号" />&nbsp;&nbsp;
+                                时间&nbsp;<input id="txtBeginTime" type="date" class="input-medium" />-<input id="txtEndTime" type="date" class="input-medium" />&nbsp;&nbsp;
+                                <a id="SouSuo" onclick="ChaXun2(this)" class="btn btn-info">&nbsp;搜索</a>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <table border="1" width="100%" class="layui-table">
+                    <thead>
+                        <tr class="widget-title">
+                            <td>出库编号</td>
+                            <td>出库类型</td>
+                            <td>关联订单号</td>
+                            <td>发货日期</td>
+                            <td>客户名称</td>
+                            <td>制单人</td>
+                            <td>创建时间</td>
+                            <td>备注</td>
+                            <td>状态</td>
+                            <td>操作</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbl">
+                    </tbody>
+                </table>
+                <!--定义分页的容器-->
+                <div id="DemoPageList">
+
                 </div>
             </div>
         </div>
-        <table border="1" width="100%" class="layui-table">
-            <thead>
-                <tr class="widget-title">
-                    <td>出库编号</td>
-                    <td>出库类型</td>
-                    <td>关联订单号</td>
-                    <td>发货日期</td>
-                    <td>客户名称</td>
-                    <td>制单人</td>
-                    <td>创建时间</td>
-                    <td>备注</td>
-                    <td>状态</td>
-                    <td>操作</td>
-                </tr>
-            </thead>
-            <tbody id="tbl">
-            </tbody>
-        </table>
-        <!--定义分页的容器-->
-        <div id="DemoPageList">
-
-        </div>
     </div>
+    </div>
+    
 </body>
 </html>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
