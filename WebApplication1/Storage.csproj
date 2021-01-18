@@ -578,6 +578,9 @@
     <Content Include="Views\WST\Warehouse.cshtml" />
     <Content Include="Views\WST\WarehouseDetails.cshtml" />
     <Content Include="Views\WST\welcome.cshtml" />
+    <Content Include="Views\LiuMin\StorehouseById.cshtml" />
+    <Content Include="Views\LiuMin\VendorByid.cshtml" />
+    <Content Include="Views\LiuMin\UnitByid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

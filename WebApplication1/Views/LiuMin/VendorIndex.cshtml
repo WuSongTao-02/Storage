@@ -12,8 +12,6 @@
 
 
     <link href="~/layui-v2.5.7/layui/css/layui.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/layui-v2.5.7/layui/layui.js"></script>
     <style type="text/css">
         * {
             padding: 0px;
@@ -86,7 +84,7 @@
                         @*<form class="layui-form layui-col-space5">*@
 
                         <div class="layui-inline layui-show-xs-block">
-                            <input type="text" placeholder="请输入供应编号" autocomplete="off" class="layui-input" id="username">
+                            <input type="text" placeholder="请输入供应名称" autocomplete="off" class="layui-input" id="username">
                         </div>
                         <div class="layui-inline layui-show-xs-block">
                             <button class="layui-btn" lay-filter="sreach" id="queryByName">搜索</button>
@@ -112,7 +110,7 @@
                                     <th>Email</th>
                                     <th>联系人</th>
                                     <th>地址</th>
-                                    <th>状态</th>
+                                    
                                     <th>备注</th>
                                     <th>操作</th>
                             </thead>
@@ -155,6 +153,10 @@
     </div>
 </body>
 </html>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/layer/layer.js"></script>
+<script src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
+<script src="~/X-admin/js/xadmin.js"></script>
 <script>
     var pageIndex = 1;
     var pageSize = 10;
@@ -175,23 +177,24 @@
     $("#queryByName").click(function () {
         //判断文本框是否为空
         if ($("#username").val() == "") {
-            GetAll();
+            GetRows();
+            PageList(pageIndex, pageSize);
             return;
         }
         else if ($("#username").val() != "") {
             $.ajax({
                 type: "post",
                 url: "/LiuMin/ShowByName1",
-                data: "{VenId:'" + $("#username").val() + "'}",
+                data: "{name:'" + $("#username").val() + "'}",
                 dataType: "json",
                 contentType: "application/json",
                 success: function (result) {
                     console.log(result);
                     $("#bot tr").remove();
                     $.each(result, function (index, data) {
-                        $("#bot").append("<tr><td><input type='checkbox' name='' lay-skin='primary'></td><td>" + data.VenId + "</td><td>" + data.VenType + "</td><td>" + data.VenName
+                        $("#bot").append("<tr><td>" + data.VenId + "</td><td>" + data.VenType + "</td><td>" + data.VenName
                             + "</td><td>" + data.VenTel + "</td><td>" + data.VenEmain + "</td><td>" + data.VenPerson + "</td><td>"
-                            + data.VenAddress + "</td><td>" + data.Remake + "</td><td><a class=''>编辑</a><a>删除</a></td></tr>")
+                            + data.VenAddress + "</td><td>" + data.Remake + "</td><td><button class='layui-btn' onclick=\"xadmin.open('供应商修改','/LiuMin/VendorByid?id=" + data.VenId + "',704,350)\" >修改</button><button onclick='return VendorDele(" + data.VenId + ")' class='layui-btn'>删除</button></td></tr>")
                     })
                 },
                 error: function (ex) {
@@ -214,7 +217,7 @@
                     if (data.IsDelete > 0) {
                         $("#bot").append("<tr><td>" + data.VenId + "</td><td>" + data.VenType + "</td><td>" + data.VenName
                             + "</td><td>" + data.VenTel + "</td><td>" + data.VenEmain + "</td><td>" + data.VenPerson + "</td><td>"
-                            + data.VenAddress + "</td><td>" + data.IsDelete + "</td><td>" + data.Remake + "</td><td><button class='layui-btn'>修改</button><button onclick='return VendorDele(" + data.VenId + ")' class='layui-btn'>删除</button></td></tr>")
+                            + data.VenAddress + "</td><td>" + data.Remake + "</td><td><button class='layui-btn' onclick=\"xadmin.open('供应商修改','/LiuMin/VendorByid?id=" + data.VenId + "',704,350)\" >修改</button><button onclick='return VendorDele(" + data.VenId + ")' class='layui-btn'>删除</button></td></tr>")
                     }
                 })
             },
@@ -284,7 +287,6 @@
     }
     //删除供应商
     function VendorDele(id) {
-        alert("1111");
         if (confirm('确定删除?')) {
             $.ajax({
                 type: "post",//请求类型

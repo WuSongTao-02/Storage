@@ -79,7 +79,7 @@
     </style>
 </head>
 <body>
-  
+
     <div class="layui-fluid">
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12">
@@ -105,7 +105,7 @@
                     </div>
                     <div class="layui-card-header">
 
-                        <button class="layui-btn" onclick="xadmin.open('添加用户','./role-add.html',600,400)" id="tian">添加</button>
+                        <button class="layui-btn"  id="tian">添加</button>
 
                     </div>
 
@@ -172,7 +172,8 @@
 </body>
 </html>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/layui-v2.5.7/layui/layui.js"></script>
+<script src="~/X-admin/lib/layui/layui.js"></script>
+<script src="~/X-admin/js/xadmin.js"></script>
 <script>
     $(function () {
         GetAll();
@@ -207,9 +208,21 @@
                 console.log(rdata);
                 $("#bot tr").remove();
                 $.each(rdata, function (index, data) {
+                    var a = data.IsJin;
+                    if (a > 0) {
+                        a = "是"
+                    } else {
+                        a="否"
+                    }
+                    var b = data.IsMoren
+                    if (b > 0) {
+                        b = "否"
+                    } else {
+                        b = "是"
+                    }
                     $("#bot").append("<tr><td>" + data.StorId + "</td><td>" + data.StoreNum + "</td><td>" + data.StoreName
-                        + "</td><td>" + data.SupName + "</td><td>" + data.StName + "</td><td>" + data.IsJin + "</td><td>"
-                        + data.IsMoren + "</td><td>" + GetTime(data.CreateTime) + "</td><td><button class='layui-btn'>修改</button><button class='layui-btn'>删除</button></td></tr>")
+                        + "</td><td>" + data.SupName + "</td><td>" + data.StName + "</td><td>" + a + "</td><td>"
+                        + b + "</td><td>" + GetTime(data.CreateTime) + "</td><td><button class='layui-btn' onclick=\"xadmin.open('库位修改','/LiuMin/StorehouseById?id=" + data.StorId + "',704,250)\">修改</button><button class='layui-btn'>删除</button></td></tr>")
                 })
             },
             error: function (xrh) {
@@ -233,9 +246,21 @@
                         console.log(result);
                         $("#bot tr").remove();
                         $.each(result, function (index, data) {
+                            var a = data.IsJin;
+                            if (a > 0) {
+                                a = "是"
+                            } else {
+                                a = "否"
+                            }
+                            var b = data.IsMoren
+                            if (b > 0) {
+                                b = "否"
+                            } else {
+                                b = "是"
+                            }
                             $("#bot").append("<tr><td>" + data.StorId + "</td><td>" + data.StoreNum + "</td><td>" + data.StoreName
-                                + "</td><td>" + data.SupName + "</td><td>" + data.StName + "</td><td>" + data.IsJin + "</td><td>"
-                                + data.IsMoren + "</td><td>" + GetTime(data.CreateTime) + "</td><td><button class='layui-btn'>修改</button><button class='layui-btn'>删除</button></td></tr>")
+                                + "</td><td>" + data.SupName + "</td><td>" + data.StName + "</td><td>" + a + "</td><td>"
+                                + b + "</td><td>" + GetTime(data.CreateTime) + "</td><td><button class='layui-btn' onclick=\"xadmin.open('库位修改','/LiuMin/StorehouseById?id=" + data.StorId + "',704,550)\">修改</button><button class='layui-btn'>删除</button></td></tr>")
                         });
                     },
                     error: function (ex) {

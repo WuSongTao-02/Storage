@@ -28,9 +28,9 @@ namespace BLL.LiuMingBLL
         {
             return VendorDAL.ShowByName(pageIndex, pageSize, VenId, VenName);
         }
-        public static IQueryable ShowByName1(int VenId)
+        public static IQueryable ShowByName1(string name)
         {
-            return VendorDAL.ShowByName1(VenId);
+            return VendorDAL.ShowByName1(name);
         }
         //添加供应商
         public static int VendorAdd(Vendor ven)
@@ -42,5 +42,21 @@ namespace BLL.LiuMingBLL
         {
             return VendorDAL.VendorDele(id);
         }
-    }
+
+
+        /// <summary>
+        /// 根据id查供应商信息
+        /// </summary>
+        /// <param name="id">供应商id</param>
+        /// <returns>数据集合</returns>
+        public static IQueryable VendorByid(int id)
+        {
+            return VendorDAL.VendorByid(id);
+        }
+
+        public static int updataVendor(Vendor d)
+        {
+            return VendorDAL.updataVendor(d);
+        }
+        }
 }

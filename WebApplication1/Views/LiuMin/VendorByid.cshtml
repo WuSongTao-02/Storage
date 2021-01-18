@@ -1,0 +1,113 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VendorByid</title>
+    <link href="~/X-admin/css/font.css" rel="stylesheet" />
+    <link href="~/X-admin/css/xadmin.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row">
+            <table class="layui-table">
+                <tbody>
+                    <tr>
+                        <td><strong>供应商编号</strong></td>
+                        <td><input type="text" class="layui-text" id="id" disabled /></td>
+                        <td><strong>供应商名称</strong></td>
+                        <td><input type="text" class="layui-text" id="name" /></td>
+                    </tr>
+                    <tr>
+                        <td><strong>email</strong></td>
+                        <td><input type="text" class="layui-text" id="email" /></td>
+                        <td><strong>电话</strong></td>
+                        <td><input type="text" class="layui-text" id="tel" /></td>
+                    </tr>
+                    <tr>
+                        <td><strong>地址</strong></td>
+                        <td><input type="text" class="layui-text" id="add" /></td>
+                        <td><strong>联系人</strong></td>
+                        <td><input type="text" class="layui-text" id="person" /></td>
+                    </tr>
+                    <tr>
+
+                        <td><strong>供应商类型</strong></td>
+                        <td>
+                            <select id="type">
+                                <option>虚拟供应商</option>
+                                <option>合作供应商</option>
+                            </select>
+                        </td>
+                        <td><strong>描述</strong></td>
+                        <td><input type="text" class="layui-text" id="remake" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="layui-btn" id="btn" style="margin-left:250px">修改</button>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/layer/layer.js"></script>
+<script src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
+<script src="~/X-admin/js/xadmin.js"></script>
+<script>
+     var id = @Request.QueryString["id"]; 
+    $(function () {
+        a();
+
+    });
+    function a() {
+        $.ajax({
+            type: "POST", //提交方式
+            url: "/LiuMin/VendorByids",//请求URL路径
+            data: "{id:" + id + "}",//向服务器传递的参数
+            dataType: "json",//预期服务器返回的数据类型
+            contentType: "application/json",//发送信息至服务器时内容编码类型
+            //请求成功后的回调函数
+            success: function (result) {
+                console.log(result);
+                $("#id").val(result[0].VenId);
+                $("#name").val(result[0].VenName);
+                $("#tel").val(result[0].VenTel);
+                $("#email").val(result[0].VenEmain);
+                $("#add").val(result[0].VenAddress);
+                $("#remake").val(result[0].Remake);
+                $("#person").val(result[0].VenPerson);
+                $("#type option").text(result[0].VenType)
+            },
+            //请求失败的回调函数
+            error: function (ex) {
+                alert("error:" + ex);
+            }
+        })
+    }
+    $("#btn").click(function () {
+        $.ajax({
+            type: "POST", //提交方式
+            url: "/LiuMin/updataVendor",//请求URL路径
+            data: "{d:{VenId:'" + id + "',VenName:'" + $("#name").val() + "',VenEmain:'" + $("#email").val() + "',VenTel:'" + $("#tel").val() + "',VenAddress:'" + $("#add").val() + "',VenPerson:'" + $("#person").val() + "',VenType:'" + $("#type option").text() + "',Remake:'" + $("#remake").val()+"'}}",//向服务器传递的参数
+            dataType: "json",//预期服务器返回的数据类型
+            contentType: "application/json",//发送信息至服务器时内容编码类型
+            //请求成功后的回调函数
+            success: function (result) {
+                if (result > 0) {
+                    alert("修改成功");
+                } else {
+                    alert("修改失败");
+                }
+            },
+            //请求失败的回调函数
+            error: function (ex) {
+                alert("error:" + ex);
+            }
+        })
+    })
+</script>

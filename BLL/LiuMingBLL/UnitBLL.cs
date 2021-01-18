@@ -32,5 +32,14 @@ namespace BLL.LiuMingBLL
         {
             return UnitDAL.UnitDele(id);
         }
+
+        public static IQueryable UnitByid(int id)
+        {
+            return UnitDAL.UnitByid(id);
+        }
+        public static int updataUnit(Unit u)
+        {
+            return UnitDAL.updataUnit(u);
+        }
     }
 }

@@ -99,11 +99,10 @@ namespace DAL.LiuMingDAL
         }
         #endregion
 
-        public static IQueryable ShowByName1(int VenId)
+        public static IQueryable ShowByName1(string name)
         {
             CangChuEntities1 contxt = new CangChuEntities1();
             var obj = from p in contxt.Vendor
-                      where p.VenId == VenId
                       select new
                       {
                           VenId = p.VenId,
@@ -115,6 +114,9 @@ namespace DAL.LiuMingDAL
                           VenAddress = p.VenAddress,
                           Remake = p.Remake
                       };
+            if (!string.IsNullOrEmpty(name)) {
+                obj = obj.Where(p => p.VenName.Contains(name));
+            }
             return obj;
         }
 
@@ -138,5 +140,44 @@ namespace DAL.LiuMingDAL
             return txtcon.SaveChanges();
         }
         #endregion
+
+
+        /// <summary>
+        /// 根据id查供应商信息
+        /// </summary>
+        /// <param name="id">供应商id</param>
+        /// <returns>数据集合</returns>
+        public static IQueryable VendorByid(int id)
+        {
+            CangChuEntities1 entity = new CangChuEntities1();
+            var obj = from p in entity.Vendor
+                      where p.VenId == id
+                      select new
+                      {
+                          VenId = p.VenId,
+                          VenName = p.VenName,
+                          VenTel = p.VenTel,
+                          VenEmain = p.VenEmain,
+                          VenPerson = p.VenPerson,
+                          VenAddress = p.VenAddress,
+                          Remake = p.Remake,
+                          VenType = p.VenType,
+                      };
+            return obj;
+        }
+
+        public static int updataVendor(Vendor d) {
+            CangChuEntities1 entity = new CangChuEntities1();
+            var obj = (from p in entity.Vendor where p.VenId == d.VenId select p).First();
+            obj.VenName = d.VenName;
+            obj.VenEmain = d.VenEmain;
+            obj.VenTel = d.VenTel;
+            obj.VenAddress = d.VenAddress;
+            obj.VenPerson = d.VenPerson;
+            obj.VenType = d.VenType;
+            obj.Remake = d.Remake;
+            return entity.SaveChanges();
+
+        }
     }
 }

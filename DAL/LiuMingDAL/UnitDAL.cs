@@ -62,5 +62,32 @@ namespace DAL.LiuMingDAL
             return txtcon.SaveChanges();
         }
         #endregion
+
+        #region 根据单位查id信息
+        public static IQueryable UnitByid(int id)
+        {
+            CangChuEntities1 entity = new CangChuEntities1();
+            var obj = from p in entity.Unit
+                      where p.UnId == id
+                      select new
+                      {
+                          UnId= p.UnId,
+                          UnName=p.UnName,
+                          IsDelete=p.IsDelete
+                      };
+            return obj;
+        }
+
+
+        public static int updataUnit(Unit u)
+        {
+            CangChuEntities1 entity = new CangChuEntities1();
+            var obj = (from p in entity.Unit where p.UnId == u.UnId select p).First();
+            obj.UnName = u.UnName;
+            obj.IsDelete = u.IsDelete;
+            return entity.SaveChanges();
+
+        }
+        #endregion
     }
 }

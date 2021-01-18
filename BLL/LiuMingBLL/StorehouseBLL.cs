@@ -28,8 +28,33 @@ namespace BLL.LiuMingBLL
         #endregion
 
 
+        /// <summary>
+        /// 根据id查询
+        /// </summary>
+        /// <param name="id">编号</param>
+        /// <returns>数据集合</returns>
+        public static IQueryable StorehouseById(int id)
+        {
+            return StorehouseDAL.StorehouseById(id);
+        }
 
 
+        /// <summary>
+        /// 库位类型
+        /// </summary>
+        /// <returns></returns>
+        public static IQueryable type()
+        {
+            return StorehouseDAL.type();
+        }
+        public static IQueryable cangchu()
+        {
+            return StorehouseDAL.cangchu();
+        }
 
-    }
+        public static int update(Storehouse s)
+        {
+            return StorehouseDAL.update(s);
+        }
+        }
 }

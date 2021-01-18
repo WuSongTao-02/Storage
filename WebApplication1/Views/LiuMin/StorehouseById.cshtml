@@ -1,0 +1,152 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StorehouseById</title>
+    <link href="~/X-admin/css/font.css" rel="stylesheet" />
+    <link href="~/X-admin/css/xadmin.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row">
+            <table class="layui-table">
+                <tbody>
+                    <tr>
+                        <td><strong>库位编号</strong></td>
+                        <td ><input type="text" class="layui-text" id="id" disabled/></td>
+                        <td><strong>库位名称</strong></td>
+                        <td ><input type="text" class="layui-text" id="name" /></td>
+                    </tr>
+                    <tr>
+                        <td><strong>库位类型</strong></td>
+                        <td >
+                            <select style="width:120px" id="type">
+                           
+                            </select>
+                        </td>
+                        <td><strong>产品仓库</strong></td>
+                        <td id="Supid">
+                            <select style="width:120px" id="cangku">
+                            </select>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td><strong>是否默认</strong></td>
+                        <td>
+                            <select style="width:120px" id="moren">
+                                <option value="0">是</option>
+                                <option value="1">否</option>
+                            </select>
+                        </td>
+                     </tr>
+                   
+                </tbody>
+            </table>
+            <button class="layui-btn" id="btn" style="margin-left:250px">修改</button>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/layer/layer.js"></script>
+<script src="~/X-admin/lib/layui/layui.js" charset="utf-8"></script>
+<script src="~/X-admin/js/xadmin.js"></script>
+<script>
+    var id = @Request.QueryString["id"]; 
+    $(function () {
+        type();
+        cangku();
+        a();
+
+    });
+    function type() {
+        $.ajax({
+            type: "POST", //提交方式
+            url: "/LiuMin/type",//请求URL路径
+            data: "{}",//向服务器传递的参数
+            dataType: "json",//预期服务器返回的数据类型
+            contentType: "application/json",//发送信息至服务器时内容编码类型
+            //请求成功后的回调函数
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("#type").append(" <option value='" + data.StId + "'>" + data.StName + "</option>")
+                })
+
+            },
+            //请求失败的回调函数
+            error: function (ex) {
+                alert("error:" + ex);
+            }
+        })
+    }
+    function cangku() {
+        $.ajax({
+            type: "POST", //提交方式
+            url: "/LiuMin/cangku",//请求URL路径
+            data: "{}",//向服务器传递的参数
+            dataType: "json",//预期服务器返回的数据类型
+            contentType: "application/json",//发送信息至服务器时内容编码类型
+            //请求成功后的回调函数
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("#cangku").append(" <option value='" + data.SupId + "'>" + data.SupName + "</option>")
+                })
+
+            },
+            //请求失败的回调函数
+            error: function (ex) {
+                alert("error:" + ex);
+            }
+        })
+    }
+    function a() {
+        $.ajax({
+            type: "POST", //提交方式
+            url: "/LiuMin/StorehouseByIds",//请求URL路径
+            data: "{id:" + id + "}",//向服务器传递的参数
+            dataType: "json",//预期服务器返回的数据类型
+            contentType: "application/json",//发送信息至服务器时内容编码类型
+            //请求成功后的回调函数
+            success: function (result) {
+                console.log(result);
+                $("#id").val(result[0].StorId);
+                $("#name").val(result[0].StoreName);
+                $("#type").val(result[0].StId);
+                $("#cangku").val(result[0].Supid);
+                $("#moren").val(result[0].IsMoren);
+            },
+            //请求失败的回调函数
+            error: function (ex) {
+                alert("error:" + ex);
+            }
+        })
+    }
+    $("#btn").click(function () {
+        $.ajax({
+            type: "POST", //提交方式
+            url: "/LiuMin/updateStor",//请求URL路径
+            data: "{s:{StorId:'" + id + "',StoreName:'" + $("#name").val() + "',StId:'" + $("#type").val() + "',IsMoren:'" + $("#moren").val() + "',Supid:'" + $("#cangku").val()+"'}}",//向服务器传递的参数
+            dataType: "json",//预期服务器返回的数据类型
+            contentType: "application/json",//发送信息至服务器时内容编码类型
+            //请求成功后的回调函数
+            success: function (result) {
+                if (result > 0) {
+                    alert("修改成功");
+                } else {
+                    alert("修改失败");
+                }
+               
+            },
+            //请求失败的回调函数
+            error: function (ex) {
+                alert("error:" + ex);
+            }
+        })
+    })
+</script>

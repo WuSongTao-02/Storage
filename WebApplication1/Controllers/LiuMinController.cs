@@ -91,13 +91,13 @@ namespace WebApplication1.Controllers
         {
             return Json(VendorBLL.ShowByName(pageIndex, pageSize, VenId, VenName), JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ShowByName1(int VenId)
+        public ActionResult ShowByName1(string name)
         {
-            return Json(VendorBLL.ShowByName1(VenId), JsonRequestBehavior.AllowGet);
+            return Json(VendorBLL.ShowByName1(name), JsonRequestBehavior.AllowGet);
         }
-        public ActionResult aaaa(int VenId)
+        public ActionResult aaaa(string name)
         {
-            return Json(VendorBLL.ShowByName1(VenId), JsonRequestBehavior.AllowGet);
+            return Json(VendorBLL.ShowByName1(name), JsonRequestBehavior.AllowGet);
         }
         //添加供应商
         public ActionResult VendorAdd(Vendor ven)
@@ -144,5 +144,52 @@ namespace WebApplication1.Controllers
         }
         #endregion
 
+
+
+        //产品类别修改
+        public ActionResult StorehouseById() {
+            return View();
+        }
+        public ActionResult StorehouseByIds(int id) {
+            return Json(StorehouseBLL.StorehouseById(id),JsonRequestBehavior.AllowGet);
+        }
+        //库位类型
+        public ActionResult type() {
+            return Json(StorehouseBLL.type(),JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult cangku() {
+            return Json(StorehouseBLL.cangchu(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult updateStor(Storehouse s) {
+
+
+            return Json(StorehouseBLL.update(s), JsonRequestBehavior.AllowGet);
+        }
+
+
+        //客户修改
+        public ActionResult VendorByid() {
+            return View();
+        }
+        public ActionResult VendorByids(int id) {
+            return Json(VendorBLL.VendorByid(id), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult updataVendor(Vendor d) {
+            return Json(VendorBLL.updataVendor(d), JsonRequestBehavior.AllowGet);
+        }
+
+        //单位修改
+        public ActionResult UnitByid()
+        {
+            return View();
+        }
+        public ActionResult UnitByids(int id)
+        {
+            return Json(UnitBLL.UnitByid(id),JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult updataUnit(Unit u)
+        {
+            return Json(UnitBLL.updataUnit(u),JsonRequestBehavior.AllowGet);
+        }
     }
 }
